@@ -1,0 +1,158 @@
+this is my makefile
+
+"NAME	= libft.a
+SRC		= ${wildcard *.c}
+OBJ		= $(SRC:.c=.o)
+AR		= ar rc
+CC		= cc
+RM		= rm -f
+CFLAGS = -g -Wall -Werror -Wextra
+GNL = get_next_line/includes
+PRINTF = ft_printf/includes
+LIBS = -Lget_next_line -l:get_next_line.a -Lft_printf -l:ftprintf.a
+
+all:$(NAME)
+
+$(NAME): rungnl $(OBJ)
+    $(AR) $(NAME) $(OBJ) $(LIBS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	$(RM)	$(OBJ)
+	make -C get_next_line clean
+	make -C ft_printf clean
+
+fclean: clean
+	$(RM) $(NAME)
+	make -C get_next_line fclean
+	make -C ft_printf fclean
+
+re:	fclean
+	@clear && make
+
+rungnl:
+	make -C get_next_line
+	make -C ft_printf
+"
+
+this is the error 
+
+"
+make[1]: Entering directory '/mnt/c/Users/Laher/OneDrive/Documents/INFORMATICA/42 Lisboa/My_Projectos/Rank_2/So_Long/Libft'
+make -C get_next_line
+make[2]: Entering directory '/mnt/c/Users/Laher/OneDrive/Documents/INFORMATICA/42 Lisboa/My_Projectos/Rank_2/So_Long/Libft/get_next_line'
+cc -g -Wall -Werror -Wextra -I./ -c get_next_line_utils_bonus.c -o get_next_line_utils_bonus.o
+cc -g -Wall -Werror -Wextra -I./ -c get_next_line_bonus.c -o get_next_line_bonus.o
+ar rcs get_next_line.a get_next_line_utils_bonus.o get_next_line_bonus.o
+make[2]: Leaving directory '/mnt/c/Users/Laher/OneDrive/Documents/INFORMATICA/42 Lisboa/My_Projectos/Rank_2/So_Long/Libft/get_next_line'
+make -C ft_printf
+make[2]: Entering directory '/mnt/c/Users/Laher/OneDrive/Documents/INFORMATICA/42 Lisboa/My_Projectos/Rank_2/So_Long/Libft/ft_printf'
+cc -g -Wall -Werror -Wextra -I./ -c ft_printf_utils.c -o ft_printf_utils.o
+cc -g -Wall -Werror -Wextra -I./ -c ft_printf.c -o ft_printf.o
+ar rc ftprintf.a ft_printf_utils.o ft_printf.o
+make[2]: Leaving directory '/mnt/c/Users/Laher/OneDrive/Documents/INFORMATICA/42 Lisboa/My_Projectos/Rank_2/So_Long/Libft/ft_printf'
+cc -g -Wall -Werror -Wextra -c ft_lstmap.c -o ft_lstmap.o
+cc -g -Wall -Werror -Wextra -c ft_toupper.c -o ft_toupper.o
+cc -g -Wall -Werror -Wextra -c ft_strtrim.c -o ft_strtrim.o
+cc -g -Wall -Werror -Wextra -c ft_putchar_fd.c -o ft_putchar_fd.o
+cc -g -Wall -Werror -Wextra -c ft_substr.c -o ft_substr.o
+cc -g -Wall -Werror -Wextra -c ft_strlcpy.c -o ft_strlcpy.o
+cc -g -Wall -Werror -Wextra -c ft_memset.c -o ft_memset.o
+cc -g -Wall -Werror -Wextra -c ft_calloc.c -o ft_calloc.o
+cc -g -Wall -Werror -Wextra -c ft_lstiter.c -o ft_lstiter.o
+cc -g -Wall -Werror -Wextra -c ft_strmapi.c -o ft_strmapi.o
+cc -g -Wall -Werror -Wextra -c ft_putendl_fd.c -o ft_putendl_fd.o
+cc -g -Wall -Werror -Wextra -c ft_strlcat.c -o ft_strlcat.o
+cc -g -Wall -Werror -Wextra -c ft_memchr.c -o ft_memchr.o
+cc -g -Wall -Werror -Wextra -c ft_strstrlen.c -o ft_strstrlen.o
+cc -g -Wall -Werror -Wextra -c ft_lstlast.c -o ft_lstlast.o
+cc -g -Wall -Werror -Wextra -c ft_striteri.c -o ft_striteri.o
+cc -g -Wall -Werror -Wextra -c ft_lstdelone.c -o ft_lstdelone.o
+cc -g -Wall -Werror -Wextra -c ft_strdup.c -o ft_strdup.o
+cc -g -Wall -Werror -Wextra -c ft_lstadd_back.c -o ft_lstadd_back.o
+cc -g -Wall -Werror -Wextra -c ft_putnbr_fd.c -o ft_putnbr_fd.o
+cc -g -Wall -Werror -Wextra -c ft_strlen.c -o ft_strlen.o
+cc -g -Wall -Werror -Wextra -c ft_itoa.c -o ft_itoa.o
+cc -g -Wall -Werror -Wextra -c ft_isdigit.c -o ft_isdigit.o
+cc -g -Wall -Werror -Wextra -c ft_isalpha.c -o ft_isalpha.o
+cc -g -Wall -Werror -Wextra -c ft_lstnew.c -o ft_lstnew.o
+cc -g -Wall -Werror -Wextra -c ft_split.c -o ft_split.o
+cc -g -Wall -Werror -Wextra -c ft_lstadd_front.c -o ft_lstadd_front.o
+cc -g -Wall -Werror -Wextra -c ft_lstclear.c -o ft_lstclear.o
+cc -g -Wall -Werror -Wextra -c ft_strjoin.c -o ft_strjoin.o
+cc -g -Wall -Werror -Wextra -c ft_strrchr.c -o ft_strrchr.o
+cc -g -Wall -Werror -Wextra -c ft_memcmp.c -o ft_memcmp.o
+cc -g -Wall -Werror -Wextra -c ft_lstsize.c -o ft_lstsize.o
+cc -g -Wall -Werror -Wextra -c ft_putstr_fd.c -o ft_putstr_fd.o
+cc -g -Wall -Werror -Wextra -c ft_isalnum.c -o ft_isalnum.o
+cc -g -Wall -Werror -Wextra -c ft_memcpy.c -o ft_memcpy.o
+cc -g -Wall -Werror -Wextra -c ft_strnstr.c -o ft_strnstr.o
+cc -g -Wall -Werror -Wextra -c ft_strchr.c -o ft_strchr.o
+cc -g -Wall -Werror -Wextra -c ft_isascii.c -o ft_isascii.o
+cc -g -Wall -Werror -Wextra -c ft_tolower.c -o ft_tolower.o
+cc -g -Wall -Werror -Wextra -c ft_isprint.c -o ft_isprint.o
+cc -g -Wall -Werror -Wextra -c ft_strncmp.c -o ft_strncmp.o
+cc -g -Wall -Werror -Wextra -c ft_memmove.c -o ft_memmove.o
+cc -g -Wall -Werror -Wextra -c ft_bzero.c -o ft_bzero.o
+cc -g -Wall -Werror -Wextra -c ft_atoi.c -o ft_atoi.o
+ar rc libft.a ft_lstmap.o ft_putchar_fd.o ft_strlcpy.o ft_memchr.o ft_lstlast.o ft_lstclear.o ft_striteri.o ft_isdigit.o ft_isalpha.o ft_strlen.o ft_memcmp.o ft_lstsize.o ft_putstr_fd.o ft_itoa.o ft_memcpy.o ft_strnstr.o ft_isascii.o ft_isprint.o ft_bzero.o ft_toupper.o ft_calloc.o ft_lstiter.o ft_strmapi.o ft_strlcat.o ft_substr.o ft_strchr.o ft_strstrlen.o ft_memmove.o ft_lstdelone.o ft_putendl_fd.o ft_lstadd_back.o ft_putnbr_fd.o ft_strdup.o ft_split.o ft_memset.o ft_strjoin.o ft_strrchr.o ft_isalnum.o ft_strtrim.o ft_tolower.o ft_lstadd_front.o ft_strncmp.o ft_lstnew.o ft_atoi.o -Lget_next_line -lget_next_line -Lft_printf -lft_printf -o libft.a
+ar: invalid option -- 'L'
+Usage: ar [emulation options] [-]{dmpqrstx}[abcDfilMNoOPsSTuvV] [--plugin <name>] [member-name] [count] archive-file file...
+       ar -M [<mri-script]
+ commands:
+  d            - delete file(s) from the archive
+  m[ab]        - move file(s) in the archive
+  p            - print file(s) found in the archive
+  q[f]         - quick append file(s) to the archive
+  r[ab][f][u]  - replace existing or insert new file(s) into the archive
+  s            - act as ranlib
+  t[O][v]      - display contents of the archive
+  x[o]         - extract file(s) from the archive
+ command specific modifiers:
+  [a]          - put file(s) after [member-name]
+  [b]          - put file(s) before [member-name] (same as [i])
+  [D]          - use zero for timestamps and uids/gids (default)
+  [U]          - use actual timestamps and uids/gids
+  [N]          - use instance [count] of name
+  [f]          - truncate inserted file names
+  [P]          - use full path names when matching
+  [o]          - preserve original dates
+  [O]          - display offsets of files in the archive
+  [u]          - only replace files that are newer than current archive contents
+ generic modifiers:
+  [c]          - do not warn if the library had to be created
+  [s]          - create an archive index (cf. ranlib)
+  [S]          - do not build a symbol table
+  [T]          - make a thin archive
+  [v]          - be verbose
+  [V]          - display the version number
+  @<file>      - read options from <file>
+  --target=BFDNAME - specify the target object format as BFDNAME
+  --output=DIRNAME - specify the output directory for extraction operations
+ optional:
+  --plugin <p> - load the specified plugin
+ emulation options:
+  No emulation specific options
+ar: supported targets: elf64-x86-64 elf32-i386 elf32-iamcu elf32-x86-64 pei-i386 pei-x86-64 elf64-l1om elf64-k1om elf64-little elf64-big elf32-little elf32-big pe-x86-64 pe-bigobj-x86-64 pe-i386 srec symbolsrec verilog tekhex binary ihex plugin
+make[1]: *** [Makefile:27: libft.a] Error 1
+make[1]: Leaving directory '/mnt/c/Users/Laher/OneDrive/Documents/INFORMATICA/42 Lisboa/My_Projectos/Rank_2/So_Long/Libft'
+make: *** [Makefile:39: re] Error 2
+"
+
+this is the directory structure
+
+-libft/
+	- get_next_line/
+		- get_next_line.h
+		- get_next_line.a
+    	- makefile
+    -ft_printf/
+    	-ft_prinft.h
+    	- ft_printf.a
+    	- makefile
+    -libft.h
+    -libft.a
+    -makefile
+	-...
