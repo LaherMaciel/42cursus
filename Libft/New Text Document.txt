@@ -1,0 +1,1 @@
+gcc -Wall -Werror -Wextra -fsanitize=address main.c creating_stacks.c ft_printf.c ft_printf_utils.c ft_lstnew.c ft_lstadd_back.c ft_lstlast.c ft_atoi.c moviments.c moviments2.c sorts2.c find.c ft_lstsize.c && ./a.out 2 6 4 1 
