@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:10 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/06 22:59:33 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/07 22:37:53 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	main(void)
 {
 	t_win	win;
 
+	win.player_look = 0;
+	win.exit = 0;
 	win.length_size = 1920;
 	win.heigth_size = 1080;
 	win.image_heigth = 64;

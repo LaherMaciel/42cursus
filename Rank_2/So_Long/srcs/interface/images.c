@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 23:44:27 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/06 23:15:31 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/07 22:37:35 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ void	*exit_image(t_win *win)
 {
 	void	*img_exit;
 
-	if (win->collectibles != 0)
+	if (win->exit != 0)
 		img_exit = mlx_xpm_file_to_image(win->mlx,
-				"closed_exit.xpm", &win->image_length, &win->image_heigth);
+				"exit1.xpm", &win->image_length, &win->image_heigth);
 	else
 		img_exit = mlx_xpm_file_to_image(win->mlx,
-				"main_open_exit.xpm", &win->image_length, &win->image_heigth);
+				"exit1.xpm", &win->image_length, &win->image_heigth);
 	return (img_exit);
 }
 
@@ -51,7 +51,7 @@ void	*wall_image(t_win *win)
 	void	*img_wall;
 
 	img_wall = mlx_xpm_file_to_image(win->mlx,
-			"main_wall.xpm", &win->image_length, &win->image_heigth);
+			"tree_wall.xpm", &win->image_length, &win->image_heigth);
 	return (img_wall);
 }
 
@@ -69,6 +69,6 @@ void	*collectibles_image(t_win *win)
 	void	*img_collectibles;
 
 	img_collectibles = mlx_xpm_file_to_image(win->mlx,
-			"main_collectible.xpm", &win->image_length, &win->image_heigth);
+			"tile000.xpm", &win->image_length, &win->image_heigth);
 	return (img_collectibles);
 }

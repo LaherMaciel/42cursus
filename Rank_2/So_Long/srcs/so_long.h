@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/07 04:05:05 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/07 22:04:13 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_win
 {
 	void	*mlx;
 	void	*mlx_win;
+	int		mapa_length;
+	int		mapa_heigth;
 	int		length_size;
 	int		heigth_size;
 	int		colors;
