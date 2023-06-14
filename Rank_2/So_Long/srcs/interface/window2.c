@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 23:36:13 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/07 22:54:10 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:39:53 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,20 +78,20 @@ t_data	images_on_window(t_win *win, t_data img)
 	return (img);
 }
 
-t_data	create_image(t_win win, void *img_player)
+t_data	create_image(t_win *win, void *img_player)
 {
 	t_data	img;
 
-	img.img_wall = wall_image(&win);
+	img.img_wall = wall_image(win);
 	img.img_player = img_player;
-	img.img_floor = floor_image(&win);
-	img.img_collectibles = collectibles_image(&win);
-	img.img_exit = exit_image(&win);
-	img = images_on_window(&win, img);
-	win.mapa_length = ft_strlen(win.mapa[0]);
-	//win.mapa_heigth = 0;
-	//while (win.mapa[0][win.mapa_heigth])
-	//	win.mapa_heigth++;
+	img.img_floor = floor_image(win);
+	img.img_collectibles = collectibles_image(win);
+	img.img_exit = exit_image(win);
+	img = images_on_window(win, img);
+	win->mapa_length = ft_strlen(win->mapa[0]);
+	//win->mapa_heigth = 0;
+	//while (win->mapa[0][win->mapa_heigth])
+	//	win->mapa_heigth++;
 	ft_printf("IMAGE CREATED\n");
 	return (img);
 }

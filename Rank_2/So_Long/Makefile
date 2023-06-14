@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/06/06 23:17:03 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/06/08 15:23:18 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ $(LIBFT):
 	make -sC $(LIBFT_DIRECTORY) #--no-print-directory
 
 $(MLX):
-	cd $(MLX_DIRECTORY) && ./configure
+	cd $(MLX_DIRECTORY) && bash configure
 
 clean: 
 	rm -rf $(OBJECTS_DIRECTORY)

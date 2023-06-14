@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 23:44:27 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/07 22:37:35 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:26:14 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	*player_image(t_win *win)
 	void	*img_player;
 
 	if (win->player_look == 0)
-		img_player = look_up(win);
-	else if (win->player_look == 1)
 		img_player = look_down(win);
+	else if (win->player_look == 1)
+		img_player = look_up(win);
 	else if (win->player_look == 2)
 		img_player = look_left(win);
 	else

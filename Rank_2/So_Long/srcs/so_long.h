@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/07 22:04:13 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:36:51 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int		map_base_check(t_win map);
 //WINDOWS
 char	**creat_map_mod(void);
 t_win	window_init(t_win win);
-t_data	create_image(t_win win, void *img_player);
+t_data	create_image(t_win *win, void *img_player);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 //IMAGE

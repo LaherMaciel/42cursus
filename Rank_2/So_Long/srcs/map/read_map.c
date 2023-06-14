@@ -6,19 +6,26 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 19:13:45 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/07 22:14:35 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/14 10:38:16 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-char	**creat_map_mod()
+/**
+ * @brief creat a map (array of arrays) using then string i wrote in this function.
+ * 
+ * @return char**, the map.
+ */
+char	**creat_map_mod(void)
 {
 	char	*map_test;
-	char **map;
+	char	**map;
 
-	map_test = "11111111111111111111111\n1pce0000000000000000001\n10000000000000000000001\n10000000000000000000001\n10000000000000000000001\n11111111111111111111111";
-	/*map_test = "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111\n\
+	map_test = "11111111111111111111111\n1p000000000000000000001\n10000000000000000000001\n\
+		100000000c0000000000001\n100000000000000000000e1\n11111111111111111111111";
+	/*map_test =
+"1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111\n\
 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
@@ -47,6 +54,11 @@ char	**creat_map_mod()
 	return (map);
 }
 
+/**
+ * @brief creat a array of arrays (map) using the file introduced as parameter.
+ * 
+ * @return char** 
+ */
 char	**creat_map(void)
 {
 	int		fds;
@@ -89,6 +101,14 @@ char	**creat_map(void)
 	return (map);
 }
 
+/**
+ * @brief does the basic checks to see if the map is valid like
+ *  see if the map has only 1 player, only 1 exit, if it has at least
+ *  1 collectible and if the map is surrounded by walls.
+ * 
+ * @param win 
+ * @return int 
+ */
 int	map_base_check(t_win win)
 {
 	int	x;
@@ -97,7 +117,7 @@ int	map_base_check(t_win win)
 	int	y_max_len;
 	int	base_max_y_len;
 	int	player;
-	int	exit;		
+	int	exit;
 	int	collectible;
 
 	x = -1;
