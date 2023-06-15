@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/08 15:36:51 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/15 01:22:21 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,17 @@ typedef struct s_win
 	int		y;
 }		t_win;
 
+typedef struct S_aux_vales
+{
+	unsigned int	color;
+	void			*current_image;
+	int				current_image_x;
+	int				current_image_y;
+	int				x;
+	int				y;
+	
+}		t_aux_vales;
+
 typedef struct s_extras
 {
 	int		boss_x;
@@ -97,6 +108,14 @@ typedef struct s_extras
 	int		player_health;
 }		t_extras;
 
+typedef struct s_main_struct
+{
+	t_data			img;
+	t_win			win;
+	t_aux_vales 	aux;
+	t_extras		extras;
+}				t_main_struct;
+
 //EVENTS
 int		keycode_decisions(int keycode, t_win *win);
 int		my_close(t_win *win);
@@ -113,10 +132,12 @@ char	**read_file(void);
 int		map_base_check(t_win map);
 
 //WINDOWS
-char	**creat_map_mod(void);
-t_win	window_init(t_win win);
-t_data	create_image(t_win *win, void *img_player);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+char			**creat_map_mod(void);
+t_win			window_init(t_win win);
+void			create_image(t_main_struct *boss, void *img_player);
+void			my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
+unsigned int	get_pixel(t_data *img, int x, int y);
+int				window_destroy(t_win *win);
 
 //IMAGE
 void	*wall_image(t_win *win);
@@ -126,7 +147,7 @@ void	*collectibles_image(t_win *win);
 void	*exit_image(t_win *win);
 
 //COLORS
-t_data	color_win(t_data img, t_win *win, int x, int y);
+void	*color_win(t_main_struct *boss, t_data *img);
 
 //ANIMATIONS
 void	*walk_up(t_win *win);

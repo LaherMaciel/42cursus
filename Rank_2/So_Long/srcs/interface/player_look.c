@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:26:48 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/07 21:51:18 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/14 23:40:06 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*look_up(t_win *win)
 {
 	void	*img_player;
 
-	img_player = mlx_xpm_file_to_image(win->mlx, "character2/tile012.xpm", &win->image_length, &win->image_heigth);
+	img_player = mlx_xpm_file_to_image(win->mlx, "Player/samurai/Look_back.xpm", &win->image_length, &win->image_heigth);
 	return (img_player);
 }
 
@@ -28,7 +28,7 @@ void	*look_down(t_win *win)
 {
 	void	*img_player;
 
-	img_player = mlx_xpm_file_to_image(win->mlx, "character2/tile000.xpm", &win->image_length, &win->image_heigth);
+	img_player = mlx_xpm_file_to_image(win->mlx, "Player/samurai/Look_front.xpm", &win->image_length, &win->image_heigth);
 	return (img_player);
 }
 
@@ -36,7 +36,7 @@ void	*look_left(t_win *win)
 {
 	void	*img_player;
 
-	img_player = mlx_xpm_file_to_image(win->mlx, "character2/tile004.xpm", &win->image_length, &win->image_heigth);
+	img_player = mlx_xpm_file_to_image(win->mlx, "Player/samurai/Look_left.xpm", &win->image_length, &win->image_heigth);
 	return (img_player);
 }
 
@@ -44,6 +44,6 @@ void	*look_right(t_win *win)
 {
 	void	*img_player;
 
-	img_player = mlx_xpm_file_to_image(win->mlx, "character2/tile008.xpm", &win->image_length, &win->image_heigth);
+	img_player = mlx_xpm_file_to_image(win->mlx, "Player/samurai/Look_right.xpm", &win->image_length, &win->image_heigth);
 	return (img_player);
 }

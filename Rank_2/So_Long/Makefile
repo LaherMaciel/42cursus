@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/06/08 15:23:18 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/06/14 23:28:25 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,5 +92,8 @@ fclean: clean
 
 re: fclean
 	clear && make
+
+run: re
+	./so_long
 
 .PHONY: all clean fclean re
