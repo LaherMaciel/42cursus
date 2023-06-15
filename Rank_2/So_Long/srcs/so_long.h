@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/15 01:22:21 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/15 19:27:41 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_data{
 	void	*img_exit;
 	void	*img_player;
 	void	*img_collectibles;
+	void	*main_image;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
@@ -69,9 +70,13 @@ typedef struct S_aux_vales
 	void			*current_image;
 	int				current_image_x;
 	int				current_image_y;
+	char			*address;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
 	int				x;
 	int				y;
-	
+
 }		t_aux_vales;
 
 typedef struct s_extras
@@ -134,20 +139,22 @@ int		map_base_check(t_win map);
 //WINDOWS
 char			**creat_map_mod(void);
 t_win			window_init(t_win win);
-void			create_image(t_main_struct *boss, void *img_player);
-void			my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
-unsigned int	get_pixel(t_data *img, int x, int y);
+void			create_main_image(t_main_struct *boss, void *img_player);
 int				window_destroy(t_win *win);
+void			window_start(t_main_struct boss);
 
-//IMAGE
+//MAIN IMAGE
+
+//SECONDARY IMAGE
 void	*wall_image(t_win *win);
 void	*player_image(t_win *win);
 void	*floor_image(t_win *win);
 void	*collectibles_image(t_win *win);
 void	*exit_image(t_win *win);
+void	get_color_of_aux_image(t_aux_vales *aux);
 
 //COLORS
-void	*color_win(t_main_struct *boss, t_data *img);
+void	*choose_aux_image(t_main_struct *boss, t_data *img);
 
 //ANIMATIONS
 void	*walk_up(t_win *win);
@@ -158,5 +165,11 @@ void	*look_up(t_win *win);
 void	*look_down(t_win *win);
 void	*look_left(t_win *win);
 void	*look_right(t_win *win);
+
+// PIXEIS
+void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
+int		get_pixel(t_aux_vales *aux, int x, int y);
+int		aux_get_pixel(t_aux_vales *aux, int x, int y);
+
 
 #endif // !SO_LONG_H

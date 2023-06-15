@@ -6,16 +6,22 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:26:48 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/14 23:40:06 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/15 19:55:59 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-/*
-	HERE WILL DEAL WITH THE IMAGE OF WHERE THE PLAYER LOOK
-*/
+/*==============================================================\
+|	  HERE WILL DEAL WITH THE IMAGE OF WHERE THE PLAYER LOOK	|
+\==============================================================*/
 
+/**
+ * @brief Give the address of image of the player looking up
+ *
+ * @param win
+ * @return void*
+ */
 void	*look_up(t_win *win)
 {
 	void	*img_player;
@@ -24,6 +30,12 @@ void	*look_up(t_win *win)
 	return (img_player);
 }
 
+/**
+ * @brief Give the address of image of the player looking down
+ *
+ * @param win
+ * @return void*
+ */
 void	*look_down(t_win *win)
 {
 	void	*img_player;
@@ -32,6 +44,12 @@ void	*look_down(t_win *win)
 	return (img_player);
 }
 
+/**
+ * @brief Give the address of image of the player looking left
+ *
+ * @param win
+ * @return void*
+ */
 void	*look_left(t_win *win)
 {
 	void	*img_player;
@@ -40,6 +58,12 @@ void	*look_left(t_win *win)
 	return (img_player);
 }
 
+/**
+ * @brief Give the address of image of the player looking right
+ *
+ * @param win
+ * @return void*
+ */
 void	*look_right(t_win *win)
 {
 	void	*img_player;

@@ -6,16 +6,23 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:06:08 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/14 23:31:18 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/15 19:55:09 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-/*
-	HERE WILL DEAL WITH THE IMAGE OF WHERE THE PLAYER ALKING
-*/
+/*==============================================================\
+|	HERE WILL DEAL WITH THE IMAGE OF WHERE THE PLAYER WALKING	|
+\==============================================================*/
 
+/**
+ * @brief Give the address of image of the player walking up depending of the
+ * value of the variable player_walk (0 or 1) it can give back diferent images.
+ *
+ * @param win
+ * @return void*
+ */
 void	*walk_up(t_win *win)
 {
 	void	*img_player;
@@ -33,6 +40,13 @@ void	*walk_up(t_win *win)
 	return (img_player);
 }
 
+/**
+ * @brief Give the address of image of the player walking down depending of the
+ * value of the variable player_walk (0 or 1) it can give back diferent images.
+ *
+ * @param win
+ * @return void*
+ */
 void	*walk_down(t_win *win)
 {
 	void	*img_player;
@@ -50,6 +64,13 @@ void	*walk_down(t_win *win)
 	return (img_player);
 }
 
+/**
+ * @brief Give the address of image of the player walking to the left depending of the
+ * value of the variable player_walk (0 or 1) it can give back diferent images.
+ *
+ * @param win
+ * @return void*
+ */
 void	*walk_left(t_win *win)
 {
 	void	*img_player;
@@ -67,6 +88,13 @@ void	*walk_left(t_win *win)
 	return (img_player);
 }
 
+/**
+ * @brief Give the address of image of the player walking to the right depending of the
+ * value of the variable player_walk (0 or 1) it can give back diferent images.
+ *
+ * @param win
+ * @return void*
+ */
 void	*walk_right(t_win *win)
 {
 	void	*img_player;

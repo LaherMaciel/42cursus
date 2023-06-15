@@ -6,17 +6,18 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/06/14 23:28:25 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/06/15 19:20:54 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
-TEXTURE_C = 
+TEXTURE_C =
 ANIMATION_C = player_look.c player_walk.c collectibles_animations.c \
 	floor_animations.c wall_animations.c
 MAP_C = map_parser.c read_map.c
 EVENTS_C = base_movs.c keycode.c destroy_window.c
-INTERFACE_C = window2.c colors.c images.c
+INTERFACE_C = window.c window2.c colors.c secondary_images.c \
+		secondary_images_2.c main_image.c pixeis.c
 
 LIBFT_DIRECTORY = libft/
 LIBFT_HEADER = $(LIBFT_DIRECTORY)libft.h
@@ -56,7 +57,7 @@ OBJECTS_DIRECTORY = objects/
 OBJECTS = $(addprefix $(OBJECTS_DIRECTORY), $(OBJECT_LIST))
 
 CC = cc
-CFLAGS = -g -Wall -Werror -Wextra 
+CFLAGS = -g -Wall -Werror -Wextra
 
 LIBS = -L$(LIBFT_DIRECTORY) -lft $(MLX) -Imlx_linux -lX11 -lXext -lm -lz
 INCLUDES = -I.$(HEADERS) -I.$(LIBFT_HEADER) -I.$(MLX_HEADER)
@@ -81,7 +82,7 @@ $(LIBFT):
 $(MLX):
 	cd $(MLX_DIRECTORY) && bash configure
 
-clean: 
+clean:
 	rm -rf $(OBJECTS_DIRECTORY)
 	make -sC $(LIBFT_DIRECTORY) clean #--no-print-directory
 
@@ -90,10 +91,19 @@ fclean: clean
 	make -sC $(LIBFT_DIRECTORY) fclean #--no-print-directory
 	rm -rf $(MLX)
 
+norm:
+	@echo "[" "$(YELLOW)..$(RESET)" "] | Running Norminette...$(RESET)"
+	@if norminette src include/macros.h iclude/so_long.h include/structures.h | grep -q "Error!"; then \
+	    echo "[" "$(RED)!!$(RESET)" "] | Norminette found errors.$(RESET)"; \
+	    norminette src include/macros.h iclude/so_long.h include/structures.h | awk '/Error!/ {print "[ " "$(RED)!!$(RESET)" " ] | " $$0}'; \
+	else \
+	    echo "[" "$(GREEN)OK$(RESET)" "] | Norminette passed!"; \
+	fi
+
 re: fclean
 	clear && make
 
-run: re
+run: re norm
 	./so_long
 
 .PHONY: all clean fclean re
