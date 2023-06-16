@@ -6,12 +6,11 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:10 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/15 19:35:48 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/15 20:55:12 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 /**
  * @brief The Main function calls the window_start that is on the window.c

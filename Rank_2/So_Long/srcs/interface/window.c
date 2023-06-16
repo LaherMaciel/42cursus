@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:46:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/15 19:41:42 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/15 21:17:43 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ mlx_loop() -> initiate the window rendering.
  */
 t_win	window_init(t_win win)
 {
-	win.heigth_size = ft_strlen(win.mapa[0]);
+	win.length_size = ft_strlen(win.mapa[0]);
 	win.heigth_size = 0;
 	while (win.mapa[win.heigth_size])
-		win.length_size++;
+		win.heigth_size++;
 	win.length_size = win.length_size * win.image_length;
 	win.heigth_size = win.heigth_size * win.image_heigth;
 	win.mlx = mlx_init();
@@ -90,7 +90,7 @@ t_aux_vales	win_start_aux(t_win win)
  *
  *	Call's the function win_start_aux(boss.win), window_init(boss. win) in this
  *  file;
- *	Call's the function player_image(&boss.win) on the file 
+ *	Call's the function player_image(&boss.win) on the file
  *	Call's the function create_main_image(&boss, player_image(&boss.win)) in the
  * file main_image.c
  *
@@ -112,8 +112,8 @@ void	window_start(t_main_struct boss)
 		return ;
 	}
 	ft_printf("%s\n\n", boss.win.mapa[0]);
-	boss.aux = win_start_aux(boss.win);
 	boss.win = window_init(boss. win);
+	//boss.aux = win_start_aux(boss.win);
 	boss.img.main_image = mlx_new_image(boss.win.mlx, boss.win.image_length, boss.win.image_heigth);
 	boss.img.addr = mlx_get_data_addr(boss.img.main_image, &boss.img.bits_per_pixel, &boss.img.line_length,
 								&boss.img.endian);

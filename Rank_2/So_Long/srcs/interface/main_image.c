@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 18:08:08 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/15 19:31:16 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/15 21:37:40 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,11 @@ t_data	put_color_on_main_images(t_main_struct *boss)
 	{
 		boss->aux.x = -1;
 		boss->win.j = 0;
-		while (++boss->aux.x < boss->win.length_size && boss->win.mapa[boss->win.i][boss->win.j])
+		while (++boss->aux.x < boss->win.length_size
+			&& boss->win.mapa[boss->win.i][boss->win.j])
 		{
-			if ((boss->aux.x % boss->win.image_length == 0 && boss->aux.y % boss->win.image_heigth == 0))
+			if ((boss->aux.x % boss->win.image_length == 0
+					&& boss->aux.y % boss->win.image_heigth == 0))
 			{
 				boss->aux.current_image = choose_aux_image(boss, &boss->img);
 				boss->win.j++;
@@ -105,7 +107,10 @@ t_data	put_color_on_main_images(t_main_struct *boss)
 				boss->aux.current_image_x = 0;
 		}
 		if (!boss->win.mapa[boss->win.i][boss->win.j])
+		{
 				boss->win.i++;
+			mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win, boss->img.main_image, 0, 0);
+		}
 		boss->aux.current_image_y++;
 		if (boss->aux.current_image_y % 64 == 0)
 			boss->aux.current_image_y = 0;
