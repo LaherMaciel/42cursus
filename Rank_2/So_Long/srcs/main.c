@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:10 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 03:18:34 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 03:51:52 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(void)
 {
 	t_main_struct	boss;
 
-	boss.win = creat_mapa();
+	boss.win = creat_mapa(&boss);
 	boss.aux = aux_imgs_init(boss.aux);
 	boss.win.player_look = 0;
 	boss.win.exit = 0;
@@ -35,8 +35,6 @@ int	main(void)
 		window_destroy(&boss);
 	boss.win = window_init(boss.win);
 	boss.img = start_image(&boss);
-	if (boss.img.ok == 0)
-		window_destroy(&boss);
 	mlx_hook(boss.win.mlx_win, 2, 1L<<0, keycode_decisions, &boss);
 	mlx_hook(boss.win.mlx_win, 17, 1L, window_destroy, &boss);
 	mlx_loop(boss.win.mlx);

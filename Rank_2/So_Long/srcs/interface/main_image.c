@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 18:08:08 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 03:27:25 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 04:04:11 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,22 +203,22 @@ t_data	create_main_image(t_main_struct *boss)
 {
 	boss->aux.img_wall = wall_image(&boss->win);
 	if (!boss->aux.img_wall)
-		return (boss->img);
+		error_call("Wall Image Not Created", boss);
 	boss->aux.img_player = player_image(&boss->win);
 	if (!boss->aux.img_player)
-		return (boss->img);
+		error_call("Player Image Not Created", boss);
 	boss->aux.img_collectibles = collectibles_image(&boss->win);
 	if (!boss->aux.img_collectibles)
-		return (boss->img);
+		error_call("Collectibles Image Not Created", boss);
 	boss->aux.img_exit = exit_image(&boss->win);
 	if (!boss->aux.img_exit)
-		return (boss->img);
+		error_call("Exit Image Not Created", boss);
 	boss->aux.img_floor = floor_image(&boss->win);
 	if (!boss->aux.img_floor)
-		return (boss->img);
+		error_call("Floor Image Not Created", boss);
 	boss->aux.current_image = floor_image(&boss->win);
-	if (!boss->aux.img_wall)
-		return (boss->img);
+	if (!boss->aux.img_floor)
+		error_call("aux.current_image Not Created", boss);
 	boss->img.ok = 1;
 	boss->img = floor_on_window(boss);
 	boss->img = put_color_on_main_images(boss);
@@ -248,10 +248,10 @@ t_data	start_image(t_main_struct *boss)
 	boss->img.ok = 0;
 	ft_printf("%s\n\n", boss->win.mapa[0]);
 	boss->img.main_image = mlx_new_image(boss->win.mlx, boss->win.length_size, boss->win.heigth_size);
+	if (!boss->img.main_image)
+		error_call("Main Image Not Created", boss);
 	boss->img.addr = mlx_get_data_addr(boss->img.main_image, &boss->img.bits_per_pixel, &boss->img.line_length,
 								&boss->img.endian);
 	boss->img = create_main_image(boss);
-	if (boss->img.ok == 0)
-		ft_printf("ERROR\n");
 	return (boss->img);
 }

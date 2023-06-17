@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 19:13:45 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/14 23:34:02 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 04:02:43 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	**creat_map(void)
  * @param win 
  * @return int 
  */
-int	map_base_check(t_win win)
+int	map_base_check(t_main_struct *boss, t_win *win)
 {
 	int	x;
 	int	y;
@@ -124,44 +124,43 @@ int	map_base_check(t_win win)
 	exit = 0;
 	collectible = 0;
 	x_max_len = 0;
-	while (win.mapa[++x])
+	while (win->mapa[++x])
 		x_max_len++;
 	x_max_len--;
 	x = -1;
-	base_max_y_len = ft_strlen(win.mapa[0]) - 1;
-	if (base_max_y_len <= x_max_len)
-		return (0);
-	if ((win.mapa[0][0] != '1') || (win.mapa[x_max_len][base_max_y_len] != '1'))
-		return (0);
+	base_max_y_len = ft_strlen(win->mapa[0]) - 1;
+	if ((win->mapa[0][0] != '1') || (win->mapa[x_max_len][base_max_y_len] != '1'))
+		error_call("Mapa Not Surrounded by Walls", boss);
 	while (++x < x_max_len)
 	{
 		y = -1;
-		y_max_len = ft_strlen(win.mapa[x]) - 1;
+		y_max_len = ft_strlen(win->mapa[x]) - 1;
 		ft_printf("x_max_len -> %i\n", x_max_len);
 		ft_printf("y_max_len -> %i\n", y_max_len);
 		ft_printf("base_max_y_len -> %i\n", base_max_y_len);
 		if (base_max_y_len != y_max_len)
-			return (0);
-		while (win.mapa[x][++y])
+			error_call("The Mapa Is Not a Rectangle", boss);
+		while (win->mapa[x][++y])
 		{
-			ft_printf("%c", win.mapa[x][y]);
-			if ((win.mapa[0][y] != '1') || (win.mapa[x][0] != '1'))
-				return (0);
-			else if ((win.mapa[x_max_len][y] != '1')
-				|| (win.mapa[x][y_max_len] != '1'))
-				return (0);
-			else if (win.mapa[x][y] == 'p')
+			ft_printf("%c", win->mapa[x][y]);
+			if ((win->mapa[0][y] != '1') || (win->mapa[x][0] != '1'))
+				error_call("Mapa Not Surrounded by Walls", boss);
+			else if ((win->mapa[x_max_len][y] != '1')
+				|| (win->mapa[x][y_max_len] != '1'))
+				error_call("Mapa Not Surrounded by Walls", boss);
+			else if (win->mapa[x][y] == 'p')
 				player++;
-			else if (win.mapa[x][y] == 'e')
+			else if (win->mapa[x][y] == 'e')
 				exit++;
-			else if (win.mapa[x][y] == 'c')
+			else if (win->mapa[x][y] == 'c')
 				collectible++;
-			else if (win.mapa[x][y] != '0' && win.mapa[x][y] != '1')
-				return (0);
+			else if (win->mapa[x][y] != '0' && win->mapa[x][y] != '1')
+				error_call("Unidentified Characters on The Map", boss);
 		}
 		ft_printf("\n");
 	}
 	if (player != 1 || exit != 1 || collectible < 1)
-		return (0);
+		error_call("Number of Players Different then 1\n OR\nNumber of"\
+		" exits Different then 1\nOR\nNumber of collectibles smaller then 1", boss);
 	return (1);
 }

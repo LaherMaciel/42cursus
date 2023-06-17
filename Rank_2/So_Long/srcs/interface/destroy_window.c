@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 01:36:11 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 03:24:17 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 04:01:11 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,10 @@ int	window_destroy(t_main_struct *boss)
 	destroy_aux_struct(&boss->aux);
 	destroy_win_struct(&boss->win);
 	exit(0);
+}
+
+void	error_call(char *str, t_main_struct *boss)
+{
+	ft_printf("ERROR: %s!!\n", str);
+	window_destroy(boss);
 }

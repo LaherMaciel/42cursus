@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 03:18:47 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 04:02:12 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,16 +129,17 @@ void	mov_up(t_main_struct *boss, t_win *win);
 void	mov_down(t_main_struct *boss, t_win *win);
 int		mouse_handler(int mousekey, int x, int y, t_win *win);
 
-//CREAT_MAP
-t_win	creat_mapa();
+//MAP
+t_win	creat_mapa(t_main_struct *boss);
 char	**creat_map(void);
 char	**read_file(void);
-int		map_base_check(t_win map);
+int	map_base_check(t_main_struct *boss, t_win *win);
 
 //WINDOWS
 char			**creat_map_mod(void);
 t_win			window_init(t_win win);
 int				window_destroy(t_main_struct *boss);
+void			error_call(char *str, t_main_struct *boss);
 
 //MAIN IMAGE
 t_data			start_image(t_main_struct *boss);
