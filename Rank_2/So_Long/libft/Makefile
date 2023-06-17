@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 18:07:37 by lwencesl          #+#    #+#              #
-#    Updated: 2023/05/28 01:17:45 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/06/16 21:26:22 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,21 +78,21 @@ $(NAME): $(OBJECTS_DIRECTORY) $(OBJECTS)
 		$(AR) $(NAME) $(OBJECTS)
 
 $(OBJECTS_DIRECTORY):
-	mkdir -p $(OBJECTS_DIRECTORY)
-	mkdir -p $(OBJECTS_DIRECTORY)$(FT_PRINTF_DIRECTORY)
-	mkdir -p $(OBJECTS_DIRECTORY)$(GNL_DIRECTORY)
+	@mkdir -p $(OBJECTS_DIRECTORY)
+	@mkdir -p $(OBJECTS_DIRECTORY)$(FT_PRINTF_DIRECTORY)
+	@mkdir -p $(OBJECTS_DIRECTORY)$(GNL_DIRECTORY)
 
 $(OBJECTS_DIRECTORY)%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ $(HEADER)
+	@$(CC) $(CFLAGS) -c $< -o $@ $(HEADER)
 
 clean:
 	$(RM) $(OBJECTS)
-	rm -rf $(OBJECTS_DIRECTORY)
+	@rm -rf $(OBJECTS_DIRECTORY)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re:	fclean
-	clear && make all
+	clear && make -s all
 
 .PHONY: all clean fclean re

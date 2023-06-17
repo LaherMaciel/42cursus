@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/15 19:27:41 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 01:54:48 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,25 @@
 # include "../libft/libft.h"
 
 typedef struct s_data{
-	void	*img_wall;
-	void	*img_floor;
-	void	*img_exit;
-	void	*img_player;
-	void	*img_collectibles;
 	void	*main_image;
 	char	*addr;
-	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		bits_per_pixel;
 }				t_data;
 
 typedef struct s_win
 {
 	void	*mlx;
 	void	*mlx_win;
+	char	**mapa;
 	int		mapa_length;
 	int		mapa_heigth;
 	int		length_size;
 	int		heigth_size;
+	int		image_length;
+	int		image_heigth;
 	int		colors;
-	char	**mapa;
 	int		player;
 	int		player_x;
 	int		player_y;
@@ -56,24 +53,25 @@ typedef struct s_win
 	int		floor;
 	int		collectibles;
 	int		exit;
-	int		image_length;
-	int		image_heigth;
 	int		i;
 	int		j;
-	int		x;
-	int		y;
 }		t_win;
 
 typedef struct S_aux_vales
 {
 	unsigned int	color;
+	char			*address;
+	int				line_length;
+	int				endian;
+	int				bits_per_pixel;
+	void			*img_collectibles;
+	void			*img_exit;
+	void			*img_floor;
+	void			*img_player;
+	void			*img_wall;
 	void			*current_image;
 	int				current_image_x;
 	int				current_image_y;
-	char			*address;
-	int				bits_per_pixel;
-	int				line_length;
-	int				endian;
 	int				x;
 	int				y;
 
@@ -122,16 +120,16 @@ typedef struct s_main_struct
 }				t_main_struct;
 
 //EVENTS
-int		keycode_decisions(int keycode, t_win *win);
-int		my_close(t_win *win);
-void	mov_left(t_win *win);
-void	mov_right(t_win *win);
-void	mov_up(t_win *win);
-void	mov_down(t_win *win);
+int		keycode_decisions(int keycode, t_main_struct *boss);
+int		my_close(t_main_struct *boss);
+void	mov_left(t_main_struct *boss, t_win *win);
+void	mov_right(t_main_struct *boss, t_win *win);
+void	mov_up(t_main_struct *boss, t_win *win);
+void	mov_down(t_main_struct *boss, t_win *win);
 int		mouse_handler(int mousekey, int x, int y, t_win *win);
-int		window_destroy(t_win *win);
 
 //CREAT_MAP
+t_win	creat_mapa();
 char	**creat_map(void);
 char	**read_file(void);
 int		map_base_check(t_win map);
@@ -139,36 +137,37 @@ int		map_base_check(t_win map);
 //WINDOWS
 char			**creat_map_mod(void);
 t_win			window_init(t_win win);
-void			create_main_image(t_main_struct *boss, void *img_player);
-int				window_destroy(t_win *win);
-void			window_start(t_main_struct boss);
+int				window_destroy(t_main_struct *boss);
 
 //MAIN IMAGE
+t_data			start_image(t_main_struct *boss);
+t_data			create_main_image(t_main_struct *boss);
+int				ignore_x(t_main_struct *boss, int i);
+int				ignore_y(t_main_struct *boss, int i);
+void			*choose_aux_image(t_main_struct *boss);
+
 
 //SECONDARY IMAGE
-void	*wall_image(t_win *win);
-void	*player_image(t_win *win);
-void	*floor_image(t_win *win);
-void	*collectibles_image(t_win *win);
-void	*exit_image(t_win *win);
-void	get_color_of_aux_image(t_aux_vales *aux);
-
-//COLORS
-void	*choose_aux_image(t_main_struct *boss, t_data *img);
+void			*wall_image(t_win *win);
+void			*player_image(t_win *win);
+void			*floor_image(t_win *win);
+void			*collectibles_image(t_win *win);
+void			*exit_image(t_win *win);
+void			get_color_of_aux_image(t_aux_vales *aux);
 
 //ANIMATIONS
-void	*walk_up(t_win *win);
-void	*walk_down(t_win *win);
-void	*walk_left(t_win *win);
-void	*walk_right(t_win *win);
-void	*look_up(t_win *win);
-void	*look_down(t_win *win);
-void	*look_left(t_win *win);
-void	*look_right(t_win *win);
+void			*walk_up(t_win *win);
+void			*walk_down(t_win *win);
+void			*walk_left(t_win *win);
+void			*walk_right(t_win *win);
+void			*look_up(t_win *win);
+void			*look_down(t_win *win);
+void			*look_left(t_win *win);
+void			*look_right(t_win *win);
 
 // PIXEIS
-void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
-int		get_pixel(t_aux_vales *aux, int x, int y);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int		get_pixel(t_aux_vales *aux);
 int		aux_get_pixel(t_aux_vales *aux, int x, int y);
 
 

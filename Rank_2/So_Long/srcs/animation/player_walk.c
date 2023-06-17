@@ -6,79 +6,123 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:06:08 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/06 21:08:05 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/16 18:10:18 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-/*
-	HERE WILL DEAL WITH THE IMAGE OF WHERE THE PLAYER ALKING
-*/
+/*==============================================================\
+|	HERE WILL DEAL WITH THE IMAGE OF WHERE THE PLAYER WALKING	|
+\==============================================================*/
 
+/**
+ * @brief Retrieve the address of the image of the player walking up.
+ *
+ * This function loads and returns the address of the image that represents the player
+ * walking up. Depending on the value of the `player_walk` variable (0 or 1), different
+ * images may be returned. After each call, the `player_walk` variable is updated
+ * accordingly to alternate between the two images.
+ *
+ * @param win A pointer to the window structure.
+ * @return void* The address of the player's "walk up" image.
+ */
 void	*walk_up(t_win *win)
 {
 	void	*img_player;
 
 	if (win->player_walk == 0)
 	{
-		img_player = mlx_xpm_file_to_image(win->mlx, "/character2/tile013.xpm", &win->image_length, &win->image_heigth);
+		img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/walk_back_0.xpm", &win->image_length, &win->image_heigth);
 		win->player_walk = 1;
 	}
 	else
 	{
-		img_player = mlx_xpm_file_to_image(win->mlx, "/character2/tile015.xpm", &win->image_length, &win->image_heigth);
+		img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/walk_back_1.xpm", &win->image_length, &win->image_heigth);
 		win->player_walk = 0;
 	}
 	return (img_player);
 }
 
+/**
+ * @brief Retrieve the address of the image of the player walking down.
+ *
+ * This function loads and returns the address of the image that represents the player
+ * walking down. Depending on the value of the `player_walk` variable (0 or 1), different
+ * images may be returned. After each call, the `player_walk` variable is updated
+ * accordingly to alternate between the two images.
+ *
+ * @param win A pointer to the window structure.
+ * @return void* The address of the player's "walk down" image.
+ */
 void	*walk_down(t_win *win)
 {
 	void	*img_player;
 
 	if (win->player_walk == 0)
 	{
-		img_player = mlx_xpm_file_to_image(win->mlx, "/character2/tile001.xpm", &win->image_length, &win->image_heigth);
+		img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/walk_front_0.xpm", &win->image_length, &win->image_heigth);
 		win->player_walk = 1;
 	}
 	else
 	{
-		img_player = mlx_xpm_file_to_image(win->mlx, "/character2/tile003.xpm", &win->image_length, &win->image_heigth);
+		img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/walk_front_1.xpm", &win->image_length, &win->image_heigth);
 		win->player_walk = 0;
 	}
 	return (img_player);
 }
 
+/**
+ * @brief Retrieve the address of the image of the player walking to the left.
+ *
+ * This function loads and returns the address of the image that represents the player
+ * walking to the left. Depending on the value of the `player_walk` variable (0 or 1), different
+ * images may be returned. After each call, the `player_walk` variable is updated
+ * accordingly to alternate between the two images.
+ *
+ * @param win A pointer to the window structure.
+ * @return void* The address of the player's "walk left" image.
+ */
 void	*walk_left(t_win *win)
 {
 	void	*img_player;
 
 	if (win->player_walk == 0)
 	{
-		img_player = mlx_xpm_file_to_image(win->mlx, "/character2/tile005.xpm", &win->image_length, &win->image_heigth);
+		img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/walk_left_0.xpm", &win->image_length, &win->image_heigth);
 		win->player_walk = 1;
 	}
 	else
 	{
-		img_player = mlx_xpm_file_to_image(win->mlx, "/character2/tile007.xpm", &win->image_length, &win->image_heigth);
+		img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/walk_left_1.xpm", &win->image_length, &win->image_heigth);
 		win->player_walk = 0;
 	}
 	return (img_player);
 }
 
+/**
+ * @brief Retrieve the address of the image of the player walking to the right.
+ *
+ * This function loads and returns the address of the image that represents the player
+ * walking to the right. Depending on the value of the `player_walk` variable (0 or 1), different
+ * images may be returned. After each call, the `player_walk` variable is updated
+ * accordingly to alternate between the two images.
+ *
+ * @param win A pointer to the window structure.
+ * @return void* The address of the player's "walk right" image.
+ */
 void	*walk_right(t_win *win)
 {
 	void	*img_player;
 
 	if (win->player_walk == 0)
 	{
-		img_player = mlx_xpm_file_to_image(win->mlx, "/character2/tile009.xpm", &win->image_length, &win->image_heigth);
+		img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/walk_right_0.xpm", &win->image_length, &win->image_heigth);
 		win->player_walk = 1;
 	}
 	else
 	{
-		img_player = mlx_xpm_file_to_image(win->mlx, "/character2/tile011.xpm", &win->image_length, &win->image_heigth);
+		img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/walk_rigtht_1.xpm", &win->image_length, &win->image_heigth);
 		win->player_walk = 0;
 	}
 	return (img_player);
