@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 18:08:08 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 01:35:28 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 03:27:25 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,6 +219,7 @@ t_data	create_main_image(t_main_struct *boss)
 	boss->aux.current_image = floor_image(&boss->win);
 	if (!boss->aux.img_wall)
 		return (boss->img);
+	boss->img.ok = 1;
 	boss->img = floor_on_window(boss);
 	boss->img = put_color_on_main_images(boss);
 	//win->mapa_heigth = 0;
@@ -244,13 +245,13 @@ t_data	create_main_image(t_main_struct *boss)
  */
 t_data	start_image(t_main_struct *boss)
 {
+	boss->img.ok = 0;
 	ft_printf("%s\n\n", boss->win.mapa[0]);
 	boss->img.main_image = mlx_new_image(boss->win.mlx, boss->win.length_size, boss->win.heigth_size);
 	boss->img.addr = mlx_get_data_addr(boss->img.main_image, &boss->img.bits_per_pixel, &boss->img.line_length,
 								&boss->img.endian);
 	boss->img = create_main_image(boss);
-	if (!boss->aux.img_floor)
-		ft_printf("ERROR");
-	ft_printf("img: %p\n", boss->aux.img_floor);
+	if (boss->img.ok == 0)
+		ft_printf("ERROR\n");
 	return (boss->img);
 }

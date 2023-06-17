@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 01:36:11 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 02:00:23 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 03:24:17 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ void	destroy_win_struct(t_win *win)
 	while (win->mapa[++i])
 		free(win->mapa[i]);
 	free(win->mapa);
+//	free(win->mlx_win);
 	free(win->mlx);
 }
 
 void	destroy_data_struct(t_data *img)
 {
-	if (img->addr)
-		free(img->addr);
 	if (img->main_image)
 		free(img->main_image);
 }
@@ -66,6 +65,5 @@ int	window_destroy(t_main_struct *boss)
 	destroy_data_struct(&boss->img);
 	destroy_aux_struct(&boss->aux);
 	destroy_win_struct(&boss->win);
-	mlx_destroy_window(&boss->win.mlx, &boss->win.mlx_win);
 	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 01:54:48 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 03:18:47 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_data{
 	int		line_length;
 	int		endian;
 	int		bits_per_pixel;
+	int		ok;
 }				t_data;
 
 typedef struct s_win
@@ -170,5 +171,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		get_pixel(t_aux_vales *aux);
 int		aux_get_pixel(t_aux_vales *aux, int x, int y);
 
+//OTHERS
+t_aux_vales	aux_imgs_init(t_aux_vales aux);
 
 #endif // !SO_LONG_H

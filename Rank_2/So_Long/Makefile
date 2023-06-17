@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/06/17 02:11:37 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/06/17 03:39:51 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ ANIMATION_C = player_look.c player_walk.c collectibles_animations.c \
 MAP_C = map_parser.c read_map.c
 EVENTS_C = base_movs.c keycode.c
 INTERFACE_C = window.c window2.c colors.c secondary_images.c \
-		secondary_images_2.c main_image.c main_image_2.c pixeis.c destroy_window.c
+		secondary_images_2.c main_image.c main_image_2.c pixeis.c destroy_window.c \
+		vals_init.c
 
 LIBFT_DIRECTORY = libft/
 LIBFT_HEADER = $(LIBFT_DIRECTORY)libft.h
@@ -57,7 +58,7 @@ OBJECTS_DIRECTORY = objects/
 OBJECTS = $(addprefix $(OBJECTS_DIRECTORY), $(OBJECT_LIST))
 
 CC = cc
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra #-fsanitize=address
 
 LIBS = -L$(LIBFT_DIRECTORY) -lft $(MLX) -Imlx_linux -lX11 -lXext -lm -lz
 INCLUDES = -I.$(HEADERS) -I.$(LIBFT_HEADER) -I.$(MLX_HEADER)
@@ -125,7 +126,10 @@ val:re
 	valgrind ./so_long
 
 val_full:re
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./so_long
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./so_long
+
+term_dbg:
+	gdb -tui ./so_long
 
 ver: re norm
 	valgrind ./so_long
