@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:39:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 01:58:55 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 08:05:43 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,20 @@ int	keycode_decisions(int keycode, t_main_struct *boss)
 	int		i;
 
 	i = -1;
-	while (boss->win.mapa[++i])
-		ft_printf("%s\n", boss->win.mapa[i]);
-	if (keycode == 100)
+	if (keycode == 100 || keycode == 65363)
 		mov_right(boss, &boss->win);
-	if (keycode == 97)
+	if (keycode == 97 || keycode ==  65361)
 		mov_left(boss, &boss->win);
-	if (keycode == 119)
+	if (keycode == 119 || keycode == 65362)
 		mov_up(boss, &boss->win);
-	if (keycode == 115)
+	if (keycode == 115 || keycode ==  65364)
 		mov_down(boss, &boss->win);
 	if (keycode == 65307)
 		window_destroy(boss);
+	while (boss->win.mapa[++i])
+		ft_printf("%s\n", boss->win.mapa[i]);
 	ft_printf("keycode -> %i\n", keycode);
-	mlx_loop(boss->win.mlx);
+	if (boss->win.collectibles == boss->win.collected)
+		boss->win.exit = 1;
 	return (0);
 }

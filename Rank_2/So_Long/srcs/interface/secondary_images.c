@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 23:44:27 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/16 23:35:26 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 04:24:54 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,9 +131,5 @@ void	*floor_image(t_win *win)
  */
 void	*collectibles_image(t_win *win)
 {
-	void	*img_collectibles;
-
-	img_collectibles = mlx_xpm_file_to_image(win->mlx,
-			"../../images/utils/Collectibles/soul_flame/tile000.xpm", &win->image_length, &win->image_heigth);
-	return (img_collectibles);
+	return (collectibles_image_animation(win));
 }

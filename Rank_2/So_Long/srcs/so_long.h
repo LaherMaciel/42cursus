@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 04:02:12 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 07:07:30 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,13 @@ typedef struct s_win
 	int		image_length;
 	int		image_heigth;
 	int		colors;
-	int		player;
 	int		player_x;
 	int		player_y;
 	int		player_walk;
 	int		player_look;
-	int		walls;
-	int		floor;
 	int		collectibles;
+	int		collected;
+	int		collect;
 	int		exit;
 	int		i;
 	int		j;
@@ -75,6 +74,10 @@ typedef struct S_aux_vales
 	int				current_image_y;
 	int				x;
 	int				y;
+	int				ignx0;
+	int				ignx1;
+	int				igny0;
+	int				igny1;
 
 }		t_aux_vales;
 
@@ -119,6 +122,12 @@ typedef struct s_main_struct
 	t_aux_vales 	aux;
 	t_extras		extras;
 }				t_main_struct;
+
+//ANIMATIONS
+void	*collectibles_image_animation(t_win *win);
+t_data	upgrade_collectibles(t_main_struct *boss);
+t_data	upgrade_player(t_main_struct *boss, int i);
+t_data	upgrade_main_image(t_main_struct *boss, int i, int j, int sl);
 
 //EVENTS
 int		keycode_decisions(int keycode, t_main_struct *boss);
@@ -174,5 +183,6 @@ int		aux_get_pixel(t_aux_vales *aux, int x, int y);
 
 //OTHERS
 t_aux_vales	aux_imgs_init(t_aux_vales aux);
+t_win	win_vals_init(t_win win);
 
 #endif // !SO_LONG_H

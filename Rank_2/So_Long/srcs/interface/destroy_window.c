@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 01:36:11 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 04:01:11 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 07:31:00 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ void	destroy_aux_struct(t_aux_vales *aux)
 		free(aux->img_floor);
 	if (aux->current_image)
 		free(aux->current_image);
-	if (aux->address)
-		free(aux->address);
 }
 
 int	window_destroy(t_main_struct *boss)

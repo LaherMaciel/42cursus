@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:06:08 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/16 18:10:18 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 08:00:00 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,22 @@ void	*walk_right(t_win *win)
 	}
 	else
 	{
-		img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/walk_rigtht_1.xpm", &win->image_length, &win->image_heigth);
+		img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/walk_right_1.xpm", &win->image_length, &win->image_heigth);
 		win->player_walk = 0;
 	}
 	return (img_player);
+}
+
+t_data	upgrade_player(t_main_struct *boss, int i)
+{
+	boss->img = upgrade_collectibles(boss);
+	if (i == 0)
+	{
+		boss->aux.current_image = floor_image(&boss->win);
+		boss->img = upgrade_player(boss, 1);
+		boss->aux.current_image = player_image(&boss->win);
+	}
+	boss->img = upgrade_main_image(boss, (boss->win.player_y + 1), (boss->win.player_x + 1), 0);
+	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win, boss->img.main_image, 0, 0);
+	return (boss->img);
 }

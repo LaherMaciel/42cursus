@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 03:15:06 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 03:19:01 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 05:16:44 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,15 @@ t_aux_vales	aux_imgs_init(t_aux_vales aux)
 	aux.current_image = NULL;
 	aux.address = NULL;
 	return (aux);
+}
+
+t_win	win_vals_init(t_win win)
+{
+	win.player_look = 0;
+	win.exit = 0;
+	win.collect = 0;
+	win.collected = 0;
+	win.image_heigth = 64;
+	win.image_length = 64;
+	return (win);
 }

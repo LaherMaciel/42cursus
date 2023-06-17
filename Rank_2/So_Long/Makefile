@@ -6,14 +6,14 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/06/17 03:39:51 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/06/17 05:18:38 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 TEXTURE_C =
 ANIMATION_C = player_look.c player_walk.c collectibles_animations.c \
-	floor_animations.c wall_animations.c
+	floor_animations.c wall_animations.c loop.c
 MAP_C = map_parser.c read_map.c
 EVENTS_C = base_movs.c keycode.c
 INTERFACE_C = window.c window2.c colors.c secondary_images.c \

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 19:13:45 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 04:02:43 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 04:16:15 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /**
  * @brief creat a map (array of arrays) using then string i wrote in this function.
- * 
+ *
  * @return char**, the map.
  */
 char	**creat_map_mod(void)
@@ -22,7 +22,7 @@ char	**creat_map_mod(void)
 	char	*map_test;
 	char	**map;
 
-	map_test = "11111111111111111111111\n1p000000000000000000001\n10000000000000000000001\n100000000c0000000000001\n100000000000000000000e1\n11111111111111111111111";
+	map_test = "11111111111111111111111\n1p00000000000000c000001\n100000000000000000c0001\n100000000c0000000000001\n100c00000000000000000e1\n11111111111111111111111";
 	/*map_test =
 "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111\n\
 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
@@ -55,8 +55,8 @@ char	**creat_map_mod(void)
 
 /**
  * @brief creat a array of arrays (map) using the file introduced as parameter.
- * 
- * @return char** 
+ *
+ * @return char**
  */
 char	**creat_map(void)
 {
@@ -104,9 +104,9 @@ char	**creat_map(void)
  * @brief does the basic checks to see if the map is valid like
  *  see if the map has only 1 player, only 1 exit, if it has at least
  *  1 collectible and if the map is surrounded by walls.
- * 
- * @param win 
- * @return int 
+ *
+ * @param win
+ * @return int
  */
 int	map_base_check(t_main_struct *boss, t_win *win)
 {
@@ -117,12 +117,11 @@ int	map_base_check(t_main_struct *boss, t_win *win)
 	int	base_max_y_len;
 	int	player;
 	int	exit;
-	int	collectible;
 
 	x = -1;
 	player = 0;
 	exit = 0;
-	collectible = 0;
+	win->collectibles = 0;
 	x_max_len = 0;
 	while (win->mapa[++x])
 		x_max_len++;
@@ -149,17 +148,21 @@ int	map_base_check(t_main_struct *boss, t_win *win)
 				|| (win->mapa[x][y_max_len] != '1'))
 				error_call("Mapa Not Surrounded by Walls", boss);
 			else if (win->mapa[x][y] == 'p')
+			{
+				win->player_x = x;
+				win->player_y = y;
 				player++;
+			}
 			else if (win->mapa[x][y] == 'e')
 				exit++;
 			else if (win->mapa[x][y] == 'c')
-				collectible++;
+				win->collectibles++;
 			else if (win->mapa[x][y] != '0' && win->mapa[x][y] != '1')
 				error_call("Unidentified Characters on The Map", boss);
 		}
 		ft_printf("\n");
 	}
-	if (player != 1 || exit != 1 || collectible < 1)
+	if (player != 1 || exit != 1 || win->collectibles < 1)
 		error_call("Number of Players Different then 1\n OR\nNumber of"\
 		" exits Different then 1\nOR\nNumber of collectibles smaller then 1", boss);
 	return (1);
