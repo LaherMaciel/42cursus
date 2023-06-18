@@ -6,13 +6,13 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 04:26:17 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 07:06:20 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 21:39:50 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-t_data	upgrade_main_image(t_main_struct *boss, int i, int j, int sl)
+t_data	upgrade_main_image(t_main_struct *boss, int i, int j)
 {
 	int	stop_x;
 	int	stop_y;
@@ -33,8 +33,6 @@ t_data	upgrade_main_image(t_main_struct *boss, int i, int j, int sl)
 			boss->aux.current_image_x++;
 		}
 		boss->aux.current_image_y++;
-		if (sl == 1)
-			mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win, boss->img.main_image, 0, 0);
 	}
 	return (boss->img);
 }

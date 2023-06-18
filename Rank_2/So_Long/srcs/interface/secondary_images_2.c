@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 18:19:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/16 23:16:13 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 22:24:53 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,35 @@ void	get_color_of_aux_image(t_aux_vales *aux)
 	aux->address = mlx_get_data_addr(aux->current_image,
 			&aux->bits_per_pixel, &aux->line_length, &aux->endian);
 	aux->color = get_pixel(aux);
+}
+
+/**
+ * @brief
+ *
+ * if color == 555555 make it 7F555555
+ *
+ * @param boss
+ * @param i
+ * @param j
+ * @return t_data
+ */
+t_data	put_wall(t_main_struct *boss, int i, int j)
+{
+	boss->aux.current_image = wall_image(&boss->win);
+	boss->img = put_walls_aux(boss, (i + 1), (j + 1));
+	return (boss->img);
+}
+
+t_data	put_floor(t_main_struct *boss, int i, int j)
+{
+	boss->aux.current_image = floor_image(&boss->win);
+	boss->img = upgrade_main_image(boss, (i + 1), (j + 1));
+	return (boss->img);
+}
+
+t_data	put_exit(t_main_struct *boss, int i, int j)
+{
+	boss->aux.current_image = exit_image(&boss->win);
+	boss->img = upgrade_main_image(boss, (i + 1), (j + 1));
+	return (boss->img);
 }

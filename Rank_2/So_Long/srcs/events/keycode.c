@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:39:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 08:05:43 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 20:42:56 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ int	keycode_decisions(int keycode, t_main_struct *boss)
 	ft_printf("keycode -> %i\n", keycode);
 	if (boss->win.collectibles == boss->win.collected)
 		boss->win.exit = 1;
+	boss->img = upgrade_collectibles(boss);
+	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win, boss->img.main_image, 0, 0);
 	return (0);
 }

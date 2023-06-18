@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:30:39 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 07:08:14 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 21:39:28 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,24 @@ t_data	upgrade_collectibles(t_main_struct *boss)
 			if (boss->win.mapa[i][j++] == 'c')
 			{
 				boss->aux.current_image = collectibles_image(&boss->win);
-				boss->img = upgrade_main_image(boss, (i +  1), j, 1);
-				mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win, boss->img.main_image, 0, 0);
+				boss->img = upgrade_main_image(boss, (i +  1), j);
 			}
 		}
 		i++;
 	}
+	return (boss->img);
+}
+
+t_data	collect(t_main_struct *boss)
+{
+	boss->aux.current_image = floor_image(&boss->win);
+	if (boss->win.player_look == 0)
+		boss->img = upgrade_main_image(boss, (boss->win.player_y), (boss->win.player_x + 1));
+	if (boss->win.player_look == 1)
+		boss->img = upgrade_main_image(boss, (boss->win.player_y + 2), (boss->win.player_x + 1));
+	if (boss->win.player_look == 2)
+		boss->img = upgrade_main_image(boss, (boss->win.player_y + 1), (boss->win.player_x));
+	if (boss->win.player_look == 3)
+		boss->img = upgrade_main_image(boss, (boss->win.player_y + 1), (boss->win.player_x + 2));
 	return (boss->img);
 }

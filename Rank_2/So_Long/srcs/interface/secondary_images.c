@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 23:44:27 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 04:24:54 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 21:18:38 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	*player_image(t_win *win)
 	void	*img_player;
 
 	if (win->player_look == 0)
-		img_player = look_down(win);
-	else if (win->player_look == 1)
 		img_player = look_up(win);
+	else if (win->player_look == 1)
+		img_player = look_down(win);
 	else if (win->player_look == 2)
 		img_player = look_left(win);
 	else if (win->player_look == 3)
@@ -94,7 +94,7 @@ void	*wall_image(t_win *win)
 	void	*img_wall;
 
 	img_wall = mlx_xpm_file_to_image(win->mlx,
-			"../../images/utils/tree_test2.xpm", &win->image_length, &win->image_heigth);
+			"../../images/utils/tree3.xpm", &win->image_length, &win->image_heigth);
 	return (img_wall);
 }
 
@@ -114,7 +114,7 @@ void	*floor_image(t_win *win)
 	void	*img_floor;
 
 	img_floor = mlx_xpm_file_to_image(win->mlx,
-			"../../images/utils/main_floor.xpm", &win->image_length, &win->image_heigth);
+			"../../images/utils/grass3.xpm", &win->image_length, &win->image_heigth);
 	return (img_floor);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:06:08 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 08:00:00 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 22:21:22 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,16 +128,21 @@ void	*walk_right(t_win *win)
 	return (img_player);
 }
 
+/**
+ * @brief 
+ * 
+ * @param boss 
+ * @param i 
+ * @return t_data 
+ */
 t_data	upgrade_player(t_main_struct *boss, int i)
 {
-	boss->img = upgrade_collectibles(boss);
 	if (i == 0)
 	{
 		boss->aux.current_image = floor_image(&boss->win);
 		boss->img = upgrade_player(boss, 1);
 		boss->aux.current_image = player_image(&boss->win);
 	}
-	boss->img = upgrade_main_image(boss, (boss->win.player_y + 1), (boss->win.player_x + 1), 0);
-	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win, boss->img.main_image, 0, 0);
+	boss->img = upgrade_main_image(boss, (boss->win.player_y + 1), (boss->win.player_x + 1));
 	return (boss->img);
 }

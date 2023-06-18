@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 03:15:06 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 05:16:44 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 19:33:05 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_aux_vales	aux_imgs_init(t_aux_vales aux)
 
 t_win	win_vals_init(t_win win)
 {
-	win.player_look = 0;
+	win.player_look = 1;
 	win.exit = 0;
 	win.collect = 0;
 	win.collected = 0;

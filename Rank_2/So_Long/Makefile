@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/06/17 05:18:38 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/06/17 19:15:33 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,14 +71,17 @@ RESET   = \033[0m
 
 $(NAME): $(LIBFT) $(MLX) $(OBJECTS_DIRECTORY) $(OBJECTS)
 	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJECTS) $(LIBS) -o $(NAME)
+	@echo "[" "$(GREEN)OK$(RESET)" "] | so_long created!"
 
 $(OBJECTS_DIRECTORY):
+	@echo "[" "$(YELLOW)..$(RESET)" "] | Creating objects..."
 	@mkdir -p $(OBJECTS_DIRECTORY)
 	@mkdir -p $(OBJECTS_DIRECTORY)$(TEXTURES_DIRECTORY)
 	@mkdir -p $(OBJECTS_DIRECTORY)$(EVENTS_DIRECTORY)
 	@mkdir -p $(OBJECTS_DIRECTORY)$(MAP_DIRECTORY)
 	@mkdir -p $(OBJECTS_DIRECTORY)$(ANIMATION_DIRECTORY)
 	@mkdir -p $(OBJECTS_DIRECTORY)$(INTERFACE_DIRECTORY)
+	@echo "[" "$(GREEN)OK$(RESET)" "] | Objects ready!"
 
 $(OBJECTS_DIRECTORY)%.o : $(SRCS_DIRECTORY)%.c
 	@$(CC) $(CFLAGS) -c $(INCLUDES) $< -o $@
@@ -108,7 +111,7 @@ fclean: clean
 	@echo "[" "$(GREEN)OK$(RESET)" "] | Binary file removed."
 
 norm:
-	@echo "[" "$(YELLOW)..$(RESET)" "] | Running Norminette...$(RESET)"
+	@echo "[" "$(YELLOW)..$(RESET)" "] | Norminetting...$(RESET)"
 	@if norminette src $(INCLUDES) | grep -q "Error!"; then \
 	    echo "[" "$(RED)!!$(RESET)" "] | Norminette found errors.$(RESET)"; \
 	    norminette src $(INCLUDES) | awk '/Error!/ {print "[ " "$(RED)!!$(RESET)" " ] | " $$0}'; \

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 18:08:08 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 07:07:03 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/17 23:17:20 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ mlx_loop() -> initiate the window rendering.
  * @param img The main image data structure.
  * @return t_data The modified main image data structure.
  */
-t_data	floor_on_window(t_main_struct *boss)
+t_data	floor_on_main_image_full(t_main_struct *boss)
 {
 	int	i;
 	int	j;
@@ -47,10 +47,9 @@ t_data	floor_on_window(t_main_struct *boss)
 	{
 		j = 0;
 		while (boss->win.mapa[i][j])
-			boss->img = upgrade_main_image(boss, (i + 1), ++j, 0);
+			boss->img = upgrade_main_image(boss, (i + 1), ++j);
 		i++;
 	}
-	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win, boss->img.main_image, 0, 0);
 	return (boss->img);
 }
 
@@ -67,12 +66,9 @@ t_data	floor_on_window(t_main_struct *boss)
  * @param img A pointer to the main image data structure.
  * @return void* A pointer to the chosen auxiliary image.
  */
+/*
 void	*choose_aux_image(t_main_struct *boss)
 {
-	/*boss->aux.ignore_x0 = ignore_x(boss, 0);
-	boss->aux.ignore_x1 = ignore_x(boss, 1);
-	boss->aux.ignore_y0 = ignore_y(boss, 0);
-	boss->aux.ignore_y1 = ignore_y(boss, 1);*/
 	if (boss->win.mapa[boss->win.i][boss->win.j] == '1')
 		return (boss->aux.img_wall);
 	else if (boss->win.mapa[boss->win.i][boss->win.j] == 'p')
@@ -86,6 +82,8 @@ void	*choose_aux_image(t_main_struct *boss)
 		return (boss->aux.img_exit);
 	return (boss->aux.img_floor);
 }
+*/
+
 
 /**
  * @brief Fill main images with colors from secondary images.
@@ -102,58 +100,7 @@ void	*choose_aux_image(t_main_struct *boss)
  * @param boss Pointer to the main structure.
  * @return t_data Modified main image data structure.
  */
-/*t_data	put_color_on_main_images(t_main_struct *boss)
-{
-	int	ignx0;
-	int	ignx1;
-	int	igny0;
-	int	igny1;
-
-	ft_printf("put_color_on_main_images -> IN\n");
-	boss->aux.y = -1;
-	boss->win.i = 0;
-	while (++boss->aux.y < boss->win.heigth_size && boss->win.mapa[boss->win.i])
-	{
-		boss->aux.x = -1;
-		boss->win.j = 0;
-		while (++boss->aux.x < boss->win.length_size
-			&& boss->win.mapa[boss->win.i][boss->win.j])
-		{
-			if ((boss->aux.x % boss->win.image_length == 0))
-			{
-				boss->aux.current_image = choose_aux_image(boss);
-				boss->aux.current_image_x = 0;
-				ignx0 = ignore_x(boss, 0);
-				ignx1 = ignore_x(boss, 1);
-				igny0 = ignore_y(boss, 0);
-				igny1 = ignore_y(boss, 1);
-				boss->win.j++;
-			}
-			if (((boss->aux.current_image_x >= ignx0 && boss->aux.current_image_x <= ignx1)
-				|| (ignx0 == 32 && ignx1 == 32))
-					&& ((boss->aux.current_image_y >= igny0 && boss->aux.current_image_y <= igny1)
-						|| ((igny0 == 32 && igny1 == 32))))
-			{
-				get_color_of_aux_image(&boss->aux);
-				if (boss->aux.color && boss->aux.color != 4278190080)
-					my_mlx_pixel_put(&boss->img, boss->aux.x, boss->aux.y, boss->aux.color);
-			}
-			if (boss->aux.current_image_x % boss->win.image_length == 0 && boss->aux.current_image_x != 0)
-				boss->aux.current_image_x = -1;
-			boss->aux.current_image_x++;
-		}
-		if (boss->aux.y % boss->win.image_heigth == 0 && boss->aux.current_image_y != 0)
-		{
-			boss->aux.current_image_y = -1;
-			boss->win.i++;
-		}
-		boss->aux.current_image_y++;
-	}
-	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win, boss->img.main_image, 0, 0);
-	ft_printf("put_color_on_main_images -> OUT\n");
-	return (boss->img);
-}
-*/
+/*
 t_data	put_color_on_main_images(t_main_struct *boss)
 {
 	boss->win.i = 0;
@@ -164,7 +111,7 @@ t_data	put_color_on_main_images(t_main_struct *boss)
 		{
 			boss->aux.current_image = choose_aux_image(boss);
 			if (boss->win.mapa[boss->win.i][boss->win.j] != '0')
-				boss->img = upgrade_main_image(boss, (boss->win.i + 1), (boss->win.j + 1), 0);
+				boss->img = upgrade_main_image(boss, (boss->win.i + 1), (boss->win.j + 1));
 			boss->win.j++;
 		}
 		boss->win.i++;
@@ -172,7 +119,38 @@ t_data	put_color_on_main_images(t_main_struct *boss)
 	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win, boss->img.main_image, 0, 0);
 	return (boss->img);
 }
+*/
 
+
+t_data	choose_aux_image(t_main_struct *boss)
+{
+	if (boss->win.mapa[boss->win.i][boss->win.j] == 'p')
+		return (upgrade_player(boss, 0));
+	else if (boss->win.mapa[boss->win.i][boss->win.j] == 'e')
+		return (put_exit(boss, boss->win.i, boss->win.j));
+	else if (boss->win.mapa[boss->win.i][boss->win.j] == '1')
+		return (put_wall(boss, boss->win.i, boss->win.j));
+	return (boss->img);
+}
+
+t_data	put_color_on_main_images(t_main_struct *boss)
+{
+	boss->win.i = 0;
+	while (boss->win.mapa[boss->win.i])
+	{
+		boss->win.j = 0;
+		while (boss->win.mapa[boss->win.i][boss->win.j])
+		{
+			boss->img = choose_aux_image(boss);
+			mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win, boss->img.main_image, 0, 0);
+			boss->win.j++;
+		}
+		boss->win.i++;
+	}
+	upgrade_collectibles(boss);
+	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win, boss->img.main_image, 0, 0);
+	return (boss->img);
+}
 
 /**
  * @brief Create main game images and initialize secondary images.
@@ -207,7 +185,7 @@ t_data	create_main_image(t_main_struct *boss)
 	if (!boss->aux.img_floor)
 		error_call("aux.current_image Not Created", boss);
 	boss->img.ok = 1;
-	boss->img = floor_on_window(boss);
+	boss->img = floor_on_main_image_full(boss);
 	boss->img = put_color_on_main_images(boss);
 	//win->mapa_heigth = 0;
 	//while (win->mapa[0][win->mapa_heigth])
@@ -240,5 +218,6 @@ t_data	start_image(t_main_struct *boss)
 	boss->img.addr = mlx_get_data_addr(boss->img.main_image, &boss->img.bits_per_pixel, &boss->img.line_length,
 								&boss->img.endian);
 	boss->img = create_main_image(boss);
+	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win, boss->img.main_image, 0, 0);
 	return (boss->img);
 }
