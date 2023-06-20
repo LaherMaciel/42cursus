@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:59:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/20 17:35:17 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 19:55:42 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,14 +115,10 @@ t_win	map_base_check(t_main_struct *boss, t_win win)
 	{
 		y = -1;
 		y_max_len = ft_strlen(win.mapa[x]) - 1;
-		ft_printf("x_max_len -> %i\n", x_max_len);
-		ft_printf("y_max_len -> %i\n", y_max_len);
-		ft_printf("base_max_y_len -> %i\n", base_max_y_len);
 		if (base_max_y_len != y_max_len)
 			error_call("The Mapa Is Not a Rectangle", boss);
 		while (win.mapa[x][++y])
 		{
-			ft_printf("%c", win.mapa[x][y]);
 			if ((win.mapa[0][y] != '1') || (win.mapa[x][0] != '1'))
 				error_call("Mapa Not Surrounded by Walls", boss);
 			else if ((win.mapa[x_max_len][y] != '1')
@@ -141,7 +137,6 @@ t_win	map_base_check(t_main_struct *boss, t_win win)
 			else if (win.mapa[x][y] != '0' && win.mapa[x][y] != '1')
 				error_call("Unidentified Characters on The Map", boss);
 		}
-		ft_printf("\n");
 	}
 	win.mapa_heigth = x;
 	win.mapa_length = y;

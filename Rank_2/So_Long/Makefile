@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/06/20 17:09:53 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/06/20 19:56:10 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,7 +123,7 @@ re: fclean
 	clear && make
 
 run: re norm
-	./so_long
+	./so_long mapa3.ber
 
 val:re
 	valgrind ./so_long
