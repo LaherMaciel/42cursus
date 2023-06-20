@@ -6,12 +6,19 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 10:28:14 by marvin            #+#    #+#             */
-/*   Updated: 2022/11/15 14:39:44 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:12:34 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief 
+ *
+ * @param s
+ * @param f
+ * @return char*
+ */
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char			*new;

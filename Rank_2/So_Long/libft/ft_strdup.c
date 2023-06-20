@@ -6,12 +6,18 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 22:38:25 by lwencesl          #+#    #+#             */
-/*   Updated: 2022/11/02 18:20:59 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:10:59 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief 
+ *
+ * @param s
+ * @return char*
+ */
 char	*ft_strdup(const char *s)
 {
 	char	*c;

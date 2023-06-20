@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 19:13:45 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/20 02:43:42 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:37:00 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_win	creat_map_mod(t_main_struct *boss, t_win win)
  *
  * @return char**
  */
-t_win	creat_map(t_main_struct *boss, t_win win)
+t_win	creat_map(t_main_struct *boss, t_win win, char *file_name)
 {
 	int		fds;
 	char	*a;
@@ -66,7 +66,7 @@ t_win	creat_map(t_main_struct *boss, t_win win)
 	i = 0;
 	a = NULL;
 	map = NULL;
-	fds = open("mapa2.txt", O_RDONLY);
+	fds = open(file_name, O_RDONLY);
 	if (fds == -1)
 		error_call("Failed to read the map file", boss);
 	while ((a = get_next_line(fds)) != NULL)
@@ -89,4 +89,57 @@ t_win	creat_map(t_main_struct *boss, t_win win)
 	close(fds);
 	win.mapa = map;
 	return (validate_map(boss, win));
+}
+
+void	check_file_name(t_main_struct *boss, char *file_name)
+{
+	char	*substring;
+
+	substring = ft_strnstr(file_name, ".ber", ft_strlen(file_name));
+	if (substring == NULL || ft_strlen(substring) != 4)
+		error_call("Invalid file termination", boss);
+}
+
+t_extras	store_all_maps(t_extras extras, t_win win, int i)
+{
+	if (i == 0)
+		extras.map = win.mapa;
+	if (i == 1)
+		extras.map1 = win.mapa;
+	if (i == 2)
+		extras.map2 = win.mapa;
+	if (i == 3)
+		extras.map3 = win.mapa;
+	if (i == 4)
+		extras.map4 = win.mapa;
+	if (i == 5)
+		extras.map5 = win.mapa;
+	if (i == 6)
+		extras.map6 = win.mapa;
+	if (i == 7)
+		extras.map7 = win.mapa;
+	if (i == 8)
+		extras.map8 = win.mapa;
+	if (i == 9)
+		extras.map9 = win.mapa;
+	return (extras);
+}
+
+t_win	read_map(t_main_struct *boss, t_win win, char *argv[])
+{
+	boss->extras = extras_vals_init(boss->extras);
+	boss->aux = aux_imgs_init(boss->aux);
+	boss->img = img_vals_init(boss->img);
+	boss->win = win_vals_init(boss->win);
+	int	i;
+
+	i = 0;
+	while (argv[++i])
+	{
+		check_file_name(boss, argv[i]);
+		boss->extras.map_names[i] = ft_substr(argv[i], 3, 0);
+		win = creat_map(boss, win, argv[i]);
+		boss->extras = store_all_maps(boss->extras, win, i);
+	}
+	return (win);
 }

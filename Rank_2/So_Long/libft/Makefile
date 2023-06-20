@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 18:07:37 by lwencesl          #+#    #+#              #
-#    Updated: 2023/06/16 21:26:22 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/06/20 17:08:58 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ SRC		= ft_atoi.c \
 
 AR = ar rc
 CC = cc
-RM = rm -f
+RM = @rm -f
 CFLAGS = -g -Wall -Werror -Wextra
 HEADER = -I.libft.h -I.get_next_line/get_next_line_bonus.h -I.ft_printf/ft_printf.h
 FT_PRINTF_DIRECTORY = ft_printf/
@@ -72,25 +72,38 @@ OBJ = $(SRC:.c=.o)
 OBJECTS_DIRECTORY = bin/
 OBJECTS = $(addprefix $(OBJECTS_DIRECTORY), $(OBJ))
 
+# COLORS
+RED     = \033[0;31m
+GREEN   = \033[0;32m
+YELLOW  = \033[0;33m
+RESET   = \033[0m
+
 all:$(NAME)
 
 $(NAME): $(OBJECTS_DIRECTORY) $(OBJECTS)
-		$(AR) $(NAME) $(OBJECTS)
+		$(AR) $(NAME) $(OBJECTS) > /dev/null 2>&1
+		@echo "[" "$(GREEN)OK$(RESET)" "] | libft.a created!"
 
 $(OBJECTS_DIRECTORY):
+	@echo "[" "$(YELLOW)..$(RESET)" "] | Creating objects..."
 	@mkdir -p $(OBJECTS_DIRECTORY)
 	@mkdir -p $(OBJECTS_DIRECTORY)$(FT_PRINTF_DIRECTORY)
 	@mkdir -p $(OBJECTS_DIRECTORY)$(GNL_DIRECTORY)
+	@echo "[" "$(GREEN)OK$(RESET)" "] | Objects ready!"
 
 $(OBJECTS_DIRECTORY)%.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@ $(HEADER)
 
 clean:
-	$(RM) $(OBJECTS)
+	@echo "[" "$(YELLOW)..$(RESET)" "] | Removing object files...$(RESET)"
+	@$(RM) $(OBJECTS)
 	@rm -rf $(OBJECTS_DIRECTORY)
+	@echo "[" "$(GREEN)OK$(RESET)" "] | Object files removed."
 
 fclean: clean
+	@echo "[" "$(YELLOW)..$(RESET)" "] | Removing binary files...$(RESET)"
 	$(RM) $(NAME)
+	@echo "[" "$(GREEN)OK$(RESET)" "] | Binary file removed."
 
 re:	fclean
 	clear && make -s all

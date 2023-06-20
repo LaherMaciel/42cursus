@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/06/20 00:36:03 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/06/20 17:09:53 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,7 @@ $(LIBFT):
 	@echo "[" "$(YELLOW)..$(RESET)" "] | Compiling libft..."
 	@make -sC $(LIBFT_DIRECTORY) > /dev/null 2>&1
 	@echo "[" "$(GREEN)OK$(RESET)" "] | Libft ready!"
-	
+
 
 $(MLX):
 	@echo "[" "$(YELLOW)..$(RESET)" "] | Compiling minilibx..."
@@ -100,13 +100,13 @@ $(MLX):
 clean:
 	@echo "[" "$(YELLOW)..$(RESET)" "] | Removing object files...$(RESET)"
 	@rm -rf $(OBJECTS_DIRECTORY)
-	@make -sC $(LIBFT_DIRECTORY) clean
+	@make -sC $(LIBFT_DIRECTORY) clean > /dev/null 2>&1
 	@echo "[" "$(GREEN)OK$(RESET)" "] | Object files removed."
 
 fclean: clean
 	@echo "[" "$(YELLOW)..$(RESET)" "] | Removing binary files...$(RESET)"
 	@rm -rf $(NAME)
-	@make -sC $(LIBFT_DIRECTORY) fclean 
+	@make -sC $(LIBFT_DIRECTORY) fclean > /dev/null 2>&1
 	@rm -rf $(MLX)
 	@echo "[" "$(GREEN)OK$(RESET)" "] | Binary file removed."
 

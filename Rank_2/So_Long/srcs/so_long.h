@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/20 01:05:31 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:23:52 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,23 @@ typedef struct S_aux_vales
 
 }		t_aux_vales;
 
+
+typedef struct s_extras
+{
+	char	**map_names;
+	int		current_map;
+	char	**map;
+	char	**map1;
+	char	**map2;
+	char	**map3;
+	char	**map4;
+	char	**map5;
+	char	**map6;
+	char	**map7;
+	char	**map8;
+	char	**map9;
+}		t_extras;
+/*
 typedef struct s_extras
 {
 	int		boss_x;
@@ -114,6 +131,7 @@ typedef struct s_extras
 	int		last_attack;
 	int		player_health;
 }		t_extras;
+*/
 
 typedef struct s_main_struct
 {
@@ -141,13 +159,14 @@ int		mouse_handler(int mousekey, int x, int y, t_win *win);
 //MAP
 t_win	creat_mapa(t_main_struct *boss);
 t_win	creat_map_mod(t_main_struct *boss, t_win win);
-t_win	creat_map(t_main_struct *boss, t_win win);
+t_win	creat_map(t_main_struct *boss, t_win win, char *file_name);
 char	**read_file(void);
 t_win	map_base_check(t_main_struct *boss, t_win win);
 t_win	validate_map(t_main_struct *boss, t_win win);
+t_win	read_map(t_main_struct *boss, t_win win, char *argv[]);
 
 //WINDOWS
-t_win			window_init(t_win win);
+t_win			window_init(t_main_struct *boss, t_win win);
 int				window_destroy(t_main_struct *boss);
 void			error_call(char *str, t_main_struct *boss);
 
@@ -192,6 +211,8 @@ int		aux_get_pixel(t_aux_vales *aux, int x, int y);
 
 //OTHERS
 t_aux_vales	aux_imgs_init(t_aux_vales aux);
+t_data	img_vals_init(t_data img);
 t_win	win_vals_init(t_win win);
+t_extras	extras_vals_init(t_extras extras);
 
 #endif // !SO_LONG_H

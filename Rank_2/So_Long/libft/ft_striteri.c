@@ -6,12 +6,18 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 10:34:53 by marvin            #+#    #+#             */
-/*   Updated: 2022/11/15 14:39:35 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:11:06 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief 
+ *
+ * @param s
+ * @param f
+ */
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
 	size_t	i;

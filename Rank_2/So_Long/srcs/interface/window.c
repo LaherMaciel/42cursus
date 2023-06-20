@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:46:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 01:35:55 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:36:45 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ mlx_loop() -> initiate the window rendering.
  * @param win The window structure to be initialized.
  * @return The updated window structure.
  */
-t_win	window_init(t_win win)
+t_win	window_init(t_main_struct *boss, t_win win)
 {
+	if (boss->win.mapa == NULL)
+		window_destroy(boss);
 	win.length_size = ft_strlen(win.mapa[0]);
 	win.heigth_size = 0;
 	while (win.mapa[win.heigth_size])
@@ -44,7 +46,8 @@ t_win	window_init(t_win win)
 	win.length_size = win.length_size * win.image_length;
 	win.heigth_size = win.heigth_size * win.image_heigth;
 	win.mlx = mlx_init();
-	win.mlx_win = mlx_new_window(win.mlx, win.length_size, win.heigth_size, "so_long");
+	win.mlx_win = mlx_new_window(win.mlx, win.length_size,
+			win.heigth_size, "so_long");
 	ft_printf("WINDOOW CREATED\n");
 	return (win);
 }

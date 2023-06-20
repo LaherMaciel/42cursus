@@ -6,12 +6,20 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 20:39:30 by lwencesl          #+#    #+#             */
-/*   Updated: 2022/11/07 18:34:25 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:11:15 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief 
+ *
+ * @param dest
+ * @param src
+ * @param n
+ * @return size_t
+ */
 size_t	ft_strlcat(char *dest, const char *src, size_t n)
 {
 	size_t	i;

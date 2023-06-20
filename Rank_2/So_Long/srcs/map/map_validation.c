@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:59:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/20 02:38:14 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:35:17 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	map_check2(t_main_struct *boss, t_win win)
 
 	test_map = win.mapa;
 	i = -1;
+	ft_printf("\n");
 	while (test_map[++i])
 		ft_printf("%s\n", test_map[i]);
 	ft_printf("\n");

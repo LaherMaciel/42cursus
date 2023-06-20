@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 01:36:11 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 18:55:58 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:52:27 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	destroy_win_struct(t_win *win)
 			free(win->mapa[i]);
 		free(win->mapa);
 	}
-	//free(win->mlx_win);
 	free(win->mlx);
 }
 
@@ -66,6 +65,7 @@ void	destroy_aux_struct(t_aux_vales *aux)
 
 int	window_destroy(t_main_struct *boss)
 {
+	//destroy_extra_struct(&boss->extras);
 	destroy_data_struct(&boss->img);
 	destroy_aux_struct(&boss->aux);
 	destroy_win_struct(&boss->win);

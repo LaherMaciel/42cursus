@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:10 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 19:22:42 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:50:36 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,22 @@
  *
  * @return int The exit status of the program.
  */
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	t_main_struct	boss;
 
-	boss.win = creat_mapa(&boss);
-	boss.aux = aux_imgs_init(boss.aux);
-	boss.win = win_vals_init(boss.win);
-	if (boss.win.mapa == NULL)
-		window_destroy(&boss);
-	boss.win = window_init(boss.win);
+	if (argc <= 1)
+	{
+		ft_printf("No map file received!\n");
+		return (0);
+	}
+	else if (argc > 10)
+	{
+		ft_printf("To many map file!\n");
+		return (0);
+	}
+	boss.win = read_map(&boss, boss.win, argv);
+	boss.win = window_init(&boss, boss.win);
 	boss.img = start_image(&boss);
 	mlx_hook(boss.win.mlx_win, 2, 1L<<0, keycode_decisions, &boss);
 	boss.img = upgrade_player(&boss, 0);

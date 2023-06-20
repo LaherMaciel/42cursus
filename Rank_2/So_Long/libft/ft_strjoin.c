@@ -6,12 +6,19 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 12:54:27 by marvin            #+#    #+#             */
-/*   Updated: 2022/10/31 19:28:33 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:11:11 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief 
+ *
+ * @param s1
+ * @param s2
+ * @return char*
+ */
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*sjoin;

@@ -6,12 +6,19 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:04:51 by marvin            #+#    #+#             */
-/*   Updated: 2022/11/14 18:58:05 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:10:44 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief 
+ *
+ * @param str
+ * @param c
+ * @return size_t
+ */
 size_t	ft_pos_search(const char *str, int c)
 {
 	size_t	a;
