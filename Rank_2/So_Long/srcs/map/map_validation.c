@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:59:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/20 01:41:28 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 02:38:14 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,24 @@ char	**flood_fill(char **test_map, int y, int x, int exit)
 	{
 		test_map[y][x] = 'E';
 		exit = 1;
+		return (test_map);
 	}
 	else if (exit == 1 && test_map[y][x] == 'c')
 		test_map[y][x] = 'C';
 	else
 		test_map[y][x] = 'p';
-	ft_printf("%s\n", test_map[y - 1]);
-	ft_printf("%s\n", test_map[y]);
-	ft_printf("%s\n\n", test_map[y + 1]);
 	if ((test_map[(y + 1)][x] == '0') || (test_map[(y + 1)][x] == 'c')
 		|| (test_map[(y + 1)][x] == 'e'))
-		test_map = flood_fill(test_map, (++y), x, exit);
+		test_map = flood_fill(test_map, (y + 1), x, exit);
 	if ((test_map[y][(x + 1)] == '0') || (test_map[y][(x + 1)] == 'c')
 		|| (test_map[y][(x + 1)] == 'e'))
-		test_map = flood_fill(test_map, y, (++x), exit);
+		test_map = flood_fill(test_map, y, (x + 1), exit);
 	if ((test_map[(y - 1)][(x)] == '0') || (test_map[(y - 1)][(x)] == 'c')
 		|| (test_map[(y - 1)][(x)] == 'e'))
-		test_map = flood_fill(test_map, (--y), x, exit);
+		test_map = flood_fill(test_map, (y - 1), x, exit);
 	if ((test_map[y][(x - 1)] == '0') || (test_map[y][(x - 1)] == 'c')
 		|| (test_map[y][(x - 1)] == 'e'))
-		test_map = flood_fill(test_map, y, (--x), exit);
+		test_map = flood_fill(test_map, y, (x - 1), exit);
 	return (test_map);
 }
 
@@ -75,7 +73,8 @@ int	map_check2(t_main_struct *boss, t_win win)
 	{
 		j = -1;
 		while (test_map[i][++j])
-			if (test_map[i][j] == 'c' || test_map[i][j] == 'e')
+			if (test_map[i][j] == 'c' || test_map[i][j] == 'C'
+				|| test_map[i][j] == 'e')
 				error_call("Non-playable map", boss);
 	}
 	return (0);

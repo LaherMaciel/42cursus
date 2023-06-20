@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 19:13:45 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/20 01:07:18 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 02:43:42 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ t_win	creat_map_mod(t_main_struct *boss, t_win win)
 	char	*map_test;
 	char	**map;
 
-	//map_test = "11111111111111111111111\n1p00000000000000c000001\n100000000000000000c0001\n100000000c0000000000001\n100c00000000000000000e1\n11111111111111111111111";
-	map_test =
+	map_test = "11111111111111111111111\n1c000000000000000c00001\n111100000111000000c0001\n1000000001e100000000011\n100c00000001000000000p1\n11111111111111111111111";
+	/*map_test =
 "11111111111111111111111111111\n\
 1ccccccccccc1ccccccccccccccc1\n\
 1c111111111c1c1c11111111111c1\n\
@@ -39,7 +39,7 @@ t_win	creat_map_mod(t_main_struct *boss, t_win win)
 1c1c1cccccccccc1cc11c1ep1ccc1\n\
 1c1c1c1111111111c1c1c111111c1\n\
 1ccc1cccccccccccccc1cccccccc1\n\
-11111111111111111111111111111";
+11111111111111111111111111111";*/
 	map = ft_split(map_test, '\n');
 	if (map == NULL)
 		error_call("Mapa Not Created", boss);
