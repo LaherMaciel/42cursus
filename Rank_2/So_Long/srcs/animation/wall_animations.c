@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:30:34 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/18 11:34:25 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/19 22:44:04 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,13 @@ t_data	put_walls_aux(t_main_struct *boss, int i, int j)
 	int	stop_y;
 
 	stop_y = i * 64;
-	stop_x = j * 64;
 	boss->aux.y = stop_y - (boss->win.image_heigth + 1);
 	boss->aux.current_image_y = 0;
 	stop_y = correct_y(boss, stop_y);
 	while(++boss->aux.y <= stop_y && boss->aux.y <= boss->win.heigth_size)
 	{
 		boss->aux.current_image_x = 0;
-		stop_x = j * boss->win.image_length;
+		stop_x = j * 64;
 		boss->aux.x = stop_x - (boss->win.image_length + 1);
 		stop_x = correct_x(boss, stop_x);
 		while (++boss->aux.x <= stop_x && boss->aux.x <= boss->win.length_size)

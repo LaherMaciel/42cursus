@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 18:08:08 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 23:17:20 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 00:16:02 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,6 @@ t_data	put_color_on_main_images(t_main_struct *boss)
 		while (boss->win.mapa[boss->win.i][boss->win.j])
 		{
 			boss->img = choose_aux_image(boss);
-			mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win, boss->img.main_image, 0, 0);
 			boss->win.j++;
 		}
 		boss->win.i++;

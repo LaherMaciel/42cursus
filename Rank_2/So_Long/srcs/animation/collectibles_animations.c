@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:30:39 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 21:39:28 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 00:22:33 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	*collectibles_image_animation(t_win *win)
 	if (win->collect == 2)
 		img_collectibles = mlx_xpm_file_to_image(win->mlx,
 				"../../images/utils/Collectibles/soul_flame/tile002.xpm", &win->image_length, &win->image_heigth);
-	if (win->collect == 3 || win->collect == 4)
+	if (win->collect == 3)
 		img_collectibles = mlx_xpm_file_to_image(win->mlx,
 				"../../images/utils/Collectibles/soul_flame/tile003.xpm", &win->image_length, &win->image_heigth);
 	win->collect++;
-	if (win->collect == 5)
+	if (win->collect == 4)
 		win->collect = 0;
 	return (img_collectibles);
 }
@@ -40,17 +40,15 @@ t_data	upgrade_collectibles(t_main_struct *boss)
 	int	j;
 
 	i = 0;
+	if (boss->win.exit == 1)
+		return (boss->img);
+	boss->aux.current_image = collectibles_image(&boss->win);
 	while (boss->win.mapa[i])
 	{
 		j = 0;
 		while (boss->win.mapa[i][j])
-		{
 			if (boss->win.mapa[i][j++] == 'c')
-			{
-				boss->aux.current_image = collectibles_image(&boss->win);
 				boss->img = upgrade_main_image(boss, (i +  1), j);
-			}
-		}
 		i++;
 	}
 	return (boss->img);

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 23:17:30 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 01:05:31 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,12 +140,13 @@ int		mouse_handler(int mousekey, int x, int y, t_win *win);
 
 //MAP
 t_win	creat_mapa(t_main_struct *boss);
-char	**creat_map(void);
+t_win	creat_map_mod(t_main_struct *boss, t_win win);
+t_win	creat_map(t_main_struct *boss, t_win win);
 char	**read_file(void);
-int	map_base_check(t_main_struct *boss, t_win *win);
+t_win	map_base_check(t_main_struct *boss, t_win win);
+t_win	validate_map(t_main_struct *boss, t_win win);
 
 //WINDOWS
-char			**creat_map_mod(void);
 t_win			window_init(t_win win);
 int				window_destroy(t_main_struct *boss);
 void			error_call(char *str, t_main_struct *boss);

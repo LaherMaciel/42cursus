@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 19:13:45 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 21:22:09 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 01:07:18 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  *
  * @return char**, the map.
  */
-char	**creat_map_mod(void)
+t_win	creat_map_mod(t_main_struct *boss, t_win win)
 {
 	char	*map_test;
 	char	**map;
@@ -25,28 +25,29 @@ char	**creat_map_mod(void)
 	//map_test = "11111111111111111111111\n1p00000000000000c000001\n100000000000000000c0001\n100000000c0000000000001\n100c00000000000000000e1\n11111111111111111111111";
 	map_test =
 "11111111111111111111111111111\n\
-10000000000000000000000000001\n\
-10111111111111111111111111101\n\
-10100000000000p00000000000101\n\
-10100000000000000000000000101\n\
-1010000c000000000000000000001\n\
-10100000000000000000000000101\n\
-10100000000000000000000000101\n\
-10100000000000000000000000101\n\
-10100000001111111111111000101\n\
-10100000000000000000000000101\n\
-10101111111111111111111111101\n\
-10100000000000000000e00001101\n\
-10101111111111111111111111101\n\
-10000000000000000000000000001\n\
+1ccccccccccc1ccccccccccccccc1\n\
+1c111111111c1c1c11111111111c1\n\
+1c1ccccc1ccc111c1ccccccccccc1\n\
+1ccc1c1ccc1c111c11c111111c111\n\
+1c1ccc11111cccccccc1cccccc1c1\n\
+1c11c11ccc11111111c1c111111c1\n\
+111cc1cc1c1ccc1c1cc1ccccc11c1\n\
+1ccc1cc1cccc1ccc1c1c11c1cc1c1\n\
+1c111c11c1c1c11c1c1ccc1cc11c1\n\
+1c1cccccc1cccc1c11cc1c1c1ccc1\n\
+1c1c1111111111cc1cc1cc1c1c111\n\
+1c1c1cccccccccc1cc11c1ep1ccc1\n\
+1c1c1c1111111111c1c1c111111c1\n\
+1ccc1cccccccccccccc1cccccccc1\n\
 11111111111111111111111111111";
 	map = ft_split(map_test, '\n');
 	if (map == NULL)
-		return (0);
+		error_call("Mapa Not Created", boss);
 	else
 		for (int i = 0; map[i] != NULL; i++)
 			printf("%s\n", map[i]);
-	return (map);
+	win.mapa = map;
+	return (validate_map(boss, win));
 }
 
 /**
@@ -54,35 +55,28 @@ char	**creat_map_mod(void)
  *
  * @return char**
  */
-char	**creat_map(void)
+t_win	creat_map(t_main_struct *boss, t_win win)
 {
 	int		fds;
 	char	*a;
 	char	**map;
 	char	**tmp;
 	int		i;
-	//int		cont;
 
-	//cont = 1;
 	i = 0;
 	a = NULL;
 	map = NULL;
 	fds = open("mapa2.txt", O_RDONLY);
 	if (fds == -1)
-	{
-		ft_printf("ERROR\n");
-		return (NULL);
-	}
+		error_call("Failed to read the map file", boss);
 	while ((a = get_next_line(fds)) != NULL)
 	{
-		//ft_printf("%i - %s", cont++, a);
 		tmp = realloc(map, (i + 1) * sizeof(char *));
 		if (tmp == NULL)
 		{
-			ft_printf("ERROR\n");
 			free(a);
 			close(fds);
-			return NULL;
+			error_call("Failed to allocate memory for the map", boss);
 		}
 		map = tmp;
 		if (ft_strchr(a, '\n'))
@@ -93,76 +87,6 @@ char	**creat_map(void)
 	map[i] = NULL;
 	ft_printf("\n");
 	close(fds);
-	return (map);
-}
-
-/**
- * @brief does the basic checks to see if the map is valid like
- *  see if the map has only 1 player, only 1 exit, if it has at least
- *  1 collectible and if the map is surrounded by walls.
- *
- * @param win
- * @return int
- */
-int	map_base_check(t_main_struct *boss, t_win *win)
-{
-	int	x;
-	int	y;
-	int	x_max_len;
-	int	y_max_len;
-	int	base_max_y_len;
-	int	player;
-	int	exit;
-
-	x = -1;
-	player = 0;
-	exit = 0;
-	win->collectibles = 0;
-	x_max_len = 0;
-	while (win->mapa[++x])
-		x_max_len++;
-	x_max_len--;
-	x = -1;
-	base_max_y_len = ft_strlen(win->mapa[0]) - 1;
-	if ((win->mapa[0][0] != '1') || (win->mapa[x_max_len][base_max_y_len] != '1'))
-		error_call("Mapa Not Surrounded by Walls", boss);
-	while (++x < x_max_len)
-	{
-		y = -1;
-		y_max_len = ft_strlen(win->mapa[x]) - 1;
-		ft_printf("x_max_len -> %i\n", x_max_len);
-		ft_printf("y_max_len -> %i\n", y_max_len);
-		ft_printf("base_max_y_len -> %i\n", base_max_y_len);
-		if (base_max_y_len != y_max_len)
-			error_call("The Mapa Is Not a Rectangle", boss);
-		while (win->mapa[x][++y])
-		{
-			ft_printf("%c", win->mapa[x][y]);
-			if ((win->mapa[0][y] != '1') || (win->mapa[x][0] != '1'))
-				error_call("Mapa Not Surrounded by Walls", boss);
-			else if ((win->mapa[x_max_len][y] != '1')
-				|| (win->mapa[x][y_max_len] != '1'))
-				error_call("Mapa Not Surrounded by Walls", boss);
-			else if (win->mapa[x][y] == 'p')
-			{
-				win->player_y = x;
-				win->player_x = y;
-				player++;
-			}
-			else if (win->mapa[x][y] == 'e')
-				exit++;
-			else if (win->mapa[x][y] == 'c')
-				win->collectibles++;
-			else if (win->mapa[x][y] != '0' && win->mapa[x][y] != '1')
-				error_call("Unidentified Characters on The Map", boss);
-		}
-		ft_printf("\n");
-	}
-	if (player != 1)
-		error_call("Number of Players Different then 1", boss);
-	if (exit != 1)
-		error_call("Number of exits Different then 1", boss);
-	if (win->collectibles < 1)
-		error_call("Number of collectibles smaller then 1", boss);
-	return (1);
+	win.mapa = map;
+	return (validate_map(boss, win));
 }

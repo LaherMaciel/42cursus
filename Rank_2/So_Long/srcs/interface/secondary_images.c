@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 23:44:27 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 21:18:38 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/19 22:51:14 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	*wall_image(t_win *win)
 	void	*img_wall;
 
 	img_wall = mlx_xpm_file_to_image(win->mlx,
-			"../../images/utils/tree3.xpm", &win->image_length, &win->image_heigth);
+			"../../images/utils/floor2.xpm", &win->image_length, &win->image_heigth);
 	return (img_wall);
 }
 
@@ -114,7 +114,7 @@ void	*floor_image(t_win *win)
 	void	*img_floor;
 
 	img_floor = mlx_xpm_file_to_image(win->mlx,
-			"../../images/utils/grass3.xpm", &win->image_length, &win->image_heigth);
+			"../../images/utils/floor4.xpm", &win->image_length, &win->image_heigth);
 	return (img_floor);
 }
 
