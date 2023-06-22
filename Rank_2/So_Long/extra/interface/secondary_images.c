@@ -5,27 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 23:44:27 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/22 21:55:45 by lwencesl         ###   ########.fr       */
+/*   Created: 2023/06/22 23:40:16 by lwencesl          #+#    #+#             */
+/*   Updated: 2023/06/22 23:50:59 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
-/*
-To resize and convert an image to the desired size and format,
-you can use the convert command from the ImageMagick package.
-Here's an example command:
- $ convert input.jpeg -resize 64x64 output.xpm
-
- To confirm the path of the XPM image and view it,
- you can use the display command, also part of the~
- ImageMagick package. Here's an example command:
- $ display /path/to/image.xpm
-
-to see the size of the image
-identify -format "%wx%h" example.jpg
-*/
 
 /**
  * @brief Determine the appropriate image to use based on the player_look variable.
@@ -71,11 +57,11 @@ void	*exit_image(t_win *win)
 
 	if (win->exit != 0)
 		img_exit = mlx_xpm_file_to_image(win->mlx,
-				"images/utils/exit0.xpm", &win->image_length,
+				"images/42_textures/STAIRS2.xpm", &win->image_length,
 				&win->image_heigth);
 	else
 		img_exit = mlx_xpm_file_to_image(win->mlx,
-				"images/utils/exit1.xpm", &win->image_length,
+				"images/42_textures/STAIRS.xpm", &win->image_length,
 				&win->image_heigth);
 	return (img_exit);
 }
@@ -91,12 +77,12 @@ void	*exit_image(t_win *win)
  * @param win A pointer to the window structure.
  * @return void* The address of the wall image.
  */
-void	*wall_image(t_win *win)
+void	*wall_image_42(t_win *win)
 {
 	void	*img_wall;
 
 	img_wall = mlx_xpm_file_to_image(win->mlx,
-			"images/utils/floor2.xpm", &win->image_length,
+			"images/42_textures/FLOOR.xpm", &win->image_length,
 			&win->image_heigth);
 	return (img_wall);
 }
@@ -117,7 +103,7 @@ void	*floor_image(t_win *win)
 	void	*img_floor;
 
 	img_floor = mlx_xpm_file_to_image(win->mlx,
-			"images/utils/floor4.xpm", &win->image_length,
+			"images/42_textures/floor4.xpm", &win->image_length,
 			&win->image_heigth);
 	return (img_floor);
 }
@@ -137,3 +123,4 @@ void	*collectibles_image(t_win *win)
 {
 	return (collectibles_image_animation(win));
 }
+

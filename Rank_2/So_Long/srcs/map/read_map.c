@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 19:13:45 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/22 17:56:03 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/22 22:38:48 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,30 @@
  *
  * @return char**, the map.
  */
+/*
 char	**creat_map_mod(t_main_struct *boss)
 {
 	char	*map_test;
 	char	**map;
 
 	map_test = "11111111111111111111111\n1c000000000000000c00001\n111100000111000000c0001\n1000000001e100000000011\n100c00000001000000000p1\n11111111111111111111111";
-	/*map_test =
-"11111111111111111111111111111\n\
-1ccccccccccc1ccccccccccccccc1\n\
-1c111111111c1c1c11111111111c1\n\
-1c1ccccc1ccc111c1ccccccccccc1\n\
-1ccc1c1ccc1c111c11c111111c111\n\
-1c1ccc11111cccccccc1cccccc1c1\n\
-1c11c11ccc11111111c1c111111c1\n\
-111cc1cc1c1ccc1c1cc1ccccc11c1\n\
-1ccc1cc1cccc1ccc1c1c11c1cc1c1\n\
-1c111c11c1c1c11c1c1ccc1cc11c1\n\
-1c1cccccc1cccc1c11cc1c1c1ccc1\n\
-1c1c1111111111cc1cc1cc1c1c111\n\
-1c1c1cccccccccc1cc11c1ep1ccc1\n\
-1c1c1c1111111111c1c1c111111c1\n\
-1ccc1cccccccccccccc1cccccccc1\n\
-11111111111111111111111111111";*/
+// 	map_test =
+// "11111111111111111111111111111\n\
+// 1ccccccccccc1ccccccccccccccc1\n\
+// 1c111111111c1c1c11111111111c1\n\
+// 1c1ccccc1ccc111c1ccccccccccc1\n\
+// 1ccc1c1ccc1c111c11c111111c111\n\
+// 1c1ccc11111cccccccc1cccccc1c1\n\
+// 1c11c11ccc11111111c1c111111c1\n\
+// 111cc1cc1c1ccc1c1cc1ccccc11c1\n\
+// 1ccc1cc1cccc1ccc1c1c11c1cc1c1\n\
+// 1c111c11c1c1c11c1c1ccc1cc11c1\n\
+// 1c1cccccc1cccc1c11cc1c1c1ccc1\n\
+// 1c1c1111111111cc1cc1cc1c1c111\n\
+// 1c1c1cccccccccc1cc11c1ep1ccc1\n\
+// 1c1c1c1111111111c1c1c111111c1\n\
+// 1ccc1cccccccccccccc1cccccccc1\n\
+// 11111111111111111111111111111";
 	map = ft_split(map_test, '\n');
 	if (map == NULL)
 		error_call("Mapa Not Created", boss);
@@ -48,7 +49,7 @@ char	**creat_map_mod(t_main_struct *boss)
 			printf("%s\n", map[i]);
 	return (map);
 }
-
+*/
 /**
  * @brief creat a array of arrays (map) using the file introduced as parameter.
  *
@@ -80,52 +81,6 @@ char	**creat_map(t_main_struct *boss, char *file_name)
 	return (map);
 }
 
-/*
-char	**creat_map(t_main_struct *boss, char *file_name)
-{
-	int		fds;
-	char	*a;
-	char	**map;
-	int		i;
-	t_list	**map_ls;
-	t_list	tmp;
-
-	map_ls = NULL;
-	fds = open(file_name, O_RDONLY);
-	if (fds == -1)
-		error_call("Failed to read the map file", boss);
-	a = NULL;
-	a = get_next_line(fds);
-	if (ft_strchr(a, '\n'))
-		map_ls = ft_lstnew(ft_substr(a, 0, ft_strlen(a) - 1));
-	else
-		map_ls = ft_lstnew(a);
-	i = 0;
-	while (a != NULL)
-	{
-		a = get_next_line(fds);
-		if (ft_strchr(a, '\n'))
-			ft_lstadd_back(map_ls, ft_lstnew(ft_substr(a, 0, ft_strlen(a) - 1)));
-		else
-			ft_lstadd_back(map_ls, ft_lstnew(a));
-	}
-	i = ft_lstsize(map_ls) + 1;
-	map = malloc (i * sizeof(char *));
-	i = -1;
-	while (map_ls)
-	{
-		map[++i] = map_ls->content;
-		tmp = map_ls;
-		map_ls = map_ls->next;
-		free(tmp);
-	}
-	map[i] = NULL;
-	ft_printf("\n");
-	close(fds);
-	return (map);
-}
-*/
-
 void	check_file_name(t_main_struct *boss, char *file_name)
 {
 	char	*substring;
@@ -135,60 +90,31 @@ void	check_file_name(t_main_struct *boss, char *file_name)
 		error_call("Invalid file termination", boss);
 }
 
-t_extras	store_all_maps(t_extras extras, t_win win, int i)
-{
-	if (i == 0)
-		extras.map = win.mapa;
-	else if (i == 1)
-		extras.map1 = win.mapa;
-	else if (i == 2)
-		extras.map2 = win.mapa;
-	else if (i == 3)
-		extras.map3 = win.mapa;
-	else if (i == 4)
-		extras.map4 = win.mapa;
-	else if (i == 5)
-		extras.map5 = win.mapa;
-	else if (i == 6)
-		extras.map6 = win.mapa;
-	else if (i == 7)
-		extras.map7 = win.mapa;
-	else if (i == 8)
-		extras.map8 = win.mapa;
-	else if (i == 9)
-		extras.map9 = win.mapa;
-	return (extras);
-}
-
 t_win	read_map(t_main_struct *boss, char *argv[])
 {
+	int	i;
+
 	boss->extras = extras_vals_init(boss->extras);
 	boss->aux = aux_imgs_init(boss->aux);
 	boss->img = img_vals_init(boss->img);
 	boss->win = win_vals_init(boss->win);
-	int	i;
-
 	i = 0;
 	while (argv[++i])
 	{
 		check_file_name(boss, argv[i]);
-		boss->extras.map_names[i] = ft_substr(argv[i], 3, 0);
-		boss->win.mapa = creat_map(boss, argv[i]);
-		boss->win = validate_map(boss, boss->win, argv[i]);
-		boss->extras = store_all_maps(boss->extras, boss->win, i);
+		boss->extras.map_names[i - 1] = ft_substr(argv[i], 0, 0);
 	}
 	i = -1;
+	while (boss->extras.map_names[++i])
+		ft_printf("\n%s\n", boss->extras.map_names[i]);
+	boss->win.mapa = creat_map(boss,
+		boss->extras.map_names[0]);
+	boss->win = validate_map(boss, boss->win,
+		boss->extras.map_names[0]);
+	i = -1;
+	ft_printf("\n");
 	while (boss->win.mapa[++i])
 		ft_printf("%s\n", boss->win.mapa[i]);
-	// ft_printf("in\n");
-	// i = -1;
-	// while (boss->extras.map[++i])
-	// 	ft_printf("%s\n", boss->extras.map[i]);
-	// boss->win.mapa = boss->extras.map;
-	// ft_printf("mid	\n");
-	// i = -1;
-	// while (boss->extras.map[++i])
-	// 	ft_printf("%s\n", boss->extras.map[i]);
-	// ft_printf("out\n");
+	ft_printf("\n");
 	return (boss->win);
 }

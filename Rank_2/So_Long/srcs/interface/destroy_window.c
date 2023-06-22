@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 01:36:11 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/22 15:11:33 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/22 23:02:59 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	destroy_aux_struct(t_aux_vales *aux)
 		free(aux->current_image);
 }
 
-int	window_destroy(t_main_struct *boss)
+int	end_game(t_main_struct *boss)
 {
 	destroy_extra_struct(&boss->extras);
 	destroy_data_struct(&boss->img);
@@ -94,8 +94,15 @@ int	window_destroy(t_main_struct *boss)
 	exit(0);
 }
 
+void	window_destroy(t_main_struct *boss)
+{
+	destroy_data_struct(&boss->img);
+	destroy_aux_struct(&boss->aux);
+	destroy_win_struct(&boss->win);
+}
+
 void	error_call(char *str, t_main_struct *boss)
 {
 	ft_printf("ERROR: %s!!\n", str);
-	window_destroy(boss);
+	end_game(boss);
 }

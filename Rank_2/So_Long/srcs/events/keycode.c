@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:39:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/22 16:50:38 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/22 23:12:55 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,26 @@ int	keycode_decisions(int keycode, t_main_struct *boss)
 	i = -1;
 	if (keycode == 100 || keycode == 65363)
 		mov_right(boss, &boss->win);
-	if (keycode == 97 || keycode ==  65361)
+	if (keycode == 97 || keycode == 65361)
 		mov_left(boss, &boss->win);
 	if (keycode == 119 || keycode == 65362)
 		mov_up(boss, &boss->win);
-	if (keycode == 115 || keycode ==  65364)
+	if (keycode == 115 || keycode == 65364)
 		mov_down(boss, &boss->win);
-	if (keycode == 65307)
-		window_destroy(boss);
-	ft_printf(CLEAR"keycode -> %i\n", keycode);
+	if (keycode == 65307 || boss->win.new_map == boss->aux.argc_size)
+		end_game(boss);
+	if (boss->win.new_map != boss->win.current_map)
+		new_window(boss);
+	ft_printf("\nKEYCODE\nargc -> %i\n", boss->aux.argc_size);
+	ft_printf("boss->win.new_map -> %i\n", boss->win.new_map);
+	ft_printf("boss->win.current_map -> %i\n\n", boss->win.current_map);
+	//ft_printf(CLEAR"keycode -> %i\n", keycode);
 	while (boss->win.mapa[++i])
 		ft_printf("%s\n", boss->win.mapa[i]);
 	if (boss->win.collectibles == boss->win.collected)
 		boss->win.exit = 1;
 	boss->img = upgrade_collectibles(boss);
-	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win, boss->img.main_image, 0, 0);
+	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win,
+		boss->img.main_image, 0, 0);
 	return (0);
 }

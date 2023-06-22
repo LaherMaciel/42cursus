@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/06/22 17:11:05 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/06/22 23:56:56 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,9 +112,9 @@ fclean: clean
 
 norm:
 	@echo "[" "$(YELLOW)..$(RESET)" "] | Norminetting...$(RESET)"
-	@if norminette srcs | grep -q "Error!" ; then \
+	@if norminette srcs/ libft/ extras/ images/ | grep -q "Error!" ; then \
 	    echo "[" "$(RED)!!$(RESET)" "] | Norminette found errors.$(RESET)"; \
-	    norminette srcs | awk '/Error!/ {print "[ " "$(RED)!!$(RESET)" " ] | " $$0}'; \
+	    norminette srcs/ libft/ extras/ images/ | awk '/Error!/ {print "[ " "$(RED)!!$(RESET)" " ] | " $$0}'; \
 	else \
 	    echo "[" "$(GREEN)OK$(RESET)" "] | Norminette passed!"; \
 	fi
@@ -123,21 +123,21 @@ re: fclean
 	clear && make -s
 
 run: re norm
-	./so_long mapa3.ber
+	./so_long mapa3.ber 
+	
+brun: re norm
+	./so_long mapa3.ber mapa4.ber
 
 map3:./so_long mapa3.ber
 
 dbug: re
-	gdb -tui -args ./so_long mapa3.ber
+	gdb -tui -args ./so_long mapa3.ber mapa4.ber
 
 val:re
 	valgrind ./so_long mapa3.ber
 
 val_full:re
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./so_long mapa3.ber
-
-term_dbg:
-	gdb -tui ./so_long
 
 ver: re norm
 	valgrind ./so_long

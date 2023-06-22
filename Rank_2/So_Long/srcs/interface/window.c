@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:46:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/22 17:09:02 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/23 00:04:53 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ mlx_new_window(pointer_returned_by_mlx_init(),
 mlx_new_image() ->
 mlx_loop() -> initiate the window rendering.
 ==============================================*/
+
+
+	/*if (win.length_size > 3840 || win.heigth_size > 2160)
+		error_call("Map too long. Map can't have more "\
+			"then 60 columns and 33 rows", boss);*/
 
 /**
  * @brief Initializes the game window based on the map size and image dimensions.
@@ -37,6 +42,10 @@ mlx_loop() -> initiate the window rendering.
  */
 t_win	window_init(t_main_struct *boss, t_win win)
 {
+	char	*window_name;
+
+	window_name = ft_substr(boss->extras.map_names[boss->win.current_map], 0,
+		ft_strlen(boss->extras.map_names[boss->win.current_map]) - 4);
 	if (boss->win.mapa == NULL)
 		window_destroy(boss);
 	win.length_size = ft_strlen(win.mapa[0]);
@@ -45,12 +54,14 @@ t_win	window_init(t_main_struct *boss, t_win win)
 		win.heigth_size++;
 	win.length_size = win.length_size * win.image_length;
 	win.heigth_size = win.heigth_size * win.image_heigth;
-	if (win.length_size > 3840 || win.heigth_size > 2160)
+	if (win.length_size > 1920 || win.heigth_size > 1080)
 		error_call("Map too long. Map can't have more "\
-			"then 60 columns and 33 rows", boss);
+			"then 30 columns and 16 rows", boss);
 	win.mlx = mlx_init();
 	win.mlx_win = mlx_new_window(win.mlx, win.length_size,
-			win.heigth_size, "so_long");
+			win.heigth_size, window_name);
+	
+	boss->win.new_map = boss->win.current_map;
 	ft_printf("WINDOOW CREATED\n");
 	return (win);
 }

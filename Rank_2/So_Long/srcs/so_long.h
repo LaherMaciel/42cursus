@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/22 17:53:31 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/22 22:51:04 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ typedef struct s_win
 	void	*mlx;
 	void	*mlx_win;
 	char	**mapa;
+	char	*map_name;
+	int		current_map;
+	int		new_map;
 	int		mapa_length;
 	int		mapa_heigth;
 	int		length_size;
@@ -77,11 +80,8 @@ typedef struct S_aux_vales
 	int				current_image_y;
 	int				x;
 	int				y;
-	int				ignx0;
-	int				ignx1;
-	int				igny0;
-	int				igny1;
-
+	int				argc_size;
+	char			*argv_vals[];
 }		t_aux_vales;
 
 
@@ -145,33 +145,35 @@ typedef struct s_main_struct
 }				t_main_struct;
 
 //ANIMATIONS
-void	*collectibles_image_animation(t_win *win);
-t_data	upgrade_collectibles(t_main_struct *boss);
-t_data	upgrade_player(t_main_struct *boss, int i);
-t_data	upgrade_main_image(t_main_struct *boss, int i, int j);
+void			*collectibles_image_animation(t_win *win);
+t_data			upgrade_collectibles(t_main_struct *boss);
+t_data			upgrade_player(t_main_struct *boss, int i);
+t_data			upgrade_main_image(t_main_struct *boss, int i, int j);
 
 //EVENTS
-int		keycode_decisions(int keycode, t_main_struct *boss);
-int		my_close(t_main_struct *boss);
-void	mov_left(t_main_struct *boss, t_win *win);
-void	mov_right(t_main_struct *boss, t_win *win);
-void	mov_up(t_main_struct *boss, t_win *win);
-void	mov_down(t_main_struct *boss, t_win *win);
-int		mouse_handler(int mousekey, int x, int y, t_win *win);
+int				keycode_decisions(int keycode, t_main_struct *boss);
+int				my_close(t_main_struct *boss);
+void			mov_left(t_main_struct *boss, t_win *win);
+void			mov_right(t_main_struct *boss, t_win *win);
+void			mov_up(t_main_struct *boss, t_win *win);
+void			mov_down(t_main_struct *boss, t_win *win);
+int				mouse_handler(int mousekey, int x, int y, t_win *win);
 
 //MAP
-t_win	creat_mapa(t_main_struct *boss);
-char	**creat_map_mod(t_main_struct *boss);
-char	**creat_map(t_main_struct *boss, char *file_name);
-char	**read_file(void);
-t_win	map_base_check(t_main_struct *boss, t_win win);
-t_win	validate_map(t_main_struct *boss, t_win win, char *filename);
-t_win	read_map(t_main_struct *boss, char *argv[]);
+t_win			creat_mapa(t_main_struct *boss);
+char			**creat_map_mod(t_main_struct *boss);
+char			**creat_map(t_main_struct *boss, char *file_name);
+char			**read_file(void);
+t_win			map_base_check(t_main_struct *boss, t_win win);
+t_win			validate_map(t_main_struct *boss, t_win win, char *filename);
+t_win			read_map(t_main_struct *boss, char *argv[]);
 
 //WINDOWS
 t_win			window_init(t_main_struct *boss, t_win win);
-int				window_destroy(t_main_struct *boss);
+int				end_game(t_main_struct *boss);
+void			window_destroy(t_main_struct *boss);
 void			error_call(char *str, t_main_struct *boss);
+void			new_window(t_main_struct *boss);
 
 //MAIN IMAGE
 t_data			start_image(t_main_struct *boss);
@@ -208,14 +210,14 @@ t_data			collect(t_main_struct *boss);
 t_data			put_walls_aux(t_main_struct *boss, int i, int j);
 
 // PIXEIS
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int		get_pixel(t_aux_vales *aux);
-int		aux_get_pixel(t_aux_vales *aux, int x, int y);
+void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int				get_pixel(t_aux_vales *aux);
+int				aux_get_pixel(t_aux_vales *aux, int x, int y);
 
 //OTHERS
-t_aux_vales	aux_imgs_init(t_aux_vales aux);
-t_data	img_vals_init(t_data img);
-t_win	win_vals_init(t_win win);
-t_extras	extras_vals_init(t_extras extras);
+t_aux_vales		aux_imgs_init(t_aux_vales aux);
+t_data			img_vals_init(t_data img);
+t_win			win_vals_init(t_win win);
+t_extras		extras_vals_init(t_extras extras);
 
 #endif // !SO_LONG_H
