@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:06:08 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 22:21:22 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:01:54 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void	*walk_up(t_win *win)
 
 	if (win->player_walk == 0)
 	{
-		img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/walk_back_0.xpm", &win->image_length, &win->image_heigth);
+		img_player = mlx_xpm_file_to_image(win->mlx, "images/utils/player/samurai/walk_back_0.xpm", &win->image_length, &win->image_heigth);
 		win->player_walk = 1;
 	}
 	else
 	{
-		img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/walk_back_1.xpm", &win->image_length, &win->image_heigth);
+		img_player = mlx_xpm_file_to_image(win->mlx, "images/utils/player/samurai/walk_back_1.xpm", &win->image_length, &win->image_heigth);
 		win->player_walk = 0;
 	}
 	return (img_player);
@@ -61,12 +61,12 @@ void	*walk_down(t_win *win)
 
 	if (win->player_walk == 0)
 	{
-		img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/walk_front_0.xpm", &win->image_length, &win->image_heigth);
+		img_player = mlx_xpm_file_to_image(win->mlx, "images/utils/player/samurai/walk_front_0.xpm", &win->image_length, &win->image_heigth);
 		win->player_walk = 1;
 	}
 	else
 	{
-		img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/walk_front_1.xpm", &win->image_length, &win->image_heigth);
+		img_player = mlx_xpm_file_to_image(win->mlx, "images/utils/player/samurai/walk_front_1.xpm", &win->image_length, &win->image_heigth);
 		win->player_walk = 0;
 	}
 	return (img_player);
@@ -89,12 +89,12 @@ void	*walk_left(t_win *win)
 
 	if (win->player_walk == 0)
 	{
-		img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/walk_left_0.xpm", &win->image_length, &win->image_heigth);
+		img_player = mlx_xpm_file_to_image(win->mlx, "images/utils/player/samurai/walk_left_0.xpm", &win->image_length, &win->image_heigth);
 		win->player_walk = 1;
 	}
 	else
 	{
-		img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/walk_left_1.xpm", &win->image_length, &win->image_heigth);
+		img_player = mlx_xpm_file_to_image(win->mlx, "images/utils/player/samurai/walk_left_1.xpm", &win->image_length, &win->image_heigth);
 		win->player_walk = 0;
 	}
 	return (img_player);
@@ -117,23 +117,23 @@ void	*walk_right(t_win *win)
 
 	if (win->player_walk == 0)
 	{
-		img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/walk_right_0.xpm", &win->image_length, &win->image_heigth);
+		img_player = mlx_xpm_file_to_image(win->mlx, "images/utils/player/samurai/walk_right_0.xpm", &win->image_length, &win->image_heigth);
 		win->player_walk = 1;
 	}
 	else
 	{
-		img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/walk_right_1.xpm", &win->image_length, &win->image_heigth);
+		img_player = mlx_xpm_file_to_image(win->mlx, "images/utils/player/samurai/walk_right_1.xpm", &win->image_length, &win->image_heigth);
 		win->player_walk = 0;
 	}
 	return (img_player);
 }
 
 /**
- * @brief 
- * 
- * @param boss 
- * @param i 
- * @return t_data 
+ * @brief
+ *
+ * @param boss
+ * @param i
+ * @return t_data
  */
 t_data	upgrade_player(t_main_struct *boss, int i)
 {

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 19:13:45 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/20 19:52:20 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:14:51 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  *
  * @return char**, the map.
  */
-t_win	creat_map_mod(t_main_struct *boss, t_win win)
+char	**creat_map_mod(t_main_struct *boss)
 {
 	char	*map_test;
 	char	**map;
@@ -46,8 +46,7 @@ t_win	creat_map_mod(t_main_struct *boss, t_win win)
 	else
 		for (int i = 0; map[i] != NULL; i++)
 			printf("%s\n", map[i]);
-	win.mapa = map;
-	return (validate_map(boss, win));
+	return (map);
 }
 
 /**
@@ -55,30 +54,22 @@ t_win	creat_map_mod(t_main_struct *boss, t_win win)
  *
  * @return char**
  */
-t_win	creat_map(t_main_struct *boss, t_win win, char *file_name)
+char	**creat_map(t_main_struct *boss, char *file_name)
 {
 	int		fds;
 	char	*a;
 	char	**map;
-	char	**tmp;
+	// char	**tmp;
 	int		i;
 
-	i = 0;
 	a = NULL;
-	map = NULL;
+	map = malloc(7 * sizeof(char*));
 	fds = open(file_name, O_RDONLY);
 	if (fds == -1)
 		error_call("Failed to read the map file", boss);
+	i = 0;
 	while ((a = get_next_line(fds)) != NULL)
 	{
-		tmp = realloc(map, (i + 1) * sizeof(char *));
-		if (tmp == NULL)
-		{
-			free(a);
-			close(fds);
-			error_call("Failed to allocate memory for the map", boss);
-		}
-		map = tmp;
 		if (ft_strchr(a, '\n'))
 			map[i++] = ft_substr(a, 0, ft_strlen(a) - 1);
 		else
@@ -87,8 +78,7 @@ t_win	creat_map(t_main_struct *boss, t_win win, char *file_name)
 	map[i] = NULL;
 	ft_printf("\n");
 	close(fds);
-	win.mapa = map;
-	return (validate_map(boss, win));
+	return (map);
 }
 
 void	check_file_name(t_main_struct *boss, char *file_name)
@@ -125,12 +115,12 @@ t_extras	store_all_maps(t_extras extras, t_win win, int i)
 	return (extras);
 }
 
-t_win	read_map(t_main_struct *boss, t_win win, char *argv[])
+t_win	read_map(t_main_struct *boss, char *argv[])
 {
 	boss->extras = extras_vals_init(boss->extras);
 	boss->aux = aux_imgs_init(boss->aux);
 	boss->img = img_vals_init(boss->img);
-	win = win_vals_init(boss->win);
+	boss->win = win_vals_init(boss->win);
 	int	i;
 
 	i = 0;
@@ -138,8 +128,10 @@ t_win	read_map(t_main_struct *boss, t_win win, char *argv[])
 	{
 		check_file_name(boss, argv[i]);
 		boss->extras.map_names[i] = ft_substr(argv[i], 3, 0);
-		win = creat_map(boss, win, argv[i]);
-		boss->extras = store_all_maps(boss->extras, win, i);
+		boss->win.mapa = creat_map(boss, argv[i]);
+		boss->win = validate_map(boss, boss->win, argv[i]);
+		boss->extras = store_all_maps(boss->extras, boss->win, i);
 	}
-	return (win);
+	i = -1;
+	return (boss->win);
 }

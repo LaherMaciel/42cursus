@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:26:48 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/17 07:02:36 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/22 12:22:32 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*look_up(t_win *win)
 {
 	void	*img_player;
 
-	img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/"\
+	img_player = mlx_xpm_file_to_image(win->mlx, "images/utils/player/"\
 			"samurai/look_back.xpm", &win->image_length, &win->image_heigth);
 	return (img_player);
 }
@@ -47,7 +47,7 @@ void	*look_down(t_win *win)
 {
 	void	*img_player;
 
-	img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/look_front.xpm", &win->image_length, &win->image_heigth);
+	img_player = mlx_xpm_file_to_image(win->mlx, "images/utils/player/samurai/look_front.xpm", &win->image_length, &win->image_heigth);
 	return (img_player);
 }
 
@@ -64,7 +64,7 @@ void	*look_left(t_win *win)
 {
 	void	*img_player;
 
-	img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/look_left.xpm", &win->image_length, &win->image_heigth);
+	img_player = mlx_xpm_file_to_image(win->mlx, "images/utils/player/samurai/look_left.xpm", &win->image_length, &win->image_heigth);
 	return (img_player);
 }
 
@@ -81,6 +81,6 @@ void	*look_right(t_win *win)
 {
 	void	*img_player;
 
-	img_player = mlx_xpm_file_to_image(win->mlx, "../../images/utils/player/samurai/look_right.xpm", &win->image_length, &win->image_heigth);
+	img_player = mlx_xpm_file_to_image(win->mlx, "images/utils/player/samurai/look_right.xpm", &win->image_length, &win->image_heigth);
 	return (img_player);
 }

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 03:15:06 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/20 19:31:00 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:05:46 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void initializeMapNames(char ***mapNames)
 	(*mapNames)[6] = strdup("Map 7");
 	(*mapNames)[7] = strdup("Map 8");
 	(*mapNames)[8] = strdup("Map 9");
-	(*mapNames)[9] = strdup("Map 10");
+	(*mapNames)[9] = NULL;
+
 }
 
 t_extras	extras_vals_init(t_extras extras)
 {
-
 	initializeMapNames(&extras.map_names);
 	return (extras);
 }

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 18:08:08 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/20 00:16:02 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/22 14:03:51 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,16 @@ t_data	floor_on_main_image_full(t_main_struct *boss)
  * @param img A pointer to the main image data structure.
  * @return void* A pointer to the chosen auxiliary image.
  */
-/*
-void	*choose_aux_image(t_main_struct *boss)
+t_data	choose_aux_image(t_main_struct *boss)
 {
-	if (boss->win.mapa[boss->win.i][boss->win.j] == '1')
-		return (boss->aux.img_wall);
-	else if (boss->win.mapa[boss->win.i][boss->win.j] == 'p')
-		return (boss->aux.img_player);
-	else if (boss->win.mapa[boss->win.i][boss->win.j] == 'c')
-	{
-		boss->aux.img_collectibles = collectibles_image(&boss->win);
-		return (boss->aux.img_collectibles);
-	}
+	if (boss->win.mapa[boss->win.i][boss->win.j] == 'p')
+		return (upgrade_player(boss, 0));
 	else if (boss->win.mapa[boss->win.i][boss->win.j] == 'e')
-		return (boss->aux.img_exit);
-	return (boss->aux.img_floor);
+		return (put_exit(boss, boss->win.i, boss->win.j));
+	else if (boss->win.mapa[boss->win.i][boss->win.j] == '1')
+		return (put_wall(boss, boss->win.i, boss->win.j));
+	return (boss->img);
 }
-*/
 
 
 /**
@@ -100,39 +93,6 @@ void	*choose_aux_image(t_main_struct *boss)
  * @param boss Pointer to the main structure.
  * @return t_data Modified main image data structure.
  */
-/*
-t_data	put_color_on_main_images(t_main_struct *boss)
-{
-	boss->win.i = 0;
-	while (boss->win.mapa[boss->win.i])
-	{
-		boss->win.j = 0;
-		while (boss->win.mapa[boss->win.i][boss->win.j])
-		{
-			boss->aux.current_image = choose_aux_image(boss);
-			if (boss->win.mapa[boss->win.i][boss->win.j] != '0')
-				boss->img = upgrade_main_image(boss, (boss->win.i + 1), (boss->win.j + 1));
-			boss->win.j++;
-		}
-		boss->win.i++;
-	}
-	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win, boss->img.main_image, 0, 0);
-	return (boss->img);
-}
-*/
-
-
-t_data	choose_aux_image(t_main_struct *boss)
-{
-	if (boss->win.mapa[boss->win.i][boss->win.j] == 'p')
-		return (upgrade_player(boss, 0));
-	else if (boss->win.mapa[boss->win.i][boss->win.j] == 'e')
-		return (put_exit(boss, boss->win.i, boss->win.j));
-	else if (boss->win.mapa[boss->win.i][boss->win.j] == '1')
-		return (put_wall(boss, boss->win.i, boss->win.j));
-	return (boss->img);
-}
-
 t_data	put_color_on_main_images(t_main_struct *boss)
 {
 	boss->win.i = 0;
@@ -210,7 +170,6 @@ t_data	create_main_image(t_main_struct *boss)
 t_data	start_image(t_main_struct *boss)
 {
 	boss->img.ok = 0;
-	ft_printf("%s\n\n", boss->win.mapa[0]);
 	boss->img.main_image = mlx_new_image(boss->win.mlx, boss->win.length_size, boss->win.heigth_size);
 	if (!boss->img.main_image)
 		error_call("Main Image Not Created", boss);

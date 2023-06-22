@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:59:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/20 19:55:42 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/22 14:59:13 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 
 ==============================================*/
 
-t_win	creat_mapa(t_main_struct *boss)
+/*t_win	creat_mapa(t_main_struct *boss)
 {
 	t_win	win;
 
-	win = creat_map_mod(boss, win);
-	//win = creat_map(boss, win);
+	//win = creat_map_mod(boss);
+	win = creat_map(boss, win);
 	return (win);
-}
+}*/
 
 char	**flood_fill(char **test_map, int y, int x, int exit)
 {
@@ -53,31 +53,26 @@ char	**flood_fill(char **test_map, int y, int x, int exit)
 	return (test_map);
 }
 
-int	map_check2(t_main_struct *boss, t_win win)
+int	map_check2(t_main_struct *boss, t_win win, char *filename)
 {
 	int		i;
 	int		j;
 	char **test_map;
 
-	test_map = win.mapa;
-	i = -1;
-	ft_printf("\n");
-	while (test_map[++i])
-		ft_printf("%s\n", test_map[i]);
-	ft_printf("\n");
+	test_map = creat_map(boss, filename);
 	test_map = flood_fill(test_map, win.player_y, win.player_x, 0);
-	i = -1;
-	while (test_map[++i])
-		ft_printf("%s\n", test_map[i]);
 	i = -1;
 	while (test_map[++i])
 	{
 		j = -1;
 		while (test_map[i][++j])
-			if (test_map[i][j] == 'c' || test_map[i][j] == 'C'
-				|| test_map[i][j] == 'e')
+			if (test_map[i][j] == 'c' || test_map[i][j] == 'e')
 				error_call("Non-playable map", boss);
 	}
+	i = -1;
+	while (test_map[++i])
+		free(test_map[i]);
+	free(test_map);
 	return (0);
 }
 
@@ -149,9 +144,9 @@ t_win	map_base_check(t_main_struct *boss, t_win win)
 	return (win);
 }
 
-t_win	validate_map(t_main_struct *boss, t_win win)
+t_win	validate_map(t_main_struct *boss, t_win win, char *filename)
 {
 	win = map_base_check(boss, win);
-	map_check2(boss, win);
+	map_check2(boss, win, filename);
 	return (win);
 }

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 01:36:11 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/20 19:23:29 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:11:33 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,31 @@
  * @param win The window structure to be destroyed.
  * @return void
  */
+/*
+void	destroy_extra_struct(t_extras *extras)
+{
+	free(extras->map);
+	free(extras->map1);
+	free(extras->map2);
+	free(extras->map3);
+	free(extras->map4);
+	free(extras->map5);
+	free(extras->map6);
+	free(extras->map7);
+	free(extras->map8);
+	free(extras->map9);
+}
+*/
+void	destroy_extra_struct(t_extras *extras)
+{
+	int	i;
+
+	i = -1;
+	while (extras->map_names[++i])
+		free(extras->map_names[i]);
+	free(extras->map_names);
+}
+
 void	destroy_win_struct(t_win *win)
 {
 	int	i;
@@ -32,12 +57,9 @@ void	destroy_win_struct(t_win *win)
 		mlx_destroy_window(win->mlx, win->mlx_win);
 		mlx_destroy_display(win->mlx);
 	}
-	if (win->mapa)
-	{
-		while (win->mapa[++i])
-			free(win->mapa[i]);
-		free(win->mapa);
-	}
+	while (win->mapa[++i])
+		free(win->mapa[i]);
+	free(win->mapa);
 	free(win->mlx);
 }
 
@@ -65,7 +87,7 @@ void	destroy_aux_struct(t_aux_vales *aux)
 
 int	window_destroy(t_main_struct *boss)
 {
-	//destroy_extra_struct(&boss->extras);
+	destroy_extra_struct(&boss->extras);
 	destroy_data_struct(&boss->img);
 	destroy_aux_struct(&boss->aux);
 	destroy_win_struct(&boss->win);

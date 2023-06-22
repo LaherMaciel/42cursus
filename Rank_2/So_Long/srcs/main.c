@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:10 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/20 16:50:36 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:06:25 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int argc, char *argv[])
 		ft_printf("To many map file!\n");
 		return (0);
 	}
-	boss.win = read_map(&boss, boss.win, argv);
+	boss.win = read_map(&boss, argv);
 	boss.win = window_init(&boss, boss.win);
 	boss.img = start_image(&boss);
 	mlx_hook(boss.win.mlx_win, 2, 1L<<0, keycode_decisions, &boss);
