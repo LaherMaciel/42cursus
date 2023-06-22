@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:39:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/20 00:23:07 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/22 16:50:38 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int	keycode_decisions(int keycode, t_main_struct *boss)
 		mov_down(boss, &boss->win);
 	if (keycode == 65307)
 		window_destroy(boss);
+	ft_printf(CLEAR"keycode -> %i\n", keycode);
 	while (boss->win.mapa[++i])
 		ft_printf("%s\n", boss->win.mapa[i]);
-	ft_printf("keycode -> %i\n", keycode);
 	if (boss->win.collectibles == boss->win.collected)
 		boss->win.exit = 1;
 	boss->img = upgrade_collectibles(boss);

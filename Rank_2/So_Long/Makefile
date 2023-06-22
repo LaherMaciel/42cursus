@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/06/22 15:08:52 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/06/22 17:11:05 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,15 +112,15 @@ fclean: clean
 
 norm:
 	@echo "[" "$(YELLOW)..$(RESET)" "] | Norminetting...$(RESET)"
-	@if norminette src $(INCLUDES) | grep -q "Error!"; then \
+	@if norminette srcs | grep -q "Error!" ; then \
 	    echo "[" "$(RED)!!$(RESET)" "] | Norminette found errors.$(RESET)"; \
-	    norminette src $(INCLUDES) | awk '/Error!/ {print "[ " "$(RED)!!$(RESET)" " ] | " $$0}'; \
+	    norminette srcs | awk '/Error!/ {print "[ " "$(RED)!!$(RESET)" " ] | " $$0}'; \
 	else \
 	    echo "[" "$(GREEN)OK$(RESET)" "] | Norminette passed!"; \
 	fi
 
 re: fclean
-	clear && make
+	clear && make -s
 
 run: re norm
 	./so_long mapa3.ber

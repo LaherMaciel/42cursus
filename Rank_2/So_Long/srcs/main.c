@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:10 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/22 15:06:25 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:53:38 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char *argv[])
 {
 	t_main_struct	boss;
 
+	ft_printf("argc -> %i\n", argc);
 	if (argc <= 1)
 	{
 		ft_printf("No map file received!\n");

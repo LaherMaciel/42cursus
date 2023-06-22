@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/22 14:47:03 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:53:31 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # include <fcntl.h>
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
+
+// COLOR CODES
+# define CLEAR "\033c"
 
 typedef struct s_data{
 	void	*main_image;

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 19:13:45 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/22 15:14:51 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:56:03 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,10 @@ char	**creat_map(t_main_struct *boss, char *file_name)
 	int		fds;
 	char	*a;
 	char	**map;
-	// char	**tmp;
 	int		i;
 
 	a = NULL;
-	map = malloc(7 * sizeof(char*));
+	map = malloc(10000 * sizeof(char*));
 	fds = open(file_name, O_RDONLY);
 	if (fds == -1)
 		error_call("Failed to read the map file", boss);
@@ -80,6 +79,52 @@ char	**creat_map(t_main_struct *boss, char *file_name)
 	close(fds);
 	return (map);
 }
+
+/*
+char	**creat_map(t_main_struct *boss, char *file_name)
+{
+	int		fds;
+	char	*a;
+	char	**map;
+	int		i;
+	t_list	**map_ls;
+	t_list	tmp;
+
+	map_ls = NULL;
+	fds = open(file_name, O_RDONLY);
+	if (fds == -1)
+		error_call("Failed to read the map file", boss);
+	a = NULL;
+	a = get_next_line(fds);
+	if (ft_strchr(a, '\n'))
+		map_ls = ft_lstnew(ft_substr(a, 0, ft_strlen(a) - 1));
+	else
+		map_ls = ft_lstnew(a);
+	i = 0;
+	while (a != NULL)
+	{
+		a = get_next_line(fds);
+		if (ft_strchr(a, '\n'))
+			ft_lstadd_back(map_ls, ft_lstnew(ft_substr(a, 0, ft_strlen(a) - 1)));
+		else
+			ft_lstadd_back(map_ls, ft_lstnew(a));
+	}
+	i = ft_lstsize(map_ls) + 1;
+	map = malloc (i * sizeof(char *));
+	i = -1;
+	while (map_ls)
+	{
+		map[++i] = map_ls->content;
+		tmp = map_ls;
+		map_ls = map_ls->next;
+		free(tmp);
+	}
+	map[i] = NULL;
+	ft_printf("\n");
+	close(fds);
+	return (map);
+}
+*/
 
 void	check_file_name(t_main_struct *boss, char *file_name)
 {
@@ -133,5 +178,17 @@ t_win	read_map(t_main_struct *boss, char *argv[])
 		boss->extras = store_all_maps(boss->extras, boss->win, i);
 	}
 	i = -1;
+	while (boss->win.mapa[++i])
+		ft_printf("%s\n", boss->win.mapa[i]);
+	// ft_printf("in\n");
+	// i = -1;
+	// while (boss->extras.map[++i])
+	// 	ft_printf("%s\n", boss->extras.map[i]);
+	// boss->win.mapa = boss->extras.map;
+	// ft_printf("mid	\n");
+	// i = -1;
+	// while (boss->extras.map[++i])
+	// 	ft_printf("%s\n", boss->extras.map[i]);
+	// ft_printf("out\n");
 	return (boss->win);
 }
