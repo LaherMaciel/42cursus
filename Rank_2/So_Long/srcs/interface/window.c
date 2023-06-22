@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:46:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/23 00:04:53 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/23 00:09:42 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ mlx_loop() -> initiate the window rendering.
 t_win	window_init(t_main_struct *boss, t_win win)
 {
 	char	*window_name;
+	char	*tmp;
 
-	window_name = ft_substr(boss->extras.map_names[boss->win.current_map], 0,
-		ft_strlen(boss->extras.map_names[boss->win.current_map]) - 4);
+	tmp = boss->extras.map_names[boss->win.current_map];
+	window_name = ft_substr(tmp, 0, ft_strlen(tmp) - 4);
 	if (boss->win.mapa == NULL)
 		window_destroy(boss);
 	win.length_size = ft_strlen(win.mapa[0]);
@@ -60,8 +61,8 @@ t_win	window_init(t_main_struct *boss, t_win win)
 	win.mlx = mlx_init();
 	win.mlx_win = mlx_new_window(win.mlx, win.length_size,
 			win.heigth_size, window_name);
-	
 	boss->win.new_map = boss->win.current_map;
+	free(window_name);
 	ft_printf("WINDOOW CREATED\n");
 	return (win);
 }

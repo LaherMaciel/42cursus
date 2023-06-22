@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 18:19:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/22 15:02:20 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/23 00:20:12 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ t_data	put_wall(t_main_struct *boss, int i, int j)
 {
 	boss->aux.current_image = wall_image(&boss->win);
 	boss->img = put_walls_aux(boss, (i + 1), (j + 1));
+	free(boss->aux.current_image);
 	return (boss->img);
 }
 
@@ -53,6 +54,7 @@ t_data	put_floor(t_main_struct *boss, int i, int j)
 {
 	boss->aux.current_image = floor_image(&boss->win);
 	boss->img = upgrade_main_image(boss, (i + 1), (j + 1));
+	free(boss->aux.current_image);
 	return (boss->img);
 }
 
@@ -60,5 +62,6 @@ t_data	put_exit(t_main_struct *boss, int i, int j)
 {
 	boss->aux.current_image = exit_image(&boss->win);
 	boss->img = upgrade_main_image(boss, (i + 1), (j + 1));
+	free(boss->aux.current_image);
 	return (boss->img);
 }

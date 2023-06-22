@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/22 22:51:04 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/23 00:31:16 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ typedef struct S_aux_vales
 	int				x;
 	int				y;
 	int				argc_size;
-	char			*argv_vals[];
 }		t_aux_vales;
 
 
@@ -89,16 +88,6 @@ typedef struct s_extras
 {
 	char	**map_names;
 	int		current_map;
-	char	**map;
-	char	**map1;
-	char	**map2;
-	char	**map3;
-	char	**map4;
-	char	**map5;
-	char	**map6;
-	char	**map7;
-	char	**map8;
-	char	**map9;
 }		t_extras;
 /*
 typedef struct s_extras
@@ -140,7 +129,7 @@ typedef struct s_main_struct
 {
 	t_data			img;
 	t_win			win;
-	t_aux_vales 	aux;
+	t_aux_vales		aux;
 	t_extras		extras;
 }				t_main_struct;
 
@@ -173,6 +162,7 @@ t_win			window_init(t_main_struct *boss, t_win win);
 int				end_game(t_main_struct *boss);
 void			window_destroy(t_main_struct *boss);
 void			error_call(char *str, t_main_struct *boss);
+void			destroy_aux_struct(t_aux_vales *aux);
 void			new_window(t_main_struct *boss);
 
 //MAIN IMAGE

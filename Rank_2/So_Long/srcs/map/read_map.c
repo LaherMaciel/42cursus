@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 19:13:45 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/22 22:38:48 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/23 00:15:38 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ t_win	read_map(t_main_struct *boss, char *argv[])
 	while (argv[++i])
 	{
 		check_file_name(boss, argv[i]);
+		free(boss->extras.map_names[i - 1]);
 		boss->extras.map_names[i - 1] = ft_substr(argv[i], 0, 0);
 	}
 	i = -1;

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 01:36:11 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/22 23:02:59 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/23 00:34:09 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,8 @@
  * @param win The window structure to be destroyed.
  * @return void
  */
-/*
-void	destroy_extra_struct(t_extras *extras)
-{
-	free(extras->map);
-	free(extras->map1);
-	free(extras->map2);
-	free(extras->map3);
-	free(extras->map4);
-	free(extras->map5);
-	free(extras->map6);
-	free(extras->map7);
-	free(extras->map8);
-	free(extras->map9);
-}
-*/
+
+
 void	destroy_extra_struct(t_extras *extras)
 {
 	int	i;
@@ -81,15 +68,13 @@ void	destroy_aux_struct(t_aux_vales *aux)
 		free(aux->img_exit);
 	if (aux->img_floor)
 		free(aux->img_floor);
-	if (aux->current_image)
-		free(aux->current_image);
 }
 
 int	end_game(t_main_struct *boss)
 {
 	destroy_extra_struct(&boss->extras);
 	destroy_data_struct(&boss->img);
-	destroy_aux_struct(&boss->aux);
+	//destroy_aux_struct(&boss->aux);
 	destroy_win_struct(&boss->win);
 	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:06:08 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/22 15:01:54 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/23 00:22:21 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,5 +144,6 @@ t_data	upgrade_player(t_main_struct *boss, int i)
 		boss->aux.current_image = player_image(&boss->win);
 	}
 	boss->img = upgrade_main_image(boss, (boss->win.player_y + 1), (boss->win.player_x + 1));
+	free(boss->aux.current_image);
 	return (boss->img);
 }

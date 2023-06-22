@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:30:39 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/22 21:53:22 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/23 00:19:19 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_data	upgrade_collectibles(t_main_struct *boss)
 				boss->img = upgrade_main_image(boss, (i + 1), j);
 		i++;
 	}
+	free(boss->aux.current_image);
 	return (boss->img);
 }
 

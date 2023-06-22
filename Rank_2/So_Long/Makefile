@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/06/22 23:56:56 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/06/23 00:10:34 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -134,7 +134,7 @@ dbug: re
 	gdb -tui -args ./so_long mapa3.ber mapa4.ber
 
 val:re
-	valgrind ./so_long mapa3.ber
+	valgrind ./so_long mapa3.ber mapa4.ber
 
 val_full:re
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./so_long mapa3.ber

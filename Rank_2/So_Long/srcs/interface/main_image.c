@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 18:08:08 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/22 21:26:04 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/23 00:32:08 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_data	floor_on_main_image_full(t_main_struct *boss)
 			boss->img = upgrade_main_image(boss, (i + 1), ++j);
 		i++;
 	}
+	free(boss->aux.current_image);
 	return (boss->img);
 }
 
@@ -141,6 +142,7 @@ t_data	create_main_image(t_main_struct *boss)
 	boss->aux.img_floor = floor_image(&boss->win);
 	if (!boss->aux.img_floor)
 		error_call("Floor Image Not Created", boss);
+	destroy_aux_struct(&boss->aux);
 	boss->aux.current_image = floor_image(&boss->win);
 	if (!boss->aux.img_floor)
 		error_call("aux.current_image Not Created", boss);
