@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 18:19:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/25 18:06:35 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/27 20:26:57 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_data	put_wall(t_main_struct *boss, int i, int j)
 	if (!boss->aux.current_image)
 		error_call("Wall Image Not Created", boss);
 	boss->img = put_walls_aux(boss, (i + 1), (j + 1));
-	free(boss->aux.current_image);
+	mlx_destroy_image(boss->win.mlx, boss->aux.current_image);
 	return (boss->img);
 }
 
@@ -64,7 +64,7 @@ t_data	put_floor(t_main_struct *boss, int i, int j)
 	if (!boss->aux.current_image)
 		error_call("Floor Image Not Created", boss);
 	boss->img = upgrade_main_image(boss, (i + 1), (j + 1));
-	free(boss->aux.current_image);
+	mlx_destroy_image(boss->win.mlx, boss->aux.current_image);
 	return (boss->img);
 }
 
@@ -74,6 +74,6 @@ t_data	put_exit(t_main_struct *boss, int i, int j)
 	if (!boss->aux.current_image)
 		error_call("Exit Image Not Created", boss);
 	boss->img = upgrade_main_image(boss, (i + 1), (j + 1));
-	free(boss->aux.current_image);
+	mlx_destroy_image(boss->win.mlx, boss->aux.current_image);
 	return (boss->img);
 }

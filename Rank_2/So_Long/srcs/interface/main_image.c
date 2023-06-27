@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 18:08:08 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/25 18:08:13 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/27 20:27:57 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_data	floor_on_main_image_full(t_main_struct *boss)
 			boss->img = upgrade_main_image(boss, (i + 1), ++j);
 		i++;
 	}
-	free(boss->aux.current_image);
+	mlx_destroy_image(boss->win.mlx, boss->aux.current_image);
 	return (boss->img);
 }
 
