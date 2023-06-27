@@ -6,24 +6,26 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 01:36:11 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/23 00:34:09 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/25 18:09:55 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
 /**
- * @brief Destroys the game window, frees the map, and terminates the program.
+ * @brief Destroys the game window, frees the map, and terminates the
+ *  program.
  *
- * It destroys the window and display using `mlx_destroy_window` and `mlx_destroy_display`
- * functions. Then, it iterates through the map array and frees the allocated memory.
- * Finally, it frees the `mlx` structure and exits the program with status code 0.
+ * It destroys the window and display using `mlx_destroy_window` and
+ *  `mlx_destroy_display`
+ * functions. Then, it iterates through the map array and frees the
+ *  allocated memory.
+ * Finally, it frees the `mlx` structure and exits the program with
+ *  status code 0.
  *
  * @param win The window structure to be destroyed.
  * @return void
  */
-
-
 void	destroy_extra_struct(t_extras *extras)
 {
 	int	i;
@@ -56,25 +58,11 @@ void	destroy_data_struct(t_data *img)
 		free(img->main_image);
 }
 
-void	destroy_aux_struct(t_aux_vales *aux)
-{
-	if (aux->img_wall)
-		free(aux->img_wall);
-	if (aux->img_player)
-		free(aux->img_player);
-	if (aux->img_collectibles)
-		free(aux->img_collectibles);
-	if (aux->img_exit)
-		free(aux->img_exit);
-	if (aux->img_floor)
-		free(aux->img_floor);
-}
-
+//	destroy_aux_struct(&boss->aux);
 int	end_game(t_main_struct *boss)
 {
 	destroy_extra_struct(&boss->extras);
 	destroy_data_struct(&boss->img);
-	//destroy_aux_struct(&boss->aux);
 	destroy_win_struct(&boss->win);
 	exit(0);
 }
@@ -82,12 +70,5 @@ int	end_game(t_main_struct *boss)
 void	window_destroy(t_main_struct *boss)
 {
 	destroy_data_struct(&boss->img);
-	destroy_aux_struct(&boss->aux);
 	destroy_win_struct(&boss->win);
-}
-
-void	error_call(char *str, t_main_struct *boss)
-{
-	ft_printf("ERROR: %s!!\n", str);
-	end_game(boss);
 }

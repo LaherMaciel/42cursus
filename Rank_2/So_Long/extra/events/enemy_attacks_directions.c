@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 00:29:34 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/07 04:13:56 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/24 19:08:20 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	attack_direction_cut(t_win *win, t_extras *extra, int aux_x, int aux_y)
 	}
 }
 
+// up -> 0 : down -> 1 : left -> 2 : right -> 3
 void	attack_direction(t_win *win, t_extras *extra)
 {
-	// up -> 0 : down -> 1 : left -> 2 : right -> 3
 	int	i;
 	int	aux_x;
 	int	aux_y;
@@ -57,4 +57,3 @@ void	attack_direction(t_win *win, t_extras *extra)
 	else
 		attack_direction_cut(win, extra, aux_x, aux_y);
 }
-

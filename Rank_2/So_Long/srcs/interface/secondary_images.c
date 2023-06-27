@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 23:44:27 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/23 00:16:37 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/25 16:46:14 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ identify -format "%wx%h" example.jpg
 */
 
 /**
- * @brief Determine the appropriate image to use based on the player_look variable.
+ * @brief Determine the appropriate image to use based on the player_look
+ *  variable.
  *
- * This function decides which image to send based on the value of the player_look variable.
+ * This function decides which image to send based on the value of the
+ *  player_look variable.
  * The values of player_look correspond to the player's direction:
  *   - 0: down
  *   - 1: up
@@ -58,9 +60,12 @@ void	*player_image(t_win *win)
 /**
  * @brief Retrieve the address of the exit image.
  *
- * This function loads and returns the address of the exit image. The image file used
- * is determined based on the value of the `exit` variable. If `exit` is non-zero, it loads
- * the "exit0.xpm" image file. Otherwise, it also loads the "exit1.xpm" image file.
+ * This function loads and returns the address of the exit image. The image
+ *  file used
+ * is determined based on the value of the `exit` variable. If `exit` is
+ *  non-zero, it loads
+ * the "exit0.xpm" image file. Otherwise, it also loads the "exit1.xpm"
+ *  image file.
  *
  * @param win A pointer to the window structure.
  * @return void* The address of the exit image.
@@ -69,9 +74,9 @@ void	*exit_image(t_win *win)
 {
 	void	*img_exit;
 
-	if (win->exit != 0)
+	if (win->exit != 1)
 		img_exit = mlx_xpm_file_to_image(win->mlx,
-				"images/utils/exit0.xpm", &win->image_length,
+				"images/utils/exit1.xpm", &win->image_length,
 				&win->image_heigth);
 	else
 		img_exit = mlx_xpm_file_to_image(win->mlx,
@@ -83,9 +88,12 @@ void	*exit_image(t_win *win)
 /**
  * @brief Retrieve the address of the wall image.
  *
- * This function loads and returns the address of the wall image. The image file used is
- * "tree_wall.xpm". It retrieves the image by calling `mlx_xpm_file_to_image` function,
- * passing the window's `mlx` pointer, the image file path, and the addresses of the
+ * This function loads and returns the address of the wall image. The image
+ *  file used is
+ * "tree_wall.xpm". It retrieves the image by calling `mlx_xpm_file_to_image`
+ *  function,
+ * passing the window's `mlx` pointer, the image file path, and the addresses
+ *  of the
  * `image_length` and `image_height` variables.
  *
  * @param win A pointer to the window structure.
@@ -104,9 +112,12 @@ void	*wall_image(t_win *win)
 /**
  * @brief Retrieve the address of the floor image.
  *
- * This function loads and returns the address of the floor image. The image file used is
- * "main_floor.xpm". It retrieves the image by calling the `mlx_xpm_file_to_image` function,
- * passing the window's `mlx` pointer, the image file path, and the addresses of the
+ * This function loads and returns the address of the floor image. The image
+ *  file used is
+ * "main_floor.xpm". It retrieves the image by calling the
+ *  `mlx_xpm_file_to_image`function,
+ * passing the window's `mlx` pointer, the image file path, and the addresses
+ *  of the
  * `image_length` and `image_height` variables.
  *
  * @param win A pointer to the window structure.
@@ -125,15 +136,14 @@ void	*floor_image(t_win *win)
 /**
  * @brief Retrieve the address of the collectibles image.
  *
- * This function loads and returns the address of the collectibles image. The image file used is
- * "Collectibles/soul_flame/tile000.xpm". It retrieves the image by calling the `mlx_xpm_file_to_image`
- * function, passing the window's `mlx` pointer, the image file path, and the addresses of the
+ * This function loads and returns the address of the collectibles image. The
+ *  image file used is
+ * "Collectibles/soul_flame/tile000.xpm". It retrieves the image by calling the
+ *  `mlx_xpm_file_to_image`
+ * function, passing the window's `mlx` pointer, the image file path, and the
+ *  addresses of the
  * `image_length` and `image_height` variables.
  *
  * @param win A pointer to the window structure.
  * @return void* The address of the collectibles image.
  */
-void	*collectibles_image(t_win *win)
-{
-	return (collectibles_image_animation(win));
-}

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:59:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/22 14:59:13 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/25 15:45:13 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,38 +26,11 @@
 	return (win);
 }*/
 
-char	**flood_fill(char **test_map, int y, int x, int exit)
-{
-	if (test_map[y][x] == 'e' || test_map[y][x] == 'E')
-	{
-		test_map[y][x] = 'E';
-		exit = 1;
-		return (test_map);
-	}
-	else if (exit == 1 && test_map[y][x] == 'c')
-		test_map[y][x] = 'C';
-	else
-		test_map[y][x] = 'p';
-	if ((test_map[(y + 1)][x] == '0') || (test_map[(y + 1)][x] == 'c')
-		|| (test_map[(y + 1)][x] == 'e'))
-		test_map = flood_fill(test_map, (y + 1), x, exit);
-	if ((test_map[y][(x + 1)] == '0') || (test_map[y][(x + 1)] == 'c')
-		|| (test_map[y][(x + 1)] == 'e'))
-		test_map = flood_fill(test_map, y, (x + 1), exit);
-	if ((test_map[(y - 1)][(x)] == '0') || (test_map[(y - 1)][(x)] == 'c')
-		|| (test_map[(y - 1)][(x)] == 'e'))
-		test_map = flood_fill(test_map, (y - 1), x, exit);
-	if ((test_map[y][(x - 1)] == '0') || (test_map[y][(x - 1)] == 'c')
-		|| (test_map[y][(x - 1)] == 'e'))
-		test_map = flood_fill(test_map, y, (x - 1), exit);
-	return (test_map);
-}
-
 int	map_check2(t_main_struct *boss, t_win win, char *filename)
 {
 	int		i;
 	int		j;
-	char **test_map;
+	char	**test_map;
 
 	test_map = creat_map(boss, filename);
 	test_map = flood_fill(test_map, win.player_y, win.player_x, 0);
@@ -76,6 +49,43 @@ int	map_check2(t_main_struct *boss, t_win win, char *filename)
 	return (0);
 }
 
+t_win	map_base_check_aux2(t_main_struct *boss, t_win win, int x, int y)
+{
+	if ((win.mapa[0][y] != '1') || (win.mapa[x][0] != '1'))
+		error_call("Mapa Not Surrounded by Walls", boss);
+	if (win.mapa[x][y] == 'p')
+	{
+		win.player_y = x;
+		win.player_x = y;
+		win.player_look++;
+	}
+	else if (win.mapa[x][y] == 'e')
+		win.exit++;
+	else if (win.mapa[x][y] == 'c')
+		win.collectibles++;
+	else if (win.mapa[x][y] != '0' && win.mapa[x][y] != '1')
+		error_call("Unidentified Characters on The Map", boss);
+	return (win);
+}
+
+t_win	map_base_check_aux(t_main_struct *boss, t_win win,
+	int x, int x_max_len)
+{
+	int	y;
+	int	y_max_len;
+
+	y = -1;
+	y_max_len = ft_strlen(win.mapa[x]) - 1;
+	while (win.mapa[x][++y])
+	{
+		win = map_base_check_aux2(boss, win, x, y);
+		if ((win.mapa[x_max_len][y] != '1')
+			|| (win.mapa[x][y_max_len] != '1'))
+			error_call("Mapa Not Surrounded by Walls", boss);
+	}
+	return (win);
+}
+
 /**
  * @brief does the basic checks to see if the map is valid like
  *  see if the map has only 1 player, only 1 exit, if it has at least
@@ -87,60 +97,27 @@ int	map_check2(t_main_struct *boss, t_win win, char *filename)
 t_win	map_base_check(t_main_struct *boss, t_win win)
 {
 	int	x;
-	int	y;
 	int	x_max_len;
-	int	y_max_len;
-	int	base_max_y_len;
-	int	player;
-	int	exit;
 
-	x = -1;
-	player = 0;
-	exit = 0;
-	win.collectibles = 0;
+	win.player_look = 0;
+	win.exit = 0;
 	x_max_len = 0;
-	while (win.mapa[++x])
+	while (win.mapa[x_max_len])
 		x_max_len++;
 	x_max_len--;
+	win.mapa_heigth = x_max_len;
 	x = -1;
-	base_max_y_len = ft_strlen(win.mapa[0]) - 1;
-	if ((win.mapa[0][0] != '1') || (win.mapa[x_max_len][base_max_y_len] != '1'))
+	if ((win.mapa[0][0] != '1')
+		|| (win.mapa[x_max_len][(ft_strlen(win.mapa[0]) - 1)] != '1'))
 		error_call("Mapa Not Surrounded by Walls", boss);
 	while (++x < x_max_len)
 	{
-		y = -1;
-		y_max_len = ft_strlen(win.mapa[x]) - 1;
-		if (base_max_y_len != y_max_len)
+		if ((ft_strlen(win.mapa[0]) - 1) != (ft_strlen(win.mapa[x]) - 1))
 			error_call("The Mapa Is Not a Rectangle", boss);
-		while (win.mapa[x][++y])
-		{
-			if ((win.mapa[0][y] != '1') || (win.mapa[x][0] != '1'))
-				error_call("Mapa Not Surrounded by Walls", boss);
-			else if ((win.mapa[x_max_len][y] != '1')
-				|| (win.mapa[x][y_max_len] != '1'))
-				error_call("Mapa Not Surrounded by Walls", boss);
-			else if (win.mapa[x][y] == 'p')
-			{
-				win.player_y = x;
-				win.player_x = y;
-				player++;
-			}
-			else if (win.mapa[x][y] == 'e')
-				exit++;
-			else if (win.mapa[x][y] == 'c')
-				win.collectibles++;
-			else if (win.mapa[x][y] != '0' && win.mapa[x][y] != '1')
-				error_call("Unidentified Characters on The Map", boss);
-		}
+		win = map_base_check_aux(boss, win, x, x_max_len);
 	}
-	win.mapa_heigth = x;
-	win.mapa_length = y;
-	if (player != 1)
-		error_call("Number of Players Different then 1", boss);
-	if (exit != 1)
-		error_call("Number of exits Different then 1", boss);
-	if (win.collectibles < 1)
-		error_call("Number of collectibles smaller then 1", boss);
+	win.mapa_length = ft_strlen(win.mapa[x]) - 1;
+	map_last_base_check(boss, win);
 	return (win);
 }
 

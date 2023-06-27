@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 14:08:25 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/22 22:06:28 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/25 16:51:53 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	look(t_main_struct *boss)
  */
 void	mov_up(t_main_struct *boss, t_win *win)
 {
-	if (win->mapa[win->player_y - 1][win->player_x] == 'e' && win->exit == 1)
+	if (win->mapa[win->player_y - 1][win->player_x] == 'e' && win->exit == 2)
 	{
 		boss->win.new_map = boss->win.current_map + 1;
 		return ;
@@ -66,7 +66,7 @@ void	mov_up(t_main_struct *boss, t_win *win)
  */
 void	mov_down(t_main_struct *boss, t_win *win)
 {
-	if (win->mapa[win->player_y + 1][win->player_x] == 'e' && win->exit == 1)
+	if (win->mapa[win->player_y + 1][win->player_x] == 'e' && win->exit == 2)
 	{
 		boss->win.new_map = boss->win.current_map + 1;
 		return ;
@@ -102,7 +102,7 @@ void	mov_down(t_main_struct *boss, t_win *win)
  */
 void	mov_left(t_main_struct *boss, t_win *win)
 {
-	if (win->mapa[win->player_y][win->player_x - 1] == 'e' && win->exit == 1)
+	if (win->mapa[win->player_y][win->player_x - 1] == 'e' && win->exit == 2)
 	{
 		boss->win.new_map = boss->win.current_map + 1;
 		return ;
@@ -138,7 +138,7 @@ void	mov_left(t_main_struct *boss, t_win *win)
  */
 void	mov_right(t_main_struct *boss, t_win *win)
 {
-	if (win->mapa[win->player_y][win->player_x + 1] == 'e' && win->exit == 1)
+	if (win->mapa[win->player_y][win->player_x + 1] == 'e' && win->exit == 2)
 	{
 		boss->win.new_map = boss->win.current_map + 1;
 		return ;

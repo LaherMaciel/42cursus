@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/06/23 00:10:34 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/06/25 19:50:54 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@ NAME = so_long
 TEXTURE_C =
 ANIMATION_C = player_look.c player_walk.c collectibles_animations.c \
 	floor_animations.c wall_animations.c loop.c
-MAP_C = map_validation.c read_map.c
+MAP_C = map_validation.c map_validation2.c read_map.c
 EVENTS_C = base_movs.c keycode.c
 INTERFACE_C = window.c window2.c colors.c secondary_images.c \
 		secondary_images_2.c main_image.c main_image_2.c pixeis.c destroy_window.c \
-		vals_init.c
+		destroy_window2.c vals_init.c
 
 LIBFT_DIRECTORY = libft/
 LIBFT_HEADER = $(LIBFT_DIRECTORY)libft.h
@@ -126,7 +126,7 @@ run: re norm
 	./so_long mapa3.ber 
 	
 brun: re norm
-	./so_long mapa3.ber mapa4.ber
+	./so_long progressive.ber progressive2.ber progressive3.ber progressive4.ber progressive5.ber
 
 map3:./so_long mapa3.ber
 

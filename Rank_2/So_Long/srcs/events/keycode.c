@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:39:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/22 23:12:55 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/25 19:38:48 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,22 @@ int	keycode_int(int keycode)
 	return (keycode);
 }
 
+void	my_prints(int keycode, t_main_struct *boss)
+{
+	int		i;
+
+	i = -1;
+	ft_printf("\nKEYCODE	%i\nargc -> %i\n", keycode, boss->aux.argc_size);
+	ft_printf("boss->win.new_map -> %i\n", boss->win.new_map);
+	ft_printf("boss->win.current_map -> %i\n\n", boss->win.current_map);
+	ft_printf("boss->win.collectibles -> %i\n", boss->win.collectibles);
+	ft_printf("boss->win.collected -> %i\n", boss->win.collected);
+	ft_printf("exit -> %i\n", boss->win.exit);
+	//ft_printf(CLEAR"keycode -> %i\n", keycode);
+	while (boss->win.mapa[++i])
+		ft_printf("%s\n", boss->win.mapa[i]);
+}
+
 /**
  * @brief Handles the keypress events and performs corresponding actions.
  *
@@ -33,9 +49,6 @@ int	keycode_int(int keycode)
  */
 int	keycode_decisions(int keycode, t_main_struct *boss)
 {
-	int		i;
-
-	i = -1;
 	if (keycode == 100 || keycode == 65363)
 		mov_right(boss, &boss->win);
 	if (keycode == 97 || keycode == 65361)
@@ -48,15 +61,10 @@ int	keycode_decisions(int keycode, t_main_struct *boss)
 		end_game(boss);
 	if (boss->win.new_map != boss->win.current_map)
 		new_window(boss);
-	ft_printf("\nKEYCODE\nargc -> %i\n", boss->aux.argc_size);
-	ft_printf("boss->win.new_map -> %i\n", boss->win.new_map);
-	ft_printf("boss->win.current_map -> %i\n\n", boss->win.current_map);
-	//ft_printf(CLEAR"keycode -> %i\n", keycode);
-	while (boss->win.mapa[++i])
-		ft_printf("%s\n", boss->win.mapa[i]);
+	my_prints(keycode, boss);
 	if (boss->win.collectibles == boss->win.collected)
-		boss->win.exit = 1;
-	boss->img = upgrade_collectibles(boss);
+		boss->win.exit = 2;
+	//boss->img = upgrade_collectibles(boss);
 	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win,
 		boss->img.main_image, 0, 0);
 	return (0);

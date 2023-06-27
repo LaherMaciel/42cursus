@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/23 00:31:16 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/25 18:12:23 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct s_data{
 	int		line_length;
 	int		endian;
 	int		bits_per_pixel;
-	int		ok;
 }				t_data;
 
 typedef struct s_win
@@ -70,11 +69,6 @@ typedef struct S_aux_vales
 	int				line_length;
 	int				endian;
 	int				bits_per_pixel;
-	void			*img_collectibles;
-	void			*img_exit;
-	void			*img_floor;
-	void			*img_player;
-	void			*img_wall;
 	void			*current_image;
 	int				current_image_x;
 	int				current_image_y;
@@ -82,7 +76,6 @@ typedef struct S_aux_vales
 	int				y;
 	int				argc_size;
 }		t_aux_vales;
-
 
 typedef struct s_extras
 {
@@ -156,13 +149,15 @@ char			**read_file(void);
 t_win			map_base_check(t_main_struct *boss, t_win win);
 t_win			validate_map(t_main_struct *boss, t_win win, char *filename);
 t_win			read_map(t_main_struct *boss, char *argv[]);
+char			**flood_fill(char **test_map, int y, int x, int exit);
+void			map_last_base_check(t_main_struct*boss, t_win win);
 
 //WINDOWS
 t_win			window_init(t_main_struct *boss, t_win win);
+void			destroy_aux_struct(t_aux_vales *aux);
 int				end_game(t_main_struct *boss);
 void			window_destroy(t_main_struct *boss);
 void			error_call(char *str, t_main_struct *boss);
-void			destroy_aux_struct(t_aux_vales *aux);
 void			new_window(t_main_struct *boss);
 
 //MAIN IMAGE
@@ -174,7 +169,6 @@ int				include_y(t_main_struct *boss, int i);
 int				include_x(t_main_struct *boss, int i);
 //void			*choose_aux_image(t_main_struct *boss);
 t_data			choose_aux_image(t_main_struct *boss);
-
 
 //SECONDARY IMAGE
 void			*wall_image(t_win *win);
@@ -205,7 +199,6 @@ int				get_pixel(t_aux_vales *aux);
 int				aux_get_pixel(t_aux_vales *aux, int x, int y);
 
 //OTHERS
-t_aux_vales		aux_imgs_init(t_aux_vales aux);
 t_data			img_vals_init(t_data img);
 t_win			win_vals_init(t_win win);
 t_extras		extras_vals_init(t_extras extras);
