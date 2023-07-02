@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 19:13:45 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/25 19:49:06 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/01 23:44:09 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,31 @@ t_win	read_map(t_main_struct *boss, char *argv[])
 			boss->extras.map_names[0]);
 	boss->win = validate_map(boss, boss->win,
 			boss->extras.map_names[0]);
-	i = -1;
-	ft_printf("\n");
-	while (boss->win.mapa[++i])
-		ft_printf("%s\n", boss->win.mapa[i]);
-	ft_printf("\n");
 	return (boss->win);
+}
+
+void	print_map(t_main_struct *boss)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (boss->win.mapa[++i])
+	{
+		j = -1;
+		while (boss->win.mapa[i][++j])
+		{
+			if (boss->win.mapa[i][j] == 'p')
+				ft_printf("\033[1;31m%c\033[0m", boss->win.mapa[i][j]);
+			else if (boss->win.mapa[i][j] == 'e')
+				ft_printf("\033[1;33m%c\033[0m", boss->win.mapa[i][j]);
+			else if (boss->win.mapa[i][j] == 'c')
+				ft_printf("\033[1;34m%c\033[0m", boss->win.mapa[i][j]);
+			else if (boss->win.mapa[i][j] == '1')
+				ft_printf("\033[1m%c\033[0m", boss->win.mapa[i][j]);
+			else
+				ft_printf("\033[1;90m%c\033[0m", boss->win.mapa[i][j]);
+		}
+		ft_printf("\n");
+	}
 }

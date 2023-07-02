@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:46:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/25 19:46:08 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/01 23:43:42 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ t_win	window_init(t_main_struct *boss, t_win win)
 			win.heigth_size, window_name);
 	boss->win.new_map = boss->win.current_map;
 	free(window_name);
-	//free(tmp);
 	ft_printf("WINDOOW CREATED\n");
 	return (win);
 }

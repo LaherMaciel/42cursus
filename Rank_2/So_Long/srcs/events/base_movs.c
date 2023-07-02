@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 14:08:25 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/25 16:51:53 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/01 22:16:29 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,14 @@ void	mov_up(t_main_struct *boss, t_win *win)
 		{
 			boss->img = collect(boss);
 			win->collected++;
+			win->total_collected++;
 		}
 		win->mapa[win->player_y][win->player_x] = '0';
 		win->mapa[--win->player_y][win->player_x] = 'p';
 		boss->aux.current_image = walk_up(win);
 		boss->img = upgrade_player(boss, 1);
+		boss->aux.numb_of_mov++;
+		boss->aux.total_mov++;
 	}
 	else
 		look(boss);
@@ -80,11 +83,14 @@ void	mov_down(t_main_struct *boss, t_win *win)
 		{
 			boss->img = collect(boss);
 			win->collected++;
+			win->total_collected++;
 		}
 		win->mapa[win->player_y][win->player_x] = '0';
 		win->mapa[++win->player_y][win->player_x] = 'p';
 		boss->aux.current_image = walk_down(win);
 		boss->img = upgrade_player(boss, 1);
+		boss->aux.numb_of_mov++;
+		boss->aux.total_mov++;
 	}
 	else
 		look(boss);
@@ -116,11 +122,14 @@ void	mov_left(t_main_struct *boss, t_win *win)
 		{
 			boss->img = collect(boss);
 			win->collected++;
+			win->total_collected++;
 		}
 		win->mapa[win->player_y][win->player_x] = '0';
 		win->mapa[win->player_y][--win->player_x] = 'p';
 		boss->aux.current_image = walk_left(win);
 		boss->img = upgrade_player(boss, 1);
+		boss->aux.numb_of_mov++;
+		boss->aux.total_mov++;
 	}
 	else
 		look(boss);
@@ -152,11 +161,14 @@ void	mov_right(t_main_struct *boss, t_win *win)
 		{
 			boss->img = collect(boss);
 			win->collected++;
+			win->total_collected++;
 		}
 		win->mapa[win->player_y][win->player_x] = '0';
 		win->mapa[win->player_y][++win->player_x] = 'p';
 		boss->aux.current_image = walk_right(win);
 		boss->img = upgrade_player(boss, 1);
+		boss->aux.numb_of_mov++;
+		boss->aux.total_mov++;
 	}
 	else
 		look(boss);

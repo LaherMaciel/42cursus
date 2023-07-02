@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 18:08:08 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/27 20:27:57 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/01 23:29:41 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,7 @@ t_data	put_color_on_main_images(t_main_struct *boss)
 		}
 		boss->win.i++;
 	}
-	upgrade_collectibles(boss);
-	ft_printf("HERE put_color_on_main_images OUT\n");
+	boss->img = upgrade_collectibles(boss);
 	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win,
 		boss->img.main_image, 0, 0);
 	return (boss->img);
@@ -152,8 +151,6 @@ t_data	put_color_on_main_images(t_main_struct *boss)
 t_data	create_main_image(t_main_struct *boss)
 {
 	boss->img = floor_on_main_image_full(boss);
-	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win,
-		boss->img.main_image, 0, 0);
 	boss->img = put_color_on_main_images(boss);
 	ft_printf("IMAGE CREATED\n");
 	return (boss->img);
@@ -179,6 +176,7 @@ t_data	create_main_image(t_main_struct *boss)
  */
 t_data	start_image(t_main_struct *boss)
 {
+	boss->aux.numb_of_mov = 0;
 	boss->img.main_image = mlx_new_image(boss->win.mlx,
 			boss->win.length_size, boss->win.heigth_size);
 	if (!boss->img.main_image)
@@ -189,5 +187,6 @@ t_data	start_image(t_main_struct *boss)
 	boss->img = create_main_image(boss);
 	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win,
 		boss->img.main_image, 0, 0);
+	my_prints(boss);
 	return (boss->img);
 }

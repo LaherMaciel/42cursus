@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/06/25 19:50:54 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/07/01 23:39:39 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,7 +125,7 @@ re: fclean
 run: re norm
 	./so_long mapa3.ber 
 	
-brun: re norm
+multi_run: re norm
 	./so_long progressive.ber progressive2.ber progressive3.ber progressive4.ber progressive5.ber
 
 map3:./so_long mapa3.ber

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 01:36:11 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/27 20:38:09 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/01 23:35:24 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,23 @@ void	destroy_win_struct(t_win *win)
 }
 
 //	destroy_aux_struct(&boss->aux);
-int	end_game(t_main_struct *boss)
+int	end_game(t_main_struct *boss, int error)
 {
 	destroy_extra_struct(&boss->extras);
-	free(boss->aux.current_image);
-	//mlx_destroy_image(boss->win.mlx, boss->aux.current_image);
+	mlx_destroy_image(boss->win.mlx, boss->img.main_image);
 	destroy_win_struct(&boss->win);
+	if (error != 1)
+	{
+		ft_printf("\n\033[1;31m		!!GAME OVER!!		\033[0m\n");
+		ft_printf("Total collected: %i\n", boss->win.total_collected);
+		ft_printf("Total Movements: %i\n", boss->aux.total_mov);
+		ft_printf("Total Maps Complited: %i\n\n", (boss->win.current_map));
+	}
 	exit(0);
 }
 
 void	window_destroy(t_main_struct *boss)
 {
-	free(boss->aux.current_image);
-	//mlx_destroy_image(boss->win.mlx, boss->aux.current_image);
+	mlx_destroy_image(boss->win.mlx, boss->img.main_image);
 	destroy_win_struct(&boss->win);
 }

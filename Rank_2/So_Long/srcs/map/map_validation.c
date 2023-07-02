@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:59:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/25 15:45:13 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/01 23:01:58 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,12 @@ int	map_check2(t_main_struct *boss, t_win win, char *filename)
 	{
 		j = -1;
 		while (test_map[i][++j])
-			if (test_map[i][j] == 'c' || test_map[i][j] == 'e')
-				error_call("Non-playable map", boss);
+		{
+			if (test_map[i][j] == 'c')
+				error_call("Non-playable map, unreachable Collectible", boss);
+			else if (test_map[i][j] == 'c' || test_map[i][j] == 'e')
+				error_call("Non-playable map, unreachable Exit", boss);
+		}
 	}
 	i = -1;
 	while (test_map[++i])
@@ -52,19 +56,26 @@ int	map_check2(t_main_struct *boss, t_win win, char *filename)
 t_win	map_base_check_aux2(t_main_struct *boss, t_win win, int x, int y)
 {
 	if ((win.mapa[0][y] != '1') || (win.mapa[x][0] != '1'))
-		error_call("Mapa Not Surrounded by Walls", boss);
-	if (win.mapa[x][y] == 'p')
+		error_call("Map not surrounded by walls", boss);
+	if (win.mapa[x][y] == 'p' || win.mapa[x][y] == 'P')
 	{
 		win.player_y = x;
 		win.player_x = y;
 		win.player_look++;
+		win.mapa[x][y] = 'p';
 	}
-	else if (win.mapa[x][y] == 'e')
+	else if (win.mapa[x][y] == 'e' || win.mapa[x][y] == 'E')
+	{
+		win.mapa[x][y] = 'e';
 		win.exit++;
-	else if (win.mapa[x][y] == 'c')
+	}
+	else if (win.mapa[x][y] == 'c' || win.mapa[x][y] == 'C')
+	{
+		win.mapa[x][y] = 'c';
 		win.collectibles++;
+	}
 	else if (win.mapa[x][y] != '0' && win.mapa[x][y] != '1')
-		error_call("Unidentified Characters on The Map", boss);
+		error_call("Unidentified characters on the Map", boss);
 	return (win);
 }
 
@@ -81,7 +92,7 @@ t_win	map_base_check_aux(t_main_struct *boss, t_win win,
 		win = map_base_check_aux2(boss, win, x, y);
 		if ((win.mapa[x_max_len][y] != '1')
 			|| (win.mapa[x][y_max_len] != '1'))
-			error_call("Mapa Not Surrounded by Walls", boss);
+			error_call("Map not surrounded by walls", boss);
 	}
 	return (win);
 }
@@ -109,11 +120,11 @@ t_win	map_base_check(t_main_struct *boss, t_win win)
 	x = -1;
 	if ((win.mapa[0][0] != '1')
 		|| (win.mapa[x_max_len][(ft_strlen(win.mapa[0]) - 1)] != '1'))
-		error_call("Mapa Not Surrounded by Walls", boss);
+		error_call("Map not surrounded by walls", boss);
 	while (++x < x_max_len)
 	{
 		if ((ft_strlen(win.mapa[0]) - 1) != (ft_strlen(win.mapa[x]) - 1))
-			error_call("The Mapa Is Not a Rectangle", boss);
+			error_call("The Map is not a rectangle", boss);
 		win = map_base_check_aux(boss, win, x, x_max_len);
 	}
 	win.mapa_length = ft_strlen(win.mapa[x]) - 1;

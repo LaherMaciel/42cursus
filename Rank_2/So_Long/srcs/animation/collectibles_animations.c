@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:30:39 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/27 20:27:30 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/01 23:18:55 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*collectibles_image(t_win *win)
 				&win->image_length, &win->image_heigth);
 	if (win->collect == 1)
 		img_collectibles = mlx_xpm_file_to_image(win->mlx,
-				"images/utils/Collectibles/soul_flametile001.xpm",
+				"images/utils/Collectibles/soul_flame/tile001.xpm",
 				&win->image_length, &win->image_heigth);
 	if (win->collect == 2)
 		img_collectibles = mlx_xpm_file_to_image(win->mlx,
@@ -35,7 +35,6 @@ void	*collectibles_image(t_win *win)
 	win->collect++;
 	if (win->collect == 4)
 		win->collect = 0;
-	ft_printf("img_collectibles -> %p\n", img_collectibles);
 	return (img_collectibles);
 }
 

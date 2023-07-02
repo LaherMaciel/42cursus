@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/25 18:12:23 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/01 22:50:12 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_win
 	int		player_look;
 	int		collectibles;
 	int		collected;
+	int		total_collected;
 	int		collect;
 	int		exit;
 	int		i;
@@ -75,6 +76,8 @@ typedef struct S_aux_vales
 	int				x;
 	int				y;
 	int				argc_size;
+	int				numb_of_mov;
+	int				total_mov;
 }		t_aux_vales;
 
 typedef struct s_extras
@@ -140,6 +143,7 @@ void			mov_right(t_main_struct *boss, t_win *win);
 void			mov_up(t_main_struct *boss, t_win *win);
 void			mov_down(t_main_struct *boss, t_win *win);
 int				mouse_handler(int mousekey, int x, int y, t_win *win);
+void			my_prints(t_main_struct *boss);
 
 //MAP
 t_win			creat_mapa(t_main_struct *boss);
@@ -151,14 +155,18 @@ t_win			validate_map(t_main_struct *boss, t_win win, char *filename);
 t_win			read_map(t_main_struct *boss, char *argv[]);
 char			**flood_fill(char **test_map, int y, int x, int exit);
 void			map_last_base_check(t_main_struct*boss, t_win win);
+void			print_map(t_main_struct *boss);
 
 //WINDOWS
 t_win			window_init(t_main_struct *boss, t_win win);
 void			destroy_aux_struct(t_aux_vales *aux);
-int				end_game(t_main_struct *boss);
+int				end_game(t_main_struct *boss, int error);
 void			window_destroy(t_main_struct *boss);
 void			error_call(char *str, t_main_struct *boss);
 void			new_window(t_main_struct *boss);
+void			put_collectibles_on_window(t_main_struct *boss);
+void			put_total_collected_on_window(t_main_struct *boss);
+void			put_movs_on_window(t_main_struct *boss);
 
 //MAIN IMAGE
 t_data			start_image(t_main_struct *boss);
