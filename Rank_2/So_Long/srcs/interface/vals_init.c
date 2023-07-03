@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 03:15:06 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/01 21:48:43 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:42:32 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ t_win	win_vals_init(t_win win)
 	win.player_walk = 0;
 	win.image_heigth = 64;
 	win.image_length = 64;
+	win.mlx = NULL;
+	win.mlx_win = NULL;
 	return (win);
 }

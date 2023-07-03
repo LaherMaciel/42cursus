@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:08:35 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/24 19:10:44 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:01:42 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ size_t	str_length(char *a)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoinn(char *s1, char *s2)
 {
 	char	*sjoin;
 	size_t	i;

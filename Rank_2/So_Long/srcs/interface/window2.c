@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 23:36:13 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/01 23:25:03 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:00:54 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,65 +14,65 @@
 
 void	put_collectibles_on_window(t_main_struct *boss)
 {
-	// char	*message;
-	// char	*tmp;
-	// char	*vals;
+	char	*message;
+	char	*tmp;
+	char	*vals;
 
-	// vals = ft_itoa(boss->win.collected);
-	// message = ft_strjoin("Collectibles: ", vals);
-	// free(vals);
-	// tmp = message;
-	// message = ft_strjoin(tmp, " / ");
-	// free(tmp);
-	// tmp = message;
-	// vals = ft_itoa(boss->win.collectibles);
-	// message = ft_strjoin(tmp, vals);
-	// free(vals);
-	// free(tmp);
-	// tmp = message;
-	// message = ft_strjoin(tmp, "; ");
-	// free(tmp);
-	// mlx_string_put(boss->win.mlx, boss->win.mlx_win,
-	// 	10, 40, 0x00FFFFFF, message);
-	// free(message);
+	vals = ft_itoa(boss->win.collected);
+	message = ft_strjoin("Collectibles: ", vals);
+	free(vals);
+	tmp = message;
+	message = ft_strjoin(tmp, " / ");
+	free(tmp);
+	tmp = message;
+	vals = ft_itoa(boss->win.collectibles);
+	message = ft_strjoin(tmp, vals);
+	free(vals);
+	free(tmp);
+	tmp = message;
+	message = ft_strjoin(tmp, "; ");
+	free(tmp);
+	mlx_string_put(boss->win.mlx, boss->win.mlx_win,
+		10, 40, 0x00FFFFFF, message);
+	free(message);
 	ft_printf("Collectibles: %i / %i;\n", boss->win.collected,
 		boss->win.collectibles);
 }
 
 void	put_total_collected_on_window(t_main_struct *boss)
 {
-	// char	*message;
-	// char	*tmp;
-	// char	*vals;
+	char	*message;
+	char	*tmp;
+	char	*vals;
 
-	// vals = ft_itoa(boss->win.total_collected);
-	// message = ft_strjoin("Total Collected: ", vals);
-	// free(vals);
-	// tmp = message;
-	// message = ft_strjoin(tmp, "; ");
-	// free(tmp);
-	// mlx_string_put(boss->win.mlx, boss->win.mlx_win,
-	// 	10, 40, 0x00FFFFFF, message);
-	// free(message);
+	vals = ft_itoa(boss->win.total_collected);
+	message = ft_strjoin("Total Collected: ", vals);
+	free(vals);
+	tmp = message;
+	message = ft_strjoin(tmp, "; ");
+	free(tmp);
+	mlx_string_put(boss->win.mlx, boss->win.mlx_win,
+		10, 40, 0x00FFFFFF, message);
+	free(message);
 	ft_printf("Total collected: %i;\n", boss->win.total_collected);
 }
 
 void	put_movs_on_window(t_main_struct *boss)
 {
-	// char	*message;
-	// char	*tmp;
-	// char	*vals;
+	char	*message;
+	char	*tmp;
+	char	*vals;
 
-	// vals = ft_itoa(boss->aux.numb_of_mov);
-	// message = ft_strjoin("Movements: ", vals);
-	// free(vals);
-	// tmp = message;
-	// message = ft_strjoin(tmp, "; ");
-	// free(tmp);
-	// mlx_string_put(boss->win.mlx, boss->win.mlx_win,
-	// 	(boss->win.image_length - 100), (boss->win.image_heigth - 40),
-	// 	0x00FFFFFF, message);
-	// free(message);
+	vals = ft_itoa(boss->aux.numb_of_mov);
+	message = ft_strjoin("Movements: ", vals);
+	free(vals);
+	tmp = message;
+	message = ft_strjoin(tmp, "; ");
+	free(tmp);
+	mlx_string_put(boss->win.mlx, boss->win.mlx_win,
+		(boss->win.image_length - 100), (boss->win.image_heigth - 40),
+		0x00FFFFFF, message);
+	free(message);
 	ft_printf("\nMovements: %i;\n", boss->aux.numb_of_mov);
 	ft_printf("Total Movements: %i;\n", boss->aux.total_mov);
 }
@@ -85,10 +85,10 @@ void	fresh_start(t_main_struct *boss)
 }
 
 /**
- * @brief 
- * 
- * @param boss 
- * @param filename 
+ * @brief
+ *
+ * @param boss
+ * @param filename
  */
 void	new_window(t_main_struct *boss)
 {

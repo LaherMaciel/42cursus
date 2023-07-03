@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:59:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/01 23:01:58 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:47:02 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,21 @@ int	map_check2(t_main_struct *boss, t_win win, char *filename)
 		while (test_map[i][++j])
 		{
 			if (test_map[i][j] == 'c')
+			{
+				i = -1;
+				while (test_map[++i])
+					free(test_map[i]);
+				free(test_map);
 				error_call("Non-playable map, unreachable Collectible", boss);
+			}
 			else if (test_map[i][j] == 'c' || test_map[i][j] == 'e')
+			{
+				i = -1;
+				while (test_map[++i])
+					free(test_map[i]);
+				free(test_map);
 				error_call("Non-playable map, unreachable Exit", boss);
+			}
 		}
 	}
 	i = -1;

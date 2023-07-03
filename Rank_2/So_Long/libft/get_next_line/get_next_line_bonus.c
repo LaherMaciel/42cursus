@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:57:33 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/25 23:37:58 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:02:12 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		clean(int newline, int x, int y, char *buffer);
 size_t	str_length(char *a);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoinn(char *s1, char *s2);
 
 char	*get_next_line(int fd)
 {
@@ -34,7 +34,7 @@ char	*get_next_line(int fd)
 	line = NULL;
 	while ((buffer[fd][0] || read(fd, buffer[fd], BUFFER_SIZE) > 0))
 	{
-		line = ft_strjoin(line, buffer[fd]);
+		line = ft_strjoinn(line, buffer[fd]);
 		if (clean (0, 0, 0, buffer[fd]) == 1)
 			break ;
 	}
