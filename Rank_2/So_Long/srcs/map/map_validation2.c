@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 19:02:17 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/24 19:03:15 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/03 21:50:53 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,40 @@ void	map_last_base_check(t_main_struct*boss, t_win win)
 		error_call("Number of exits Different then 1", boss);
 	if (win.collectibles < 1)
 		error_call("Number of collectibles smaller then 1", boss);
+}
+
+void	clean_testmap(char **test_map)
+{
+	int	i;
+
+	i = -1;
+	while (test_map[++i])
+		free(test_map[i]);
+	free(test_map);
+}
+
+int	map_check2(t_main_struct *boss, t_win win, char *filename)
+{
+	int		i;
+	int		j;
+	char	**test_map;
+
+	test_map = creat_map(boss, filename);
+	test_map = flood_fill(test_map, win.player_y, win.player_x, 0);
+	i = -1;
+	while (test_map[++i])
+	{
+		j = -1;
+		while (test_map[i][++j])
+		{
+			if (test_map[i][j] == 'c' || test_map[i][j] == 'e')
+			{
+				clean_testmap(test_map);
+				error_call("Non-playable map, unreachable "\
+					"Exit or Collectible", boss);
+			}
+		}
+	}
+	clean_testmap(test_map);
+	return (0);
 }

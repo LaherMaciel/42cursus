@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/01 22:50:12 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/03 21:53:58 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,41 +85,6 @@ typedef struct s_extras
 	char	**map_names;
 	int		current_map;
 }		t_extras;
-/*
-typedef struct s_extras
-{
-	int		boss_x;
-	int		boss_y;
-	int		boss_walk;
-	int		boss_look;
-	int		boss_zone;
-	int		boss_slash;
-	int		boss_health;
-	int		boss_changes;
-	int		summon1_x;
-	int		summon2_x;
-	int		summon3_x;
-	int		summon1_y;
-	int		summon2_y;
-	int		summon3_y;
-	int		summon1_helth;
-	int		summon2_helth;
-	int		summon3_helth;
-	int		enemy_x;
-	int		enemy_y;
-	int		enemy_attack;
-	float	enemy_attack_delay;
-	float	enemy_attack_delay2;
-	int		enemy_attack_damage;
-	int		enemy_attack_damage2;
-	int		enemy_attack_direction;
-	int		enemy_attack_number_of_blocks_moved;
-	int		enemy_attack_number_of_blocks_moved2;
-	int		teleport;
-	int		last_attack;
-	int		player_health;
-}		t_extras;
-*/
 
 typedef struct s_main_struct
 {
@@ -151,6 +116,7 @@ char			**creat_map_mod(t_main_struct *boss);
 char			**creat_map(t_main_struct *boss, char *file_name);
 char			**read_file(void);
 t_win			map_base_check(t_main_struct *boss, t_win win);
+int				map_check2(t_main_struct *boss, t_win win, char *filename);
 t_win			validate_map(t_main_struct *boss, t_win win, char *filename);
 t_win			read_map(t_main_struct *boss, char *argv[]);
 char			**flood_fill(char **test_map, int y, int x, int exit);

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:59:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/03 18:47:02 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/03 21:50:42 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,45 +25,6 @@
 	win = creat_map(boss, win);
 	return (win);
 }*/
-
-int	map_check2(t_main_struct *boss, t_win win, char *filename)
-{
-	int		i;
-	int		j;
-	char	**test_map;
-
-	test_map = creat_map(boss, filename);
-	test_map = flood_fill(test_map, win.player_y, win.player_x, 0);
-	i = -1;
-	while (test_map[++i])
-	{
-		j = -1;
-		while (test_map[i][++j])
-		{
-			if (test_map[i][j] == 'c')
-			{
-				i = -1;
-				while (test_map[++i])
-					free(test_map[i]);
-				free(test_map);
-				error_call("Non-playable map, unreachable Collectible", boss);
-			}
-			else if (test_map[i][j] == 'c' || test_map[i][j] == 'e')
-			{
-				i = -1;
-				while (test_map[++i])
-					free(test_map[i]);
-				free(test_map);
-				error_call("Non-playable map, unreachable Exit", boss);
-			}
-		}
-	}
-	i = -1;
-	while (test_map[++i])
-		free(test_map[i]);
-	free(test_map);
-	return (0);
-}
 
 t_win	map_base_check_aux2(t_main_struct *boss, t_win win, int x, int y)
 {

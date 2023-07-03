@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 01:36:11 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/03 18:40:35 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/03 21:38:23 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,12 @@ int	end_game(t_main_struct *boss, int error)
 		ft_printf("\n\033[1;31m		!!GAME OVER!!		\033[0m\n");
 		ft_printf("Total collected: %i\n", boss->win.total_collected);
 		ft_printf("Total Movements: %i\n", boss->aux.total_mov);
-		ft_printf("Total Maps Complited: %i\n\n", (boss->win.current_map));
+		if (boss->win.exit == 2)
+			ft_printf("Total Maps Complited: %i\n\n",
+				(boss->win.current_map + 1));
+		else
+			ft_printf("Total Maps Complited: %i\n\n",
+				(boss->win.current_map));
 	}
 	exit(0);
 }

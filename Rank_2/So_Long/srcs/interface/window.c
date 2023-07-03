@@ -6,11 +6,22 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:46:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/01 23:43:42 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/03 21:42:06 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+t_win	resize(t_win win)
+{
+	win.length_size = ft_strlen(win.mapa[0]);
+	win.heigth_size = 0;
+	while (win.mapa[win.heigth_size])
+		win.heigth_size++;
+	win.length_size = win.length_size * win.image_length;
+	win.heigth_size = win.heigth_size * win.image_heigth;
+	return (win);
+}
 
 /*=============================================
 include the 'mlx.h' on your '.h' project file
@@ -49,15 +60,13 @@ t_win	window_init(t_main_struct *boss, t_win win)
 	window_name = ft_substr(tmp, 0, ft_strlen(tmp) - 4);
 	if (boss->win.mapa == NULL)
 		window_destroy(boss);
-	win.length_size = ft_strlen(win.mapa[0]);
-	win.heigth_size = 0;
-	while (win.mapa[win.heigth_size])
-		win.heigth_size++;
-	win.length_size = win.length_size * win.image_length;
-	win.heigth_size = win.heigth_size * win.image_heigth;
+	win = resize(boss->win);
 	if (win.length_size > 1920 || win.heigth_size > 1080)
+	{
+		free(window_name);
 		error_call("Map too long. Map can't have more "\
 			"then 30 columns and 16 rows", boss);
+	}
 	win.mlx = mlx_init();
 	win.mlx_win = mlx_new_window(win.mlx, win.length_size,
 			win.heigth_size, window_name);

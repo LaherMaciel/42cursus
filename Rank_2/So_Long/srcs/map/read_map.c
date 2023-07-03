@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 19:13:45 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/01 23:44:09 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/03 21:56:11 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,12 @@ char	**creat_map(t_main_struct *boss, char *file_name)
 		if (a == NULL)
 			break ;
 		if (ft_strchr(a, '\n'))
-		{
 			map[i++] = ft_substr(a, 0, ft_strlen(a) - 1);
-			free(a);
-		}
 		else
 			map[i++] = a;
+		free(a);
 	}
 	map[i] = NULL;
-	ft_printf("\n");
 	close(fds);
 	return (map);
 }

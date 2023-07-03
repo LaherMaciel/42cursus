@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/07/01 23:39:39 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/07/03 22:08:15 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,9 +112,9 @@ fclean: clean
 
 norm:
 	@echo "[" "$(YELLOW)..$(RESET)" "] | Norminetting...$(RESET)"
-	@if norminette srcs/ libft/ extras/ images/ | grep -q "Error!" ; then \
+	@if norminette srcs/ libft/ images/ | grep -q "Error!" ; then \
 	    echo "[" "$(RED)!!$(RESET)" "] | Norminette found errors.$(RESET)"; \
-	    norminette srcs/ libft/ extras/ images/ | awk '/Error!/ {print "[ " "$(RED)!!$(RESET)" " ] | " $$0}'; \
+	    norminette srcs/ libft/ images/ | awk '/Error!/ {print "[ " "$(RED)!!$(RESET)" " ] | " $$0}'; \
 	else \
 	    echo "[" "$(GREEN)OK$(RESET)" "] | Norminette passed!"; \
 	fi
@@ -123,10 +123,14 @@ re: fclean
 	clear && make -s
 
 run: re norm
-	./so_long mapa3.ber 
-	
+	./so_long mapa3.ber
+
 multi_run: re norm
 	./so_long progressive.ber progressive2.ber progressive3.ber progressive4.ber progressive5.ber
+
+multi_full_valgrind: re norm
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./so_long \
+		progressive.ber progressive2.ber progressive3.ber progressive4.ber progressive5.ber
 
 map3:./so_long mapa3.ber
 
