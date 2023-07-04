@@ -6,24 +6,16 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 01:36:11 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/03 21:38:23 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/04 20:15:06 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
 /**
- * @brief Destroys the game window, frees the map, and terminates the
- *  program.
- *
- * It destroys the window and display using `mlx_destroy_window` and
- *  `mlx_destroy_display`
- * functions. Then, it iterates through the map array and frees the
- *  allocated memory.
- * Finally, it frees the `mlx` structure and exits the program with
- *  status code 0.
- *
- * @param win The window structure to be destroyed.
+ *@brief This function frees the memory allocated for the
+ * map array in the extras structure.
+ * @param extras The structure containing additional resources.
  * @return void
  */
 void	destroy_extra_struct(t_extras *extras)
@@ -36,6 +28,14 @@ void	destroy_extra_struct(t_extras *extras)
 	free(extras->map_names);
 }
 
+/**
+ * @brief This function destroys the game window and frees the 
+ * allocated memory for the map array in the win structure.
+ * It also frees the 'mlx' structure. 
+ * 
+ * @param *win
+ * @return void
+ */
 void	destroy_win_struct(t_win *win)
 {
 	int	i;
@@ -47,12 +47,27 @@ void	destroy_win_struct(t_win *win)
 		mlx_destroy_display(win->mlx);
 		free(win->mlx);
 	}
-	while (win->mapa[++i])
-		free(win->mapa[i]);
-	free(win->mapa);
+	if (win->mapa)
+	{
+		while (win->mapa[++i])
+			free(win->mapa[i]);
+		free(win->mapa);
+	}
 }
 
-//	destroy_aux_struct(&boss->aux);
+/**
+ * @brief Ends the game, frees resources, and terminates the program.
+ * This function frees allocated memory for resources in the boss structure,
+ * destroys the main image, and terminates the program. It calls the
+ * destroy_extra_struct() function to free extra resources and the 
+ * destroy_win_struct() function to destroy the game window. If error is
+ * not equal to 1, it prints game statistics. Finally, it exits the program.
+ 
+ * @param boss The main structure with game resources.
+ * @param error The error code indicating game's end condition.
+ * @return int Exit status code (not actually returned as program exits
+ * immediately).
+*/
 int	end_game(t_main_struct *boss, int error)
 {
 	destroy_extra_struct(&boss->extras);
@@ -74,6 +89,15 @@ int	end_game(t_main_struct *boss, int error)
 	exit(0);
 }
 
+/**
+ * @brief Destroys the game window and associated resources.
+ * This function destroys the main image using mlx_destroy_image()
+ * and calls the destroy_win_struct() function to destroy the game
+ * window and free associated resources.
+ * 
+ * @param boss The main structure containing game resources.
+ * @return void
+*/
 void	window_destroy(t_main_struct *boss)
 {
 	mlx_destroy_image(boss->win.mlx, boss->img.main_image);

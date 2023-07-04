@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:55:44 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/24 18:20:28 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/04 21:28:18 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@
 \==============================================================*/
 
 /**
- * @brief Set a color value at a specific pixel location in the image.
- *
- * This function sets a color value at the {x, y} coordinates of the image
+ * @brief This function sets a color value at the {x, y} coordinates of the image
  * specified by the `data` parameter. It calculates the memory address of the
  * pixel using the image data's address, line length, and bits per pixel. Then,
  * it assigns the color value to that pixel. The `color` parameter represents
- * the color to be set. No return value.
+ * the color to be set.
  *
  * @param data Pointer to the image data structure.
  * @param x X-coordinate of the pixel.
@@ -39,24 +37,15 @@ void	my_mlx_pixel_put(t_data *img, int x, int y, int color)
 }
 
 /**
- * @brief Retrieve the color value at a specific pixel location in the
- *  current image.
- *
- * This function finds the memory address of the pixel at the {x, y}
- *  coordinates of the
- * current image, as specified by the `aux` parameter. It calculates the
- *  address using
- * the current image's address, line length, and bits per pixel. Then, it
- *  retrieves the
- * color value stored at that pixel and returns it. The function returns an
- *  unsigned integer
- * representing the color value.
- *
+ * @brief This function retrieves the color of a pixel in the auxiliary image
+ * based on the current image coordinates. It calculates the memory address
+ * of the pixel using the line length, bits per pixel, and the current image
+ * coordinates. The color value is then extracted from the memory address and
+ * returned as an unsigned integer.
+ * 
  * @param aux Pointer to the auxiliary values structure.
- * @param x X-coordinate of the pixel in the auxiliary image.
- * @param y Y-coordinate of the pixel in the auxiliary image.
- * @return unsigned int Color value at the specified pixel location.
- */
+ * @return int The color value of the pixel.
+*/
 int	get_pixel(t_aux_vales *aux)
 {
 	char	*dst;
@@ -64,4 +53,19 @@ int	get_pixel(t_aux_vales *aux)
 	dst = aux->address + (aux->current_image_y * aux->line_length
 			+ aux->current_image_x * (aux->bits_per_pixel / 8));
 	return (*(unsigned int *)dst);
+}
+
+/**
+ * @brief This function retrieves the color of a pixel in the auxiliary image by
+ * obtaining the memory address of the pixel using the mlx_get_data_addr()
+ * function. It then calls the get_pixel() function to extract the color
+ * value from the memory address.
+ * 
+ * @param aux Pointer to the auxiliary values structure.
+*/
+void	get_color_of_aux_image(t_aux_vales *aux)
+{
+	aux->address = mlx_get_data_addr(aux->current_image,
+			&aux->bits_per_pixel, &aux->line_length, &aux->endian);
+	aux->color = get_pixel(aux);
 }

@@ -6,19 +6,18 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/07/03 22:08:15 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/07/04 21:39:11 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 TEXTURE_C =
 ANIMATION_C = player_look.c player_walk.c collectibles_animations.c \
-	floor_animations.c wall_animations.c loop.c
+	floor_animations.c wall_animations.c exit_animation.c
 MAP_C = map_validation.c map_validation2.c read_map.c
-EVENTS_C = base_movs.c keycode.c
-INTERFACE_C = window.c window2.c colors.c secondary_images.c \
-		secondary_images_2.c main_image.c main_image_2.c pixeis.c destroy_window.c \
-		destroy_window2.c vals_init.c
+EVENTS_C = base_movs.c keycode.c prints.c
+INTERFACE_C = window.c window2.c  main_image.c main_image_2.c pixeis.c \
+		destroy_window.c destroy_window2.c vals_init.c
 
 LIBFT_DIRECTORY = libft/
 LIBFT_HEADER = $(LIBFT_DIRECTORY)libft.h
@@ -58,7 +57,7 @@ OBJECTS_DIRECTORY = objects/
 OBJECTS = $(addprefix $(OBJECTS_DIRECTORY), $(OBJECT_LIST))
 
 CC = cc
-CFLAGS = -g -Wall -Werror -Wextra #-fsanitize=address
+CFLAGS = -g -Wall -Werror -Wextra -fsanitize=address
 
 LIBS = -L$(LIBFT_DIRECTORY) -lft $(MLX) -Imlx_linux -lX11 -lXext -lm -lz
 INCLUDES = -I.$(HEADERS) -I.$(LIBFT_HEADER) -I.$(MLX_HEADER)
@@ -71,6 +70,7 @@ RESET   = \033[0m
 
 $(NAME): $(LIBFT) $(MLX) $(OBJECTS_DIRECTORY) $(OBJECTS)
 	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJECTS) $(LIBS) -o $(NAME)
+	@make norm -s
 	@echo "[" "$(GREEN)OK$(RESET)" "] | so_long created!"
 
 $(OBJECTS_DIRECTORY):
@@ -122,13 +122,13 @@ norm:
 re: fclean
 	clear && make -s
 
-run: re norm
+run: re
 	./so_long mapa3.ber
 
-multi_run: re norm
+multi_run: re
 	./so_long progressive.ber progressive2.ber progressive3.ber progressive4.ber progressive5.ber
 
-multi_full_valgrind: re norm
+multi_full_valgrind: re
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./so_long \
 		progressive.ber progressive2.ber progressive3.ber progressive4.ber progressive5.ber
 

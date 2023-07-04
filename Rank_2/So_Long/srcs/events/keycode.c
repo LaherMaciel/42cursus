@@ -6,34 +6,11 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:39:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/03 21:12:48 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/04 21:41:16 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-/**
- * @brief Closes the window and terminates the program.
- *
- * @param win The window structure to be closed.
- * @return 0
- */
-
-int	keycode_int(int keycode)
-{
-	return (keycode);
-}
-
-void	my_prints(t_main_struct *boss)
-{
-	print_map(boss);
-	boss->img = upgrade_collectibles(boss);
-	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win,
-		boss->img.main_image, 0, 0);
-	put_movs_on_window(boss);
-	put_collectibles_on_window(boss);
-	put_total_collected_on_window(boss);
-}
 
 /**
  * @brief Handles the keypress events and performs corresponding actions.

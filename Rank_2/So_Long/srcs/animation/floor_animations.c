@@ -6,8 +6,70 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:30:31 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/24 17:56:18 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/04 21:23:07 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+/**
+ * @brief Fills the main image with the floor image.
+ * 
+ * @param boss The main structure containing game resources.
+ * @return t_data The modified main image data structure.
+*/
+t_data	floor_on_main_image_full(t_main_struct *boss)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	boss->aux.current_image = floor_image(&boss->win);
+	while (boss->win.mapa[i])
+	{
+		j = 0;
+		while (boss->win.mapa[i][j])
+			boss->img = upgrade_main_image(boss, (i + 1), ++j);
+		i++;
+	}
+	mlx_destroy_image(boss->win.mlx, boss->aux.current_image);
+	return (boss->img);
+}
+
+/**
+ * @brief Retrieve the address of the floor image.
+ * 
+ * @param win A pointer to the window structure.
+ * @return void* The address of the floor image.
+ */
+void	*floor_image(t_win *win)
+{
+	void	*img_floor;
+
+	img_floor = mlx_xpm_file_to_image(win->mlx,
+			"images/utils/floor4.xpm", &win->image_length,
+			&win->image_heigth);
+	return (img_floor);
+}
+
+/**
+ * @brief This function retrieves the floor image using the floor_image()
+ * function and assigns it to the current auxiliary image in the boss
+ * structure. It then calls the upgrade_main_image() function to place
+ * the floor image on the main image. Finally, it destroys (like freeing
+ * the memory) the floor image and returns the modified main image.
+ * 
+ * @param boss Pointer to the main structure.
+ * @param i The current row index.
+ * @param j The current column index.
+ * @return t_data The modified main image data structure.
+*/
+t_data	put_floor(t_main_struct *boss, int i, int j)
+{
+	boss->aux.current_image = floor_image(&boss->win);
+	if (!boss->aux.current_image)
+		error_call("Floor Image Not Created", boss);
+	boss->img = upgrade_main_image(boss, (i + 1), (j + 1));
+	mlx_destroy_image(boss->win.mlx, boss->aux.current_image);
+	return (boss->img);
+}

@@ -6,13 +6,19 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:46:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/03 21:42:06 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:46:39 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-t_win	resize(t_win win)
+/**
+ * @brief Set the window size of the 'win' object
+ * 
+ * @param win The 'win' object
+ * @return The updated 'win' object with the window size set
+*/
+t_win	set_windowsize(t_win win)
 {
 	win.length_size = ft_strlen(win.mapa[0]);
 	win.heigth_size = 0;
@@ -34,23 +40,16 @@ mlx_loop() -> initiate the window rendering.
 ==============================================*/
 
 /**
- * @brief Initializes the game window based on the map size and image
- *  dimensions.
- *
- * This function is called by the `window_start` function in the same file.
- *
- * It calculates the dimensions of the window by multiplying the length and
- *  height
- * of the map with the specified image dimensions. Then, it initializes the
- *  mlx structure
- * using `mlx_init` function and creates a new window with the calculated
- *  dimensions
- * using `mlx_new_window` function. Finally, it returns the updated window
- *  structure.
- *
+ * @brief Initializes the game window based on the map size and image dimensions.
+ * This function calculates the dimensions of the window by multiplying the
+ * length and height of the map with the specified image dimensions. It then
+ * initializes the mlx structure using the mlx_init function and creates a
+ * new window with the calculated dimensions using the mlx_new_window function.
+ * 
+ * @param boss Pointer to the main structure containing game data.
  * @param win The window structure to be initialized.
  * @return The updated window structure.
- */
+*/
 t_win	window_init(t_main_struct *boss, t_win win)
 {
 	char	*window_name;
@@ -60,7 +59,7 @@ t_win	window_init(t_main_struct *boss, t_win win)
 	window_name = ft_substr(tmp, 0, ft_strlen(tmp) - 4);
 	if (boss->win.mapa == NULL)
 		window_destroy(boss);
-	win = resize(boss->win);
+	win = set_windowsize(boss->win);
 	if (win.length_size > 1920 || win.heigth_size > 1080)
 	{
 		free(window_name);
@@ -74,22 +73,4 @@ t_win	window_init(t_main_struct *boss, t_win win)
 	free(window_name);
 	ft_printf("WINDOOW CREATED\n");
 	return (win);
-}
-
-/**
- * @brief Determines the size of the window.
- *
- * This function is called by the window_start() function in this file.
- *
- * @param win The window structure.
- * @return The aux_values structure with window size information.
- */
-t_aux_vales	win_start_aux(t_win win)
-{
-	t_aux_vales	aux;
-
-	aux.current_image = floor_image(&win);
-	aux.address = mlx_get_data_addr(aux.current_image, &aux.bits_per_pixel,
-			&aux.line_length, &aux.endian);
-	return (aux);
 }

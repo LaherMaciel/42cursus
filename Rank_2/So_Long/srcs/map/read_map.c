@@ -6,17 +6,23 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 19:13:45 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/03 21:56:11 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/04 21:37:41 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
 /**
- * @brief creat a array of arrays (map) using the file introduced as parameter.
- *
- * @return char**
- */
+ * @brief Create a map array from the file specified.
+ * 
+ * This function reads the map file line by line and stores each line in the
+ * map array. The map array is dynamically allocated and terminated with a
+ * NULL pointer. The file descriptor is closed after reading.
+ * 
+ * @param boss The main game structure.
+ * @param file_name The name of the map file.
+ * @return char** The map array.
+*/
 char	**creat_map(t_main_struct *boss, char *file_name)
 {
 	int		fds;
@@ -46,6 +52,16 @@ char	**creat_map(t_main_struct *boss, char *file_name)
 	return (map);
 }
 
+/**
+ * @brief Check the file name for validity.
+ * 
+ * This function verifies if the file name has a valid termination.
+ * It checks if the file name ends with ".ber" and has exactly 4 characters.
+ * If the file name is invalid, an error is raised using the error_call function.
+ * 
+ * @param boss The main game structure.
+ * @param file_name The name of the file to be checked.
+*/
 void	check_file_name(t_main_struct *boss, char *file_name)
 {
 	char	*substring;
@@ -55,6 +71,20 @@ void	check_file_name(t_main_struct *boss, char *file_name)
 		error_call("Invalid file termination", boss);
 }
 
+/**
+ * @brief Read the map from the file names provided as arguments.
+ * 
+ * This function initializes the necessary structures and reads the map data
+ * from the files specified in the command line arguments. It iterates over
+ * the file names, checks their validity, and stores them in the map_names
+ * array of the extras structure. It then calls the creat_map function to
+ * create the map based on the first file. Finally, it validates the map
+ * using the validate_map function and returns the updated win structure.
+ * 
+ * @param boss The main game structure.
+ * @param argv The command line arguments containing the file names.
+ * @return The updated win structure.
+*/
 t_win	read_map(t_main_struct *boss, char *argv[])
 {
 	int	i;
@@ -75,30 +105,4 @@ t_win	read_map(t_main_struct *boss, char *argv[])
 	boss->win = validate_map(boss, boss->win,
 			boss->extras.map_names[0]);
 	return (boss->win);
-}
-
-void	print_map(t_main_struct *boss)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (boss->win.mapa[++i])
-	{
-		j = -1;
-		while (boss->win.mapa[i][++j])
-		{
-			if (boss->win.mapa[i][j] == 'p')
-				ft_printf("\033[1;31m%c\033[0m", boss->win.mapa[i][j]);
-			else if (boss->win.mapa[i][j] == 'e')
-				ft_printf("\033[1;33m%c\033[0m", boss->win.mapa[i][j]);
-			else if (boss->win.mapa[i][j] == 'c')
-				ft_printf("\033[1;34m%c\033[0m", boss->win.mapa[i][j]);
-			else if (boss->win.mapa[i][j] == '1')
-				ft_printf("\033[1m%c\033[0m", boss->win.mapa[i][j]);
-			else
-				ft_printf("\033[1;90m%c\033[0m", boss->win.mapa[i][j]);
-		}
-		ft_printf("\n");
-	}
 }

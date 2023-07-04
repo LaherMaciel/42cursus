@@ -6,12 +6,18 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 14:08:25 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/01 22:16:29 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/04 21:57:32 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
+/**
+ * @brief upgrade the player making him look to the direction that
+ * the user directed.
+ *
+ * @param boss
+ */
 void	look(t_main_struct *boss)
 {
 	boss->aux.current_image = player_image(&boss->win);
