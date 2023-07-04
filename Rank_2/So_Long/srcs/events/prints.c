@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 21:36:56 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/04 21:44:32 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/04 23:42:15 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,16 @@ void	print_map(t_main_struct *boss)
 		while (boss->win.mapa[i][++j])
 		{
 			if (boss->win.mapa[i][j] == 'p')
-				ft_printf("\033[1;31m%c\033[0m", boss->win.mapa[i][j]);
+				ft_printf(RED"%c"DEFAULT_COLOR, boss->win.mapa[i][j]);
 			else if (boss->win.mapa[i][j] == 'e')
-				ft_printf("\033[1;33m%c\033[0m", boss->win.mapa[i][j]);
+				ft_printf(YELLOW"%c"DEFAULT_COLOR, boss->win.mapa[i][j]);
 			else if (boss->win.mapa[i][j] == 'c')
-				ft_printf("\033[1;34m%c\033[0m", boss->win.mapa[i][j]);
+				ft_printf(BLUE"%c"DEFAULT_COLOR, boss->win.mapa[i][j]);
 			else if (boss->win.mapa[i][j] == '1')
-				ft_printf("\033[1;0m%c\033[0m", boss->win.mapa[i][j]);
+				ft_printf(BOLTED_DEFAULT_COLOR"%c"DEFAULT_COLOR,
+					boss->win.mapa[i][j]);
 			else
-				ft_printf("\033[1;90m%c\033[0m", boss->win.mapa[i][j]);
+				ft_printf(GRAY"%c"DEFAULT_COLOR, boss->win.mapa[i][j]);
 		}
 		ft_printf("\n");
 	}

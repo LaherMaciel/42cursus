@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/04 22:34:01 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/04 23:41:56 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@
 
 // COLOR CODES
 # define CLEAR "\033c"
+# define RED "\033[1;31m"
+# define YELLOW "\033[1;33m"
+# define BLUE "\033[1;34m"
+# define GRAY "\033[1;90m"
+# define DEFAULT_COLOR "\033[0m"
+# define BOLTED_DEFAULT_COLOR "\033[1;0m"
 
 typedef struct s_data{
 	void	*main_image;
