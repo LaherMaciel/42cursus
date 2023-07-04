@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:26:48 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/04 21:24:17 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/04 22:10:57 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 /*==============================================================\
 |	  HERE WILL DEAL WITH THE IMAGE OF WHERE THE PLAYER LOOK	|
 \==============================================================*/
+
 /**
  * @brief Retrieve the address of the image of the player looking up.
  *
- * This function loads and returns the address of the image
- *  that represents the player
- * looking up. The image is retrieved using the provided 
- * window information.
+ * This function loads and returns the address of the image that represents the
+ *  player looking up. The image is retrieved using the provided window
+ *  information.
  *
  * @param win A pointer to the window structure.
  * @return void* The address of the player's "look up" image.
@@ -40,10 +40,9 @@ void	*look_up(t_win *win)
 /**
  * @brief Retrieve the address of the image of the player looking down.
  *
- * This function loads and returns the address of the image
- *  that represents the player
- * looking down. The image is retrieved using the provided 
- * window information.
+ * This function loads and returns the address of the image that represents the
+ *  player looking down. The image is retrieved using the provided window
+ *  information.
  *
  * @param win A pointer to the window structure.
  * @return void* The address of the player's "look down" image.
@@ -61,10 +60,9 @@ void	*look_down(t_win *win)
 /**
  * @brief Retrieve the address of the image of the player looking left.
  *
- * This function loads and returns the address of the image
- *  that represents the player
- * looking left. The image is retrieved using the provided
- *  window information.
+ * This function loads and returns the address of the image that represents the
+ *  player looking left. The image is retrieved using the provided window
+ *  information.
  *
  * @param win A pointer to the window structure.
  * @return void* The address of the player's "look left" image.
@@ -80,13 +78,11 @@ void	*look_left(t_win *win)
 }
 
 /**
- * @brief Retrieve the address of the image of the 
- * player looking right.
+ * @brief Retrieve the address of the image of the player looking right.
  *
- * This function loads and returns the address of the 
- * image that represents the player
- * looking right. The image is retrieved using the provided
- * window information.
+ * This function loads and returns the address of the image that represents the
+ * player looking right. The image is retrieved using the provided window
+ * information.
  *
  * @param win A pointer to the window structure.
  * @return void* The address of the player's "look right" image.

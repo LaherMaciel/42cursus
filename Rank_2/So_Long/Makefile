@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/07/04 21:39:11 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/07/04 22:28:32 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ ANIMATION_C = player_look.c player_walk.c collectibles_animations.c \
 	floor_animations.c wall_animations.c exit_animation.c
 MAP_C = map_validation.c map_validation2.c read_map.c
 EVENTS_C = base_movs.c keycode.c prints.c
-INTERFACE_C = window.c window2.c  main_image.c main_image_2.c pixeis.c \
-		destroy_window.c destroy_window2.c vals_init.c
+INTERFACE_C = window.c main_image.c pixeis.c destroy_window.c destroy_window2.c\
+		vals_init.c secundary_images_adjusts.c secundary_images_adjusts_2.c
 
 LIBFT_DIRECTORY = libft/
 LIBFT_HEADER = $(LIBFT_DIRECTORY)libft.h

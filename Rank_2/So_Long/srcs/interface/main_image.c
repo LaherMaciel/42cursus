@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 18:08:08 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/04 21:35:20 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/04 22:20:30 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ identify -format "%wx%h" example.jpg
  * the map.
  * This function examines the value in the map at the current position
  * (i, j) and determines which auxiliary image should be used.
- * 
+ *
  * @param boss The main structure containing game resources.
  * @return t_data A pointer to the chosen auxiliary image.
 */
@@ -62,7 +62,7 @@ t_data	choose_aux_image(t_main_struct *boss)
  * This function fills the main images by iterating over the window's length
  * and height. It retrieves the appropriate colors from the secondary images
  * using the choose_aux_image() and get_color_of_aux_image() functions.
- * 
+ *
  * @param boss Pointer to the main structure.
  * @return t_data Modified main image data structure.
  */
@@ -109,7 +109,7 @@ t_data	create_main_image(t_main_struct *boss)
  * @brief This function initializes the game image and displays it on the window.
  * It sets the number of movements to 0 and creates the main image using
  * create_main_image().
- * 
+ *
  * @param boss The main game structure.
  * @return t_data The main image data structure.
 */
@@ -127,5 +127,43 @@ t_data	start_image(t_main_struct *boss)
 	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win,
 		boss->img.main_image, 0, 0);
 	my_prints(boss);
+	return (boss->img);
+}
+
+/**
+ * @brief This function upgrades the main image by iterating over the
+ * specified region defined by the coordinates (i, j) and the image length
+ * and height. It retrieves the color from the corresponding auxiliary image
+ * using the get_color_of_aux_image() function and sets the color in the main
+ * image using the my_mlx_pixel_put() function.
+ *
+ * @param boss Pointer to the main game structure.
+ * @param i The row index of the current position.
+ * @param j The column index of the current position.
+ * @return t_data (boss->img) The modified main image data structure.
+*/
+t_data	upgrade_main_image(t_main_struct *boss, int i, int j)
+{
+	int	stop_x;
+	int	stop_y;
+
+	stop_y = i * boss->win.image_heigth;
+	stop_x = j * boss->win.image_length;
+	boss->aux.y = stop_y - (boss->win.image_heigth + 1);
+	boss->aux.current_image_y = 0;
+	while (++boss->aux.y <= stop_y)
+	{
+		boss->aux.current_image_x = 0;
+		boss->aux.x = stop_x - (boss->win.image_length + 1);
+		while (++boss->aux.x <= stop_x)
+		{
+			get_color_of_aux_image(&boss->aux);
+			if (boss->aux.color && boss->aux.color != 4278190080)
+				my_mlx_pixel_put(&boss->img, boss->aux.x, boss->aux.y,
+					boss->aux.color);
+			boss->aux.current_image_x++;
+		}
+		boss->aux.current_image_y++;
+	}
 	return (boss->img);
 }

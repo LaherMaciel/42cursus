@@ -1,16 +1,16 @@
 # Set default coding style
 root = true
 
-# All files
-[*]
-indent_style = space
-indent_size = 2
-charset = utf-8
-end_of_line = lf
-trim_trailing_whitespace = true
-insert_final_newline = true
-max_line_length = 80
-wrap = true
+# All files [*] indent_style = tab # Sets the indentation style to tabs.
+indent_size = 4 # Defines the number of spaces per tab or the indentation
+#size for each level.
+charset = utf-8 # Specifies the character encoding as UTF-8.
+end_of_line = lf # Sets the line ending style to LF (Unix-style line endings).
+trim_trailing_whitespace = true # Removes trailing whitespace at the end of lines. 
+insert_final_newline = true # Make so the a newline is added at the end of the file.
+max_line_length = 80 # Specifies the maximum allowed line length.
+wrap = true # Enables automatic wrapping of lines that exceed the maximum line
+#length, moving the last word to the next line.
 
 # C files
 [*.c]

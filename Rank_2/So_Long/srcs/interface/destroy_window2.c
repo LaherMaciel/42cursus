@@ -6,20 +6,20 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:14:44 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/04 16:19:04 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/04 22:27:59 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
 /**
- * @brief Handles an error, prints an error message, and terminates the 
+ * @brief Handles an error, prints an error message, and terminates the
  * program.
- * This function prints an error message with the provided string using 
- * ft_printf(). It then calls the print_map() function to display the 
- * current game map. Finally, it calls the end_game() function with an 
+ * This function prints an error message with the provided string using
+ * ft_printf(). It then calls the print_map() function to display the
+ * current game map. Finally, it calls the end_game() function with an
  * error code of 1 to terminate the program.
- * 
+ *
  * @param str The error message string.
  * @param boss The main structure containing game resources.
  * @return void

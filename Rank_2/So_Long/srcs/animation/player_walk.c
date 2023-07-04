@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:06:08 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/27 20:27:13 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/04 22:09:57 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,10 @@
 /**
  * @brief Retrieve the address of the image of the player walking up.
  *
- * This function loads and returns the address of the image that
- * represents the player
- * walking up. Depending on the value of the `player_walk` variable
- * (0 or 1), different
- * images may be returned. After each call, the `player_walk` variable
- *  is updated
- * accordingly to alternate between the two images.
+ * This function loads and returns the address of the image that represents the
+ * player walking up. Depending on the value of the `player_walk` variable (0 or
+ * 1), different images may be returned. After each call, the `player_walk`
+ * variable is updated accordingly to alternate between the two images.
  *
  * @param win A pointer to the window structure.
  * @return void* The address of the player's "walk up" image.
@@ -54,13 +51,10 @@ void	*walk_up(t_win *win)
 /**
  * @brief Retrieve the address of the image of the player walking down.
  *
- * This function loads and returns the address of the image that
- *  represents the player
- * walking down. Depending on the value of the `player_walk` variable
- *  (0 or 1), different
- * images may be returned. After each call, the `player_walk` variable
- *  is updated
- * accordingly to alternate between the two images.
+ * This function loads and returns the address of the image that represents the
+ *  player walking down. Depending on the value of the `player_walk` variable (0
+ *  or 1), different images may be returned. After each call, the `player_walk`
+ *  variable is updated accordingly to alternate between the two images.
  *
  * @param win A pointer to the window structure.
  * @return void* The address of the player's "walk down" image.
@@ -87,16 +81,13 @@ void	*walk_down(t_win *win)
 }
 
 /**
- * @brief Retrieve the address of the image of the player walking
- *  to the left.
+ * @brief Retrieve the address of the image of the player walking to the left.
  *
- * This function loads and returns the address of the image that 
- * represents the player
- * walking to the left. Depending on the value of the `player_walk` 
- * variable (0 or 1), different
- * images may be returned. After each call, the `player_walk` variable
- *  is updated
- * accordingly to alternate between the two images.
+ * This function loads and returns the address of the image that represents the
+ * player walking to the left. Depending on the value of the `player_walk`
+ * variable (0 or 1), different images may be returned. After each call, the
+ * `player_walk` variable is updated accordingly to alternate between the two
+ * images.
  *
  * @param win A pointer to the window structure.
  * @return void* The address of the player's "walk left" image.
@@ -123,16 +114,13 @@ void	*walk_left(t_win *win)
 }
 
 /**
- * @brief Retrieve the address of the image of the player walking
- * to the right.
+ * @brief Retrieve the address of the image of the player walking to the right.
  *
- * This function loads and returns the address of the image that
- *  represents the player
- * walking to the right. Depending on the value of the `player_walk`
- *  variable (0 or 1), different
- * images may be returned. After each call, the `player_walk` variable
- * is updated
- * accordingly to alternate between the two images.
+ * This function loads and returns the address of the image that represents the
+ * player walking to the right. Depending on the value of the `player_walk`
+ * variable (0 or 1), different images may be returned. After each call, the
+ * `player_walk` variable is updated accordingly to alternate between the two
+ * images.
  *
  * @param win A pointer to the window structure.
  * @return void* The address of the player's "walk right" image.
@@ -159,12 +147,18 @@ void	*walk_right(t_win *win)
 }
 
 /**
- * @brief
+ * @brief Upgrade the player image.
  *
- * @param boss
- * @param i
- * @return t_data
- */
+ * This function upgrades the player image based on the given player position.
+ * It first checks if it's the initial upgrade (i = 0) and loads the initial
+ * player image. Then, it upgrades the main game image to include the player at
+ * the specified position. Finally, it destroys the current player image to free
+ * up memory.
+ *
+ * @param boss The main game structure.
+ * @param i The upgrade index.
+ * @return t_data The updated game image.
+*/
 t_data	upgrade_player(t_main_struct *boss, int i)
 {
 	if (i == 0)

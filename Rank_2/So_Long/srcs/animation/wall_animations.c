@@ -6,41 +6,11 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:30:34 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/04 21:59:15 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/04 22:25:46 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-int	correct_x(t_main_struct *boss, int stop_x)
-{
-	boss->aux.x = boss->aux.x + ignore_x(boss, 0);
-	boss->aux.x = boss->aux.x + (include_x(boss, 0) / 2);
-	stop_x = stop_x + ignore_x(boss, 0);
-	stop_x = stop_x - (include_x(boss, 0) / 2);
-	if (boss->aux.x < -1)
-	{
-		boss->aux.current_image_x = boss->aux.current_image_x
-			+ (boss->aux.x * (-1));
-		boss->aux.x = -1;
-	}
-	return (stop_x);
-}
-
-int	correct_y(t_main_struct *boss, int stop_y)
-{
-	boss->aux.y = boss->aux.y + ignore_y(boss, 0);
-	boss->aux.y = boss->aux.y + (include_y(boss, 0) / 2);
-	stop_y = stop_y + ignore_y(boss, 0);
-	stop_y = stop_y - (include_y(boss, 0) / 2);
-	if (boss->aux.y < -1)
-	{
-		boss->aux.current_image_y = boss->aux.current_image_y
-			+ (boss->aux.y * (-1));
-		boss->aux.y = -1;
-	}
-	return (stop_y);
-}
 
 /**
  * @brief Retrieve the address of the wall image.
@@ -59,17 +29,17 @@ void	*wall_image(t_win *win)
 }
 
 /**
-@brief Put walls on the game window.
-
-This function is called as an auxiliary function to put walls on the game
-window. It iterates over the specified coordinates (i, j) and draws walls on the
-window using the appropriate image. The image is adjusted based on the current
-position and size of the window.
-
-@param boss The main game structure.
-@param i The row index of the wall.
-@param j The column index of the wall.
-@return t_data The updated game data.
+ * @brief Put walls on the game window.
+ *
+ * This function is called as an auxiliary function to put walls on the game
+ * window. It iterates over the specified coordinates (i, j) and draws walls on
+ * the window using the appropriate image. The image is adjusted based on the
+ * current position and size of the window.
+ *
+ * @param boss The main game structure.
+ * @param i The row index of the wall.
+ * @param j The column index of the wall.
+ * @return t_data The updated game data.
 */
 t_data	put_walls_aux(t_main_struct *boss, int i, int j)
 {

@@ -6,15 +6,19 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:30:31 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/04 21:23:07 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/04 22:12:12 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
+/*==========================================================\
+|			HERE WILL DEAL WITH THE IMAGE OF FLOOR			|
+\==========================================================*/
+
 /**
  * @brief Fills the main image with the floor image.
- * 
+ *
  * @param boss The main structure containing game resources.
  * @return t_data The modified main image data structure.
 */
@@ -38,7 +42,7 @@ t_data	floor_on_main_image_full(t_main_struct *boss)
 
 /**
  * @brief Retrieve the address of the floor image.
- * 
+ *
  * @param win A pointer to the window structure.
  * @return void* The address of the floor image.
  */
@@ -54,11 +58,11 @@ void	*floor_image(t_win *win)
 
 /**
  * @brief This function retrieves the floor image using the floor_image()
- * function and assigns it to the current auxiliary image in the boss
- * structure. It then calls the upgrade_main_image() function to place
- * the floor image on the main image. Finally, it destroys (like freeing
- * the memory) the floor image and returns the modified main image.
- * 
+ * function and assigns it to the current auxiliary image in the boss structure.
+ * It then calls the upgrade_main_image() function to place the floor image on
+ * the main image. Finally, it destroys (like freeing the memory) the floor
+ * image and returns the modified main image.
+ *
  * @param boss Pointer to the main structure.
  * @param i The current row index.
  * @param j The current column index.
