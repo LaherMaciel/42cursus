@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 21:36:56 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/04 23:42:15 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/04 23:50:46 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,9 @@ void	put_movs_on_window(t_main_struct *boss)
 	message = ft_strjoin(tmp, "; ");
 	free(tmp);
 	mlx_string_put(boss->win.mlx, boss->win.mlx_win,
-		10, 20,
-		0x00FFFFFF, message);
+		10, 40, 0x00FFFFFF, message);
 	free(message);
-	ft_printf("\nMovements: %i;\n", boss->aux.numb_of_mov);
-	ft_printf("Total Movements: %i;\n", boss->aux.total_mov);
+	ft_printf("Movements: %i;\n", boss->aux.numb_of_mov);
 }
 
 /**
@@ -114,9 +112,9 @@ void	put_collectibles_on_window(t_main_struct *boss)
 	message = ft_strjoin(tmp, "; ");
 	free(tmp);
 	mlx_string_put(boss->win.mlx, boss->win.mlx_win,
-		10, 40, 0x00FFFFFF, message);
+		10, 20, 0x00FFFFFF, message);
 	free(message);
-	ft_printf("Collectibles: %i / %i;\n", boss->win.collected,
+	ft_printf("\nCollectibles: %i / %i;\n", boss->win.collected,
 		boss->win.collectibles);
 }
 
@@ -132,8 +130,8 @@ void	put_total_collected_on_window(t_main_struct *boss)
 	char	*tmp;
 	char	*vals;
 
-	vals = ft_itoa(boss->win.total_collected);
-	message = ft_strjoin("Total Collected: ", vals);
+	vals = ft_itoa(boss->aux.total_mov);
+	message = ft_strjoin("Total Movements: ", vals);
 	free(vals);
 	tmp = message;
 	message = ft_strjoin(tmp, "; ");
@@ -141,7 +139,7 @@ void	put_total_collected_on_window(t_main_struct *boss)
 	mlx_string_put(boss->win.mlx, boss->win.mlx_win, 10,
 		60, 0x00FFFFFF, message);
 	free(message);
-	ft_printf("Total collected: %i;\n", boss->win.total_collected);
+	ft_printf("Total Movements: %i;\n", boss->aux.total_mov);
 }
 
 /**
@@ -160,7 +158,7 @@ void	my_prints(t_main_struct *boss)
 	boss->img = upgrade_collectibles(boss);
 	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win,
 		boss->img.main_image, 0, 0);
-	put_movs_on_window(boss);
 	put_collectibles_on_window(boss);
+	put_movs_on_window(boss);
 	put_total_collected_on_window(boss);
 }
