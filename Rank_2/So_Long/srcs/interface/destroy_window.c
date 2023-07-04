@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 01:36:11 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/04 20:15:06 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/04 23:09:59 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@ void	destroy_extra_struct(t_extras *extras)
 	int	i;
 
 	i = -1;
-	while (extras->map_names[++i])
-		free(extras->map_names[i]);
-	free(extras->map_names);
+	if (extras->map_names[0])
+	{
+		while (extras->map_names[++i])
+			free(extras->map_names[i]);
+		free(extras->map_names);
+	}
 }
 
 /**
@@ -100,6 +103,7 @@ int	end_game(t_main_struct *boss, int error)
 */
 void	window_destroy(t_main_struct *boss)
 {
-	mlx_destroy_image(boss->win.mlx, boss->img.main_image);
+	if (boss->img.main_image)
+		mlx_destroy_image(boss->win.mlx, boss->img.main_image);
 	destroy_win_struct(&boss->win);
 }

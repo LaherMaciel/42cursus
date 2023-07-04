@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/07/04 22:28:32 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/07/04 23:31:51 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,11 +126,13 @@ run: re
 	./so_long mapa3.ber
 
 multi_run: re
-	./so_long progressive.ber progressive2.ber progressive3.ber progressive4.ber progressive5.ber
+	./so_long progressive.ber progressive2.ber progressive5.ber progressive4.ber \
+		progressive3.ber progressive6.ber 42_logo.ber
 
 multi_full_valgrind: re
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./so_long \
-		progressive.ber progressive2.ber progressive3.ber progressive4.ber progressive5.ber
+		progressive.ber progressive2.ber progressive5.ber progressive4.ber progressive3.ber \
+		progressive6.ber 42_logo.ber
 
 map3:./so_long mapa3.ber
 
