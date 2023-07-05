@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/04 23:41:56 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/05 01:35:46 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ void		mov_up(t_main_struct *boss, t_win *win);
 void		mov_down(t_main_struct *boss, t_win *win);
 int			mouse_handler(int mousekey, int x, int y, t_win *win);
 void		my_prints(t_main_struct *boss);
+void		print_map(t_main_struct *boss);
 
 //MAP
 t_win		creat_mapa(t_main_struct *boss);
@@ -135,7 +136,7 @@ t_win		validate_map(t_main_struct *boss, t_win win, char *filename);
 t_win		read_map(t_main_struct *boss, char *argv[]);
 char		**flood_fill(char **test_map, int y, int x, int exit);
 void		map_last_base_check(t_main_struct*boss, t_win win);
-void		print_map(t_main_struct *boss);
+void		check_if_surrounded_by_walls2(t_main_struct *boss, int y_max_len);
 
 //WINDOWS
 t_win		window_init(t_main_struct *boss, t_win win);

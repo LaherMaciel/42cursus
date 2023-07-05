@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 19:13:45 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/04 23:18:46 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/05 00:07:01 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,7 @@ t_win	read_map(t_main_struct *boss, char *argv[])
 			free(boss->extras.map_names[i - 1]);
 		boss->extras.map_names[i - 1] = ft_substr(argv[i], 0, 0);
 	}
-	boss->win.mapa = creat_map(boss,
-			boss->extras.map_names[0]);
+	boss->win.mapa = creat_map(boss, boss->extras.map_names[0]);
 	boss->win = validate_map(boss, boss->win,
 			boss->extras.map_names[0]);
 	return (boss->win);

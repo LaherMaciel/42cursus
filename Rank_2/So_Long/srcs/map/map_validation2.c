@@ -6,11 +6,29 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 19:02:17 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/04 20:54:20 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/05 01:44:16 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+void	check_if_surrounded_by_walls2(t_main_struct *boss, int y_max_len)
+{
+	int	i;
+
+	i = -1;
+	while (boss->win.mapa[0][++i])
+	{
+		if (boss->win.mapa[0][i] == ' ')
+			error_call("The Map is not a rectangle", boss);
+		else if (boss->win.mapa[0][i] != '1')
+			error_call("Map not surrounded by walls", boss);
+		else if (boss->win.mapa[y_max_len][i] == ' ')
+			error_call("The Map is not a rectangle", boss);
+		else if (boss->win.mapa[y_max_len][i] != '1')
+			error_call("Map not surrounded by walls", boss);
+	}
+}
 
 /**
  * @brief Perform flood fill algorithm on a test map.

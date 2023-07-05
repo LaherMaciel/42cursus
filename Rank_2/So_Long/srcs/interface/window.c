@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:46:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/04 22:16:48 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/05 01:34:35 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_win	window_init(t_main_struct *boss, t_win win)
 	if (win.length_size > 1920 || win.heigth_size > 1080)
 	{
 		free(window_name);
-		error_call("Map too long. Map can't have more "\
+		error_call("Map too long. Map can't have more " \
 			"then 30 columns and 16 rows", boss);
 	}
 	win.mlx = mlx_init();

@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/07/04 23:31:51 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/07/05 00:13:33 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ OBJECTS_DIRECTORY = objects/
 OBJECTS = $(addprefix $(OBJECTS_DIRECTORY), $(OBJECT_LIST))
 
 CC = cc
-CFLAGS = -g -Wall -Werror -Wextra -fsanitize=address
+CFLAGS = -g -Wall -Werror -Wextra #-fsanitize=address
 
 LIBS = -L$(LIBFT_DIRECTORY) -lft $(MLX) -Imlx_linux -lX11 -lXext -lm -lz
 INCLUDES = -I.$(HEADERS) -I.$(LIBFT_HEADER) -I.$(MLX_HEADER)
@@ -137,13 +137,20 @@ multi_full_valgrind: re
 map3:./so_long mapa3.ber
 
 dbug: re
-	gdb -tui -args ./so_long mapa3.ber mapa4.ber
+	gdb -tui -args ./so_long mapa.ber mapa4.ber
 
 val:re
 	valgrind ./so_long mapa3.ber mapa4.ber
 
+val2:re
+	valgrind ./so_long mapa.ber mapa4.ber
+
 val_full:re
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./so_long mapa3.ber
+
+val_full2:re
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./so_long mapa.ber
+
 
 ver: re norm
 	valgrind ./so_long

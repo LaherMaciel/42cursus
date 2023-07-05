@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 01:36:11 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/04 23:09:59 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/04 23:54:26 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	end_game(t_main_struct *boss, int error)
 	destroy_win_struct(&boss->win);
 	if (error != 1)
 	{
-		ft_printf("\n\033[1;31m		!!GAME OVER!!		\033[0m\n");
+		ft_printf(RED"\n		!!GAME OVER!!		\n\n"DEFAULT_COLOR);
 		ft_printf("Total collected: %i\n", boss->win.total_collected);
 		ft_printf("Total Movements: %i\n", boss->aux.total_mov);
 		if (boss->win.exit == 2)

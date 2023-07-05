@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:14:44 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/04 22:27:59 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/05 00:00:22 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,12 @@
  */
 void	error_call(char *str, t_main_struct *boss)
 {
-	ft_printf("\033[1;31mERROR:\033[0m %s\033[1;31m!!\033[0m\n\n", str);
-	print_map(boss);
+	ft_printf(RED"ERROR: "DEFAULT_COLOR"%s"RED"!!\n"DEFAULT_COLOR, str);
+	if (boss->win.mapa)
+	{
+		ft_printf("\n");
+		print_map(boss);
+		ft_printf("\n");
+	}
 	end_game(boss, 1);
 }

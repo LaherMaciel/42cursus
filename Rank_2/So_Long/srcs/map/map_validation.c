@@ -6,11 +6,39 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:59:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/07/04 21:05:24 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/05 02:02:33 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+void	check_if_surrounded_by_walls(t_main_struct *boss, int y_max_len)
+{
+	size_t	j;
+	int		i;
+
+	j = 0;
+	while (boss->win.mapa[j])
+		if ((ft_strlen(boss->win.mapa[0]) - 1)
+			!= (ft_strlen(boss->win.mapa[j++]) - 1))
+			error_call("The Map is not a rectangle", boss);
+	j--;
+	if ((ft_strlen(boss->win.mapa[j])) == j)
+		error_call("The Map is not a rectangle", boss);
+	i = -1;
+	while (boss->win.mapa[++i])
+	{
+		if (boss->win.mapa[i][0] == ' ')
+			error_call("The Map is not a rectangle", boss);
+		if (boss->win.mapa[i][0] != '1')
+			error_call("Map not surrounded by walls", boss);
+		if (boss->win.mapa[i][(ft_strlen(boss->win.mapa[i]) - 1)] == ' ')
+			error_call("The Map is not a rectangle", boss);
+		if (boss->win.mapa[i][(ft_strlen(boss->win.mapa[i]) - 1)] != '1')
+			error_call("Map not surrounded by walls", boss);
+	}
+	check_if_surrounded_by_walls2(boss, y_max_len);
+}
 
 /**
  * @brief Perform base checks on individual tiles of the map.
@@ -29,28 +57,26 @@
  * @param y The y-coordinate of the tile.
  * @return t_win Returns the updated game window structure.
 */
-t_win	map_base_check_aux2(t_main_struct *boss, t_win win, int x, int y)
+t_win	map_base_check_aux2(t_main_struct *boss, t_win win, int y, int x)
 {
-	if ((win.mapa[0][y] != '1') || (win.mapa[x][0] != '1'))
-		error_call("Map not surrounded by walls", boss);
-	if (win.mapa[x][y] == 'p' || win.mapa[x][y] == 'P')
+	if (win.mapa[y][x] == 'p' || win.mapa[y][x] == 'P')
 	{
-		win.player_y = x;
-		win.player_x = y;
+		win.player_y = y;
+		win.player_x = x;
 		win.player_look++;
-		win.mapa[x][y] = 'p';
+		win.mapa[y][x] = 'p';
 	}
-	else if (win.mapa[x][y] == 'e' || win.mapa[x][y] == 'E')
+	else if (win.mapa[y][x] == 'e' || win.mapa[y][x] == 'E')
 	{
-		win.mapa[x][y] = 'e';
+		win.mapa[y][x] = 'e';
 		win.exit++;
 	}
-	else if (win.mapa[x][y] == 'c' || win.mapa[x][y] == 'C')
+	else if (win.mapa[y][x] == 'c' || win.mapa[y][x] == 'C')
 	{
-		win.mapa[x][y] = 'c';
+		win.mapa[y][x] = 'c';
 		win.collectibles++;
 	}
-	else if (win.mapa[x][y] != '0' && win.mapa[x][y] != '1')
+	else if (win.mapa[y][x] != '0' && win.mapa[y][x] != '1')
 		error_call("Unidentified characters on the Map", boss);
 	return (win);
 }
@@ -69,20 +95,18 @@ t_win	map_base_check_aux2(t_main_struct *boss, t_win win, int x, int y)
  * @param x_max_len The maximum row index.
  * @return t_win Returns the updated game window structure.
 */
-t_win	map_base_check_aux(t_main_struct *boss, t_win win,
-	int x, int x_max_len)
+t_win	map_base_check_aux(t_main_struct *boss, t_win win, int y, int y_max_len)
 {
-	int	y;
-	int	y_max_len;
+	int	x;
+	int	x_max_len;
 
-	y = -1;
-	y_max_len = ft_strlen(win.mapa[x]) - 1;
-	while (win.mapa[x][++y])
+	x = -1;
+	x_max_len = ft_strlen(win.mapa[y]) - 1;
+	while (win.mapa[y][++x])
 	{
-		win = map_base_check_aux2(boss, win, x, y);
-		if ((win.mapa[x_max_len][y] != '1')
-			|| (win.mapa[x][y_max_len] != '1'))
-			error_call("Map not surrounded by walls", boss);
+		win = map_base_check_aux2(boss, win, y, x);
+		if ((win.mapa[y_max_len][x] == ' ') || (win.mapa[y][x_max_len] == ' '))
+			error_call("The Map is not a rectangle", boss);
 	}
 	return (win);
 }
@@ -101,27 +125,23 @@ t_win	map_base_check_aux(t_main_struct *boss, t_win win,
 */
 t_win	map_base_check(t_main_struct *boss, t_win win)
 {
-	int	x;
-	int	x_max_len;
+	int	y;
+	int	y_max_len;
 
 	win.player_look = 0;
 	win.exit = 0;
-	x_max_len = 0;
-	while (win.mapa[x_max_len])
-		x_max_len++;
-	x_max_len--;
-	win.mapa_heigth = x_max_len;
-	x = -1;
+	y_max_len = 0;
+	while (win.mapa[y_max_len])
+		y_max_len++;
+	y_max_len--;
+	win.mapa_heigth = y_max_len;
+	y = -1;
+	check_if_surrounded_by_walls(boss, y_max_len);
+	while (++y <= y_max_len)
+		win = map_base_check_aux(boss, win, y, y_max_len);
 	if ((win.mapa[0][0] != '1')
-		|| (win.mapa[x_max_len][(ft_strlen(win.mapa[0]) - 1)] != '1'))
+		|| (win.mapa[y_max_len][(ft_strlen(win.mapa[0]) - 1)] != '1'))
 		error_call("Map not surrounded by walls", boss);
-	while (++x < x_max_len)
-	{
-		if ((ft_strlen(win.mapa[0]) - 1) != (ft_strlen(win.mapa[x]) - 1))
-			error_call("The Map is not a rectangle", boss);
-		win = map_base_check_aux(boss, win, x, x_max_len);
-	}
-	win.mapa_length = ft_strlen(win.mapa[x]) - 1;
 	map_last_base_check(boss, win);
 	return (win);
 }
