@@ -13,12 +13,21 @@
 #include "libft.h"
 
 /**
- * @brief 
+ * @brief Safely copies a string into a destination buffer with size-bound
+ * protection.
  *
- * @param dest
- * @param src
- * @param size
- * @return size_t
+ * This function copies the string 'src' into the destination buffer 'dest' with
+ * a size limit of 'size'. It ensures that the destination buffer is
+ * null-terminated and prevents buffer overflow by copying at most 'size - 1'
+ * characters from 'src'. The destination buffer is null-terminated even if the
+ * string has been truncated due to the size limit. The function returns the
+ * length of the source string, regardless of whether truncation occurred.
+ *
+ * @param dest The destination buffer where 'src' will be copied.
+ * @param src The source string to be copied to 'dest'.
+ * @param size The size of the destination buffer.
+ * @return The length of the source string (not the length of the copied
+ * portion).
  */
 size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {

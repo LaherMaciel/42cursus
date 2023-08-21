@@ -19,15 +19,14 @@
 # include <stdint.h>
 # include <unistd.h>
 # include <limits.h>
-
-# include "ft_print.h" 
-# include "get_next_line_bonus.h"
+# include "get_next_line/get_next_line_bonus.h"
+# include "ft_printf/ft_printf.h"
 
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}					t_stack;
+}					t_list;
 
 size_t	ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
@@ -55,6 +54,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcat(char *dest, const char *src, size_t n);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlen(const char *a);
+int		ft_strstrlen(char **str_of_str);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
 char	*ft_strnstr(const char *big, const char *little, size_t len);

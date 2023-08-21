@@ -13,12 +13,21 @@
 #include "libft.h"
 
 /**
- * @brief 
+ * @brief Compares two strings up to a specified number of characters.
  *
- * @param str1
- * @param str2
- * @param n
- * @return int
+ * This function compares the strings 'str1' and 'str2' up to 'n' characters or
+ * until a null-terminator is encountered in either string. It returns an
+ * integer value indicating the comparison result:
+ * - Returns a value less than 0 if 'str1' is lexicographically less than
+ *   'str2'.
+ * - Returns 0 if both strings are lexicographically equal up to 'n' characters.
+ * - Returns a value greater than 0 if 'str1' is lexicographically greater than
+ *   'str2'.
+ *
+ * @param str1 The first string to be compared.
+ * @param str2 The second string to be compared.
+ * @param n The maximum number of characters to compare.
+ * @return An integer indicating the comparison result.
  */
 int	ft_strncmp(const char *str1, const char *str2, size_t n)
 {

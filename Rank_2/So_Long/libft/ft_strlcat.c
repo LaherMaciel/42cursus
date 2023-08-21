@@ -13,12 +13,21 @@
 #include "libft.h"
 
 /**
- * @brief 
+ * @brief Concatenates two strings with size-bound protection and returns the
+ * resulting length.
  *
- * @param dest
- * @param src
- * @param n
- * @return size_t
+ * This function concatenates the string 'src' to the end of the string 'dest'
+ * with a size limit of 'n'. It ensures that the total length of the
+ * concatenated string does not exceed 'n'. If 'n' is less than or equal to the
+ * length of 'dest', no concatenation occurs. The concatenated string is
+ * null-terminated, and the function returns the total length that the
+ * concatenated string would have been if there were no size restrictions.
+ *
+ * @param dest The destination string to which 'src' will be concatenated.
+ * @param src The source string to be concatenated to 'dest'.
+ * @param n The size limit for the concatenated string.
+ * @return The length of the concatenated string that would have been created
+ * without size restrictions.
  */
 size_t	ft_strlcat(char *dest, const char *src, size_t n)
 {

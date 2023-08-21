@@ -39,6 +39,22 @@ size_t	ft_getsize(const char *str, const char *set)
 	return (size - i);
 }
 
+/**
+ * @brief Creates a new string by removing specified characters from the
+ * beginning and end of a string.
+ *
+ * This function creates a new string by removing characters from the beginning
+ * and end of the input string 'str' that are found in the 'set' string. It
+ * calculates the size of the resulting trimmed string, allocates memory for it,
+ * and constructs the trimmed string. The trimmed string is null-terminated, and
+ * a pointer to it is returned.
+ *
+ * @param str The input string to be trimmed.
+ * @param set The set of characters to be removed from the beginning and end of
+ * 'str'.
+ * @return A pointer to the newly allocated trimmed string, or NULL if memory
+ * allocation fails or if 'str' is NULL.
+ */
 char	*ft_strtrim(const char *str, const char *set)
 {
 	size_t		size;

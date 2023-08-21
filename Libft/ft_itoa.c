@@ -51,6 +51,19 @@ char	*writing(long int n, char *ito, size_t size)
 	return (ito);
 }
 
+/**
+ * @brief Converts an integer to a null-terminated string representation.
+ *
+ * This function converts the integer 'n' into a string representation and
+ * returns a dynamically allocated null-terminated character array (string)
+ * containing the result. The memory for the string is allocated using malloc.
+ * Make sure to free the memory using free() when the string is no longer
+ * needed.
+ *
+ * @param n The integer value to be converted to a string.
+ * @return A pointer to the allocated string representing the integer, or NULL
+ * if allocation fails.
+ */
 char	*ft_itoa(int n)
 {
 	size_t		size;

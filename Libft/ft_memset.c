@@ -12,6 +12,17 @@
 
 #include "libft.h"
 
+/**
+ * @brief Fills a block of memory with a specified value.
+ *
+ * This function sets each byte in the memory block pointed to by 'str' to the
+ * value of 'c'. The operation is repeated 'n' times.
+ *
+ * @param str A pointer to the memory block to be filled.
+ * @param c The value to be set in each byte.
+ * @param n The number of bytes to fill.
+ * @return A pointer to the memory block 'str'.
+ */
 void	*ft_memset(void *str, int c, size_t n)
 {
 	size_t	i;

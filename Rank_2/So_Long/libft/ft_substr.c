@@ -13,12 +13,20 @@
 #include "libft.h"
 
 /**
- * @brief
+ * @brief Creates a new substring from a given string starting from a specified
+ * index and with a specified length.
  *
- * @param s the string
- * @param start where should start coping
- * @param len where should end the copy
- * @return char*
+ * This function creates a new string that is a substring of the input string
+ * 's'. The substring starts at the index 'start' and has a length of 'len'
+ * characters. If 'len' is 0, the function considers the entire string from
+ * 'start' to the end. Memory is allocated for the new substring, which is
+ * null-terminated, and a pointer to the substring is returned.
+ *
+ * @param s The input string from which the substring will be extracted.
+ * @param start The starting index of the substring within 's'.
+ * @param len The length of the substring to be extracted.
+ * @return A pointer to the newly allocated substring, or NULL if memory
+ * allocation fails.
  */
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

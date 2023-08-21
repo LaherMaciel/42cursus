@@ -12,6 +12,19 @@
 
 #include "libft.h"
 
+/**
+ * @brief Clears a linked list and frees its memory.
+ *
+ * This function clears the linked list pointed to by 'lst' by deallocating
+ * memory for each element and its associated content using the provided 'del'
+ * function. The 'del' function should be capable of freeing the memory of a
+ * single list element. After clearing the list, the 'lst' pointer is set to
+ * NULL.
+ *
+ * @param lst A pointer to a pointer to the first element of the linked list.
+ * @param del A function pointer that takes a pointer to an element's content
+ * and frees its memory.
+ */
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
 	t_list	*temp;

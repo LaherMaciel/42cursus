@@ -13,10 +13,15 @@
 #include "libft.h"
 
 /**
- * @brief add nood on the last position of the list
+ * @brief Finds the last element of a linked list.
  *
- * @param lst
- * @return t_list*
+ * This function traverses the linked list pointed to by 'lst' and returns a
+ * pointer to the last element. If the input list is empty (NULL), the function
+ * returns NULL.
+ *
+ * @param lst The first element of the linked list.
+ * @return A pointer to the last element of the linked list, or NULL if the list
+ * is empty.
  */
 t_list	*ft_lstlast(t_list *lst)
 {

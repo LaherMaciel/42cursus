@@ -12,6 +12,15 @@
 
 #include "libft.h"
 
+/**
+ * @brief Checks if a given integer represents a digit character.
+ *
+ * This function determines whether the provided integer 'i' corresponds to a
+ * digit character, which includes the digits 0 through 9.
+ *
+ * @param i The integer value to be checked.
+ * @return 1 if 'i' represents a digit character, 0 otherwise.
+ */
 int	ft_isdigit(int i)
 {
 	if (i >= 48 && i <= 57)

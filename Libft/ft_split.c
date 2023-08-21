@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:04:51 by marvin            #+#    #+#             */
-/*   Updated: 2022/11/14 18:58:05 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:10:44 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,13 @@ char	**ft_terminator(const char *s, char c, char **splited)
 	return (splited);
 }
 
+/**
+ * @brief split the string in to a array of strings
+ * 
+ * @param s the main string
+ * @param c the spliter
+ * @return char** the array of strings
+ */
 char	**ft_split(char const *s, char c)
 {
 	char	**splited;

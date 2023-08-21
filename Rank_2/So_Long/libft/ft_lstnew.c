@@ -13,10 +13,15 @@
 #include "libft.h"
 
 /**
- * @brief creat a new nood
+ * @brief Creates a new element for a linked list.
  *
- * @param content
- * @return t_list*
+ * This function creates a new element for a linked list with the provided
+ * 'content'. The 'content' pointer is assigned to the element's content, and
+ * the 'next' pointer is set to NULL.
+ *
+ * @param content The content to be assigned to the new element.
+ * @return A pointer to the newly created element, or NULL if memory allocation
+ * fails.
  */
 t_list	*ft_lstnew(void *content)
 {

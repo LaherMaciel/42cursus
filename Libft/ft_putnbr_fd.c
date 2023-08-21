@@ -12,6 +12,16 @@
 
 #include "libft.h"
 
+/**
+ * @brief Writes an integer as a string to a file descriptor.
+ *
+ * This function writes the integer 'n' to the specified file descriptor 'fd' as
+ * a string of characters. It handles both positive and negative integers. The
+ * writing is performed recursively, breaking down the integer into digits.
+ *
+ * @param n The integer to be written.
+ * @param fd The file descriptor to which the integer will be written.
+ */
 void	ft_putnbr_fd(int n, int fd)
 {
 	char	aux;

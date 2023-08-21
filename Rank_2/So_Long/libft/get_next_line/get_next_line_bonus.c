@@ -16,6 +16,13 @@ int		clean(int newline, int x, int y, char *buffer);
 size_t	str_length(char *a);
 char	*ft_strjoinn(char *s1, char *s2);
 
+/**
+ * @brief Reads lines from a file descriptor. It can remember where it stopped
+ * reding on the previews run. It can read multiple files at once.
+ * 
+ * @param fd 
+ * @return char* 
+ */
 char	*get_next_line(int fd)
 {
 	static char	buffer[FOPEN_MAX][BUFFER_SIZE + 1];

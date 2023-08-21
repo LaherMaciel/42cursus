@@ -12,13 +12,6 @@
 
 #include "libft.h"
 
-/**
- * @brief 
- *
- * @param str
- * @param c
- * @return size_t
- */
 size_t	ft_pos_search(const char *str, int c)
 {
 	size_t	a;
@@ -96,6 +89,13 @@ char	**ft_terminator(const char *s, char c, char **splited)
 	return (splited);
 }
 
+/**
+ * @brief split the string in to a array of strings
+ * 
+ * @param s the main string
+ * @param c the spliter
+ * @return char** the array of strings
+ */
 char	**ft_split(char const *s, char c)
 {
 	char	**splited;

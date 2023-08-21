@@ -13,10 +13,15 @@
 #include "libft.h"
 
 /**
- * @brief 
+ * @brief Duplicates a string by creating a new dynamically allocated copy.
  *
- * @param s
- * @return char*
+ * This function creates a new string that is an exact copy of the input string
+ * 's'. It allocates memory for the new string, copies the characters from 's'
+ * into it, and adds a null-terminator at the end.
+ *
+ * @param s The input string to be duplicated.
+ * @return A pointer to the newly allocated duplicated string, or NULL if memory
+ * allocation fails.
  */
 char	*ft_strdup(const char *s)
 {

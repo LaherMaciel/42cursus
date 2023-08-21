@@ -18,6 +18,12 @@ int	new_sign(const char *str, int i, int sign)
 	return (sign);
 }
 
+/**
+ * @brief Convert a string in to a int.
+ * 
+ * @param str 
+ * @return size_t 
+ */
 size_t	ft_atoi(const char *str)
 {
 	int		i;

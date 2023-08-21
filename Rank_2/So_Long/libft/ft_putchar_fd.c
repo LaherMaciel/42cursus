@@ -12,6 +12,15 @@
 
 #include "libft.h"
 
+/**
+ * @brief Writes a character to a file descriptor.
+ *
+ * This function writes the character 'c' to the specified file descriptor 'fd'.
+ * It uses the `write` system call to perform the writing operation.
+ *
+ * @param c The character to be written.
+ * @param fd The file descriptor to which the character will be written.
+ */
 void	ft_putchar_fd(char c, int fd)
 {
 	write (fd, &c, 1);

@@ -13,11 +13,19 @@
 #include "libft.h"
 
 /**
- * @brief 
+ * @brief Applies a given function to each character of a string, creating a new
+ * transformed string.
  *
- * @param s
- * @param f
- * @return char*
+ * This function iterates through each character of the string 's' and applies
+ * the function 'f' to each character along with its corresponding index. The
+ * result of applying the function to each character is used to construct a new
+ * string, which is dynamically allocated. The new string is null-terminated,
+ * and a pointer to it is returned.
+ *
+ * @param s The string to iterate over.
+ * @param f The function to apply to each character along with its index.
+ * @return A pointer to the newly allocated transformed string, or NULL if
+ * memory allocation fails.
  */
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {

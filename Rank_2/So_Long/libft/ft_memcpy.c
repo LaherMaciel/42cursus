@@ -12,6 +12,18 @@
 
 #include "libft.h"
 
+/**
+ * @brief Copies a block of memory from one location to another.
+ *
+ * This function copies 'n' bytes from the memory location pointed to by 'src'
+ * to the memory location pointed to by 'dest'. The copying is done byte by
+ * byte.
+ *
+ * @param dest A pointer to the destination memory block.
+ * @param src A pointer to the source memory block.
+ * @param n The number of bytes to copy.
+ * @return A pointer to the destination memory block 'dest'.
+ */
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	char	*d;
