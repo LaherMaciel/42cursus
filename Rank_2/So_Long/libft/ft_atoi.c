@@ -19,10 +19,17 @@ int	new_sign(const char *str, int i, int sign)
 }
 
 /**
- * @brief Convert a string in to a int.
- * 
- * @param str 
- * @return size_t 
+ * @brief Converts a string to an integer.
+ *
+ * This function takes a string as input and converts it to an integer
+ * representation. It skips leading whitespace characters, processes optional
+ * sign (+/-), and then iterates through the digits in the string to calculate
+ * the resulting integer value. If the input string represents a value that is
+ * out of the valid range for a `size_t` (which is the return type), the
+ * function handles the edge cases and returns the appropriate extreme value.
+ *
+ * @param str The input string to be converted to an integer.
+ * @return size_t The integer value converted from the input string.
  */
 size_t	ft_atoi(const char *str)
 {
