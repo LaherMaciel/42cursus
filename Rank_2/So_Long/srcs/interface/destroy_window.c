@@ -23,7 +23,7 @@ void	destroy_extra_struct(t_extras *extras)
 	int	i;
 
 	i = -1;
-	if (extras->map_names[0])
+	if (extras->map_names && extras->map_names[0])
 	{
 		while (extras->map_names[++i])
 			free(extras->map_names[i]);
@@ -79,7 +79,10 @@ int	end_game(t_main_struct *boss, int error)
 	destroy_win_struct(&boss->win);
 	if (error != 1)
 	{
-		ft_printf(RED"\n		!!GAME OVER!!		\n\n"DEFAULT_COLOR);
+		if (error == 1)
+			ft_printf(RED"\n		!!YOU DIED!!		\n\n"DEFAULT_COLOR);
+		else
+			ft_printf(GREEN"\n		!!GAME OVER!!		\n\n"DEFAULT_COLOR);
 		ft_printf("Total collected: %i\n", boss->win.total_collected);
 		ft_printf("Total Movements: %i\n", boss->aux.total_mov);
 		if (boss->win.exit == 2)

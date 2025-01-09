@@ -42,7 +42,7 @@ void	print_map(t_main_struct *boss)
 		j = -1;
 		while (boss->win.mapa[i][++j])
 		{
-			if (boss->win.mapa[i][j] == 'p')
+			if (boss->win.mapa[i][j] == 'p' || boss->win.mapa[i][j] == 'P')
 				ft_printf(RED"%c"DEFAULT_COLOR, boss->win.mapa[i][j]);
 			else if (boss->win.mapa[i][j] == 'e')
 				ft_printf(YELLOW"%c"DEFAULT_COLOR, boss->win.mapa[i][j]);
@@ -144,20 +144,27 @@ void	put_total_collected_on_window(t_main_struct *boss)
 
 /**
  * @brief Print game-related information on the window.
- * 
- * This function prints the game map, upgrades the collectibles,
- * and displays various game-related information on the window,
- * such as player movements, collectibles, and the total number
- * of collectibles collected.
- * 
+ *
+ * This function prints the game map, upgrades the collectibles, and displays
+ * various game-related information on the window, such as player movements,
+ * collectibles, and the total number of collectibles collected.
+ *
  * @param boss The main game structure.
-*/
-void	my_prints(t_main_struct *boss)
-{
-	print_map(boss);
-	boss->img = upgrade_collectibles(boss);
+ * @details print_map(boss); to print a colored map on the terminal
 	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win,
 		boss->img.main_image, 0, 0);
+*/
+void	my_prints(t_main_struct *boss, int i)
+{
+	if (i == 1)
+		boss->img = upgrade_collectibles(boss);
+	else
+	{
+		put_wall2(boss, 0, 0);
+		put_wall2(boss, 0, 1);
+		put_wall2(boss, 0, 2);
+		boss->img = upgrade_collectibles2(boss);
+	}
 	put_collectibles_on_window(boss);
 	put_movs_on_window(boss);
 	put_total_collected_on_window(boss);

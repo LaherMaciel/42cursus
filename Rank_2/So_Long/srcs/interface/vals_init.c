@@ -33,30 +33,6 @@ void	initialize_map_names(char ***mapNames)
 }
 
 /**
- * @brief Initialize 'extras' struct values
- * 
- * @param extras The 'extras' struct to be initialized
- * @return The initialized 'extras' struct
-*/
-t_extras	extras_vals_init(t_extras extras)
-{
-	initialize_map_names(&extras.map_names);
-	return (extras);
-}
-
-/**
- * @brief Initialize 'img' struct values
- * 
- * @param img The 'img' struct to be initialized
- * @return The initialized 'img' struct
-*/
-t_data	img_vals_init(t_data img)
-{
-	img.main_image = NULL;
-	return (img);
-}
-
-/**
  * @brief Initialize 'win' struct values
  * 
  * @param win The 'win' struct to be initialized

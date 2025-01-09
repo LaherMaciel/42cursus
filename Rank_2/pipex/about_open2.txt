@@ -1,0 +1,6 @@
+here's info of file 2
+
+Its working!
+
+yes!
+This is appended content!

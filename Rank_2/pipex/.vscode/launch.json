@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": false,
+      "cwd": "/mnt/c/Users/ASUS/OneDrive/Documents/INFORMATICA/My_projects-1/42_projects/Rank_2/pipex/srcs",
+      "program": "/mnt/c/Users/ASUS/OneDrive/Documents/INFORMATICA/My_projects-1/42_projects/Rank_2/pipex/srcs/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}

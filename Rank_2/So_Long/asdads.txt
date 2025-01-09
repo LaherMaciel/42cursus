@@ -1,0 +1,5 @@
+
+/* - After all is set, the code will run the origin shift algorithm on the maze created changing the maze every 15s and prints it.
+- To make it easier to see the changes made by the origin shift algorithm,  when printing the map make so that the 'P' have a special color, also with the 'E', all the 'C and also the 'root' so that I can also track the 'root' every time its changed.
+Like 'C' blue,  'P' red, 'E' purple, root green for example.
+ */

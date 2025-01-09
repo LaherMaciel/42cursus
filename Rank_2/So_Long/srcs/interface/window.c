@@ -85,7 +85,7 @@ t_win	window_init(t_main_struct *boss, t_win win)
 void	fresh_start(t_main_struct *boss)
 {
 	window_destroy(boss);
-	boss->img = img_vals_init(boss->img);
+	boss->img.main_image = NULL;
 	boss->win = win_vals_init(boss->win);
 }
 
@@ -114,11 +114,11 @@ void	new_window(t_main_struct *boss)
 	boss->win = validate_map(boss, boss->win,
 			boss->extras.map_names[boss->win.current_map]);
 	boss->win = window_init(boss, boss->win);
-	boss->img = start_image(boss);
+	boss->img = start_image2(boss);
 	ft_printf(CLEAR"MAPA %i READY\n", (boss->win.current_map + 1));
-	my_prints(boss);
+	my_prints(boss, 2);
 	mlx_hook(boss->win.mlx_win, 2, 1L << 0, keycode_decisions, boss);
-	boss->img = upgrade_player(boss, 0);
+	boss->img = upgrade_player2(boss, 0);
 	mlx_hook(boss->win.mlx_win, 17, 1L, end_game, &boss);
 	mlx_loop(boss->win.mlx);
 }

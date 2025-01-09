@@ -18,9 +18,9 @@ void	check_if_surrounded_by_walls(t_main_struct *boss, int y_max_len)
 	int		i;
 
 	j = 0;
-	while (boss->win.mapa[j])
+	while (boss->win.mapa[++j])
 		if ((ft_strlen(boss->win.mapa[0]) - 1)
-			!= (ft_strlen(boss->win.mapa[j++]) - 1))
+			!= (ft_strlen(boss->win.mapa[j]) - 1))
 			error_call("The Map is not a rectangle", boss);
 	j--;
 	if ((ft_strlen(boss->win.mapa[j])) == j)
@@ -32,9 +32,9 @@ void	check_if_surrounded_by_walls(t_main_struct *boss, int y_max_len)
 			error_call("The Map is not a rectangle", boss);
 		if (boss->win.mapa[i][0] != '1')
 			error_call("Map not surrounded by walls", boss);
-		if (boss->win.mapa[i][(ft_strlen(boss->win.mapa[i]) - 1)] == ' ')
+		if (boss->win.mapa[i][(ft_strlen(boss->win.mapa[j]) - 1)] == ' ')
 			error_call("The Map is not a rectangle", boss);
-		if (boss->win.mapa[i][(ft_strlen(boss->win.mapa[i]) - 1)] != '1')
+		if (boss->win.mapa[i][ft_strlen(boss->win.mapa[0]) - 1] != '1')
 			error_call("Map not surrounded by walls", boss);
 	}
 	check_if_surrounded_by_walls2(boss, y_max_len);
@@ -77,7 +77,9 @@ t_win	map_base_check_aux2(t_main_struct *boss, t_win win, int y, int x)
 		win.collectibles++;
 	}
 	else if (win.mapa[y][x] != '0' && win.mapa[y][x] != '1')
+	{
 		error_call("Unidentified characters on the Map", boss);
+	}
 	return (win);
 }
 

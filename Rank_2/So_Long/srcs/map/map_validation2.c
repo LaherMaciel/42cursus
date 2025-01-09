@@ -22,7 +22,7 @@ void	check_if_surrounded_by_walls2(t_main_struct *boss, int y_max_len)
 		if (boss->win.mapa[0][i] == ' ')
 			error_call("The Map is not a rectangle", boss);
 		else if (boss->win.mapa[0][i] != '1')
-			error_call("Map not surrounded by walls", boss);
+			error_call("Map not surrounded by walls\nhere?", boss);
 		else if (boss->win.mapa[y_max_len][i] == ' ')
 			error_call("The Map is not a rectangle", boss);
 		else if (boss->win.mapa[y_max_len][i] != '1')

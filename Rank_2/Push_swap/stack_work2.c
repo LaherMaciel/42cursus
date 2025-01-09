@@ -12,6 +12,17 @@
 
 #include "push_swap.h"
 
+/**
+ * @brief Checks conditions related to individual characters in the value
+ * string. Checks if the current character in the value string is valid.
+ *
+ * @param vals The value string to be checked.
+ * @param commands The command string (unused in this function).
+ * @param skip The current state of skipping (2 if skipping, 0 if invalid, 1
+ * otherwise).
+ * @param stack The stack (unused in this function).
+ * @return int Returns the updated skip state.
+ */
 int	store_cut4(char *vals, char *commands, int skip, t_stack *stack)
 {
 	int	j;
@@ -36,6 +47,17 @@ int	store_cut4(char *vals, char *commands, int skip, t_stack *stack)
 	return (skip);
 }
 
+/**
+ * @brief Iterates through characters in the value string and checks conditions
+ * for validity.
+ *
+ * @param vals The value string to be checked.
+ * @param commands The command string (unused in this function).
+ * @param skip The current state of skipping (2 if skipping, 0 if invalid, 1
+ * otherwise).
+ * @param stack The stack (unused in this function).
+ * @return int Returns the updated skip state.
+ */
 int	store_cut3(char *vals, char *commands, int skip, t_stack *stack)
 {
 	int	j;
@@ -61,23 +83,44 @@ int	store_cut3(char *vals, char *commands, int skip, t_stack *stack)
 	return (skip);
 }
 
+/**
+ * @brief Parses and pushes values onto the stack based on input conditions.
+ *
+ * @param stack A pointer to the stack.
+ * @param vals The array of strings to be parsed.
+ * @param commands The command string.
+ * @param i The current index in the array of strings.
+ * @return int Returns the updated skip state.
+ */
 int	store_cut2(t_stack **stack, char **vals, char *commands, int i)
 {
-	int		skip;
+	long	skip;
+	long	parsed_val;
 
 	commands_check_aux2(vals, i);
 	skip = store_cut3(vals[i], commands, 2, *stack);
 	if (skip == 1)
 	{
-		if (ft_atoi(vals[i]) > INT_MAX || ft_atoi(vals[i]) < INT_MIN)
+		parsed_val = ft_atoi(vals[i]);
+		if (parsed_val > INT_MAX || parsed_val < INT_MIN)
 			return (0);
-		push(stack, ft_atoi(vals[i]));
+		push(stack, parsed_val);
 	}
 	else if (skip == 0)
 		return (0);
 	return (skip);
 }
 
+/**
+ * @brief Iterates through input values and builds a command string.
+ *
+ * @param stack A pointer to the stack.
+ * @param vals The array of strings to be processed.
+ * @param commands The command string.
+ * @param i The current index in the array of strings.
+ * @return char* Returns the command string or NULL if any invalid condition is
+ * encountered.
+ */
 char	*store_cut(t_stack **stack, char **vals, char *commands, int i)
 {
 	int		skip;
@@ -107,7 +150,17 @@ char	*store_cut(t_stack **stack, char **vals, char *commands, int i)
 	return (commands);
 }
 
-// Corre por todas as strings do argv
+/**
+ * @brief Processes command-line arguments and builds a stack based on valid
+ * input values.
+ *
+ * @param argc The number of command-line arguments.
+ * @param argv The array of command-line arguments.
+ * @param commands The command string.
+ * @param stack A pointer to the stack.
+ * @return t_stack* Returns the resulting stack or NULL if any invalid condition
+ * is encountered.
+ */
 t_stack	*store_stack(int argc, char *argv[], char **commands, t_stack *stack)
 {
 	char	**vals;

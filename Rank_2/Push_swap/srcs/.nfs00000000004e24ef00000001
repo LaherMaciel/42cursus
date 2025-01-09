@@ -1,0 +1,157 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   simulation.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/04 17:31:18 by lwencesl          #+#    #+#             */
+/*   Updated: 2024/01/08 16:04:32 by lwencesl         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+/**
+ * @brief Simulates the behavior of the `sort_cut()` function.
+ *
+ * This function simulates the behavior of the `sort_cut()` function by
+ * determining the sorting method based on the size of stack_a and simulating
+ * the corresponding sorting operations.
+ *
+ * @param stack_a A pointer to the head of the first stack (t_stack structure).
+ * @param stack_b A pointer to the head of the second stack (t_stack structure).
+ * @param sa_ord A flag indicating whether stack_a is ordered or not (0 or 1).
+ * @param sim A pointer to the simulated flag. If *sim is 1, the reversed method
+ * is used.
+ * @return The total number of movements after simulating the sorting process.
+ */
+int	simulation_2(t_stack **stack_a,
+	t_stack **stack_b, int *sa_ord, int *sim)
+{
+	int	nr;
+	int	cont;
+
+	nr = 0;
+	cont = 0;
+	if (check_order_ok(*stack_a) == 1 && *stack_b != NULL && *sa_ord == 0)
+		*sa_ord = 1;
+	else if (ft_lstsize_rem(*stack_a) <= 3 && *sa_ord == 0)
+	{
+		*sa_ord = 1;
+		cont += sort_s_3_sim(stack_a, cont);
+	}
+	else if (*sa_ord == 0)
+	{
+		nr = sorting_method(*stack_a, sim);
+		if (nr > 0)
+			ft_reverse_rotate_sim(stack_a);
+		else if (nr < 0)
+			ft_rotate_sim(stack_a);
+		else
+			ft_pass_to_sim(stack_a, stack_b);
+		cont++;
+	}
+	return (cont);
+}
+
+/**
+ * @brief Simulates the behavior of the `sort()` function from the file
+ * `sort.c`.
+ *
+ * This function simulates the behavior of the `sort()` function by repeatedly
+ * performing simulated sorting operations until the stacks are sorted.
+ *
+ * @param stack_a A pointer to the head of the first stack (t_stack structure).
+ * @param stack_b A pointer to the head of the second stack (t_stack structure).
+ * @param sim A flag indicating whether to use simulated operations (1) or not
+ * (0).
+ * @return The total number of movements after simulating the sorting process.
+ */
+int	simulation_1(t_stack **stack_a, t_stack **stack_b, int sim)
+{
+	int	sa_ord;
+	int	done;
+	int	cont;
+
+	done = 0;
+	cont = 0;
+	sa_ord = 0;
+	if (ft_lstsize_rem(*stack_a) == 2)
+	{
+		ft_swap_sim(stack_a);
+		return (++cont);
+	}
+	while (*stack_b != NULL || (done == 0 && check_order_ok(*stack_a) != 1))
+	{
+		cont += simulation_2(stack_a, stack_b, &sa_ord, &sim);
+		if (sa_ord != 0 && stack_b != NULL)
+		{
+			sort_p_sim(stack_a, stack_b);
+			cont++;
+			done = 1;
+		}
+	}
+	return (cont);
+}
+
+/**
+ * @brief Frees the memory used by the stacks in simulations.
+ *
+ * This function is mainly used to free the memory of the `copy_of_stack_`
+ * structures used in simulations.
+ *
+ * @param stack_a A pointer to the head of the first stack (t_stack structure).
+ * @param stack_b A pointer to the head of the second stack (t_stack structure).
+ */
+void	free_stack(t_stack *stack_a, t_stack *stack_b)
+{
+	while (stack_a != NULL)
+		pop(&stack_a);
+	while (stack_b != NULL)
+		pop(&stack_b);
+}
+
+/**
+ * @brief Conducts simulations to choose the best sorting method for organizing
+ * the stack.
+ *
+ * This function is called to perform simulations and choose the best sorting
+ * method to organize the given stacks. It conducts simulations with two
+ * different settings (sim = 0 and sim = 1) and selects the method with the
+ * minimum number of movements.
+ *
+ * @param stack_a A pointer to the head of the first stack (t_stack structure).
+ * @param stack_b A pointer to the head of the second stack (t_stack structure).
+ * @param copy_of_stack_a A pointer to the copy of the first stack used in
+ * simulations.
+ * @param copy_of_stack_b A pointer to the copy of the second stack used in
+ * simulations.
+ * @return The best sorting method (0 or 1).
+ */
+int	simulation(t_stack *stack_a, t_stack *stack_b,
+	t_stack *copy_of_stack_a, t_stack *copy_of_stack_b)
+{
+	int	cont;
+	int	last_cont;
+	int	best_sim;
+	int	sim;
+
+	last_cont = INT_MAX;
+	cont = 0;
+	best_sim = 0;
+	sim = -1;
+	while (++sim < 2)
+	{
+		copy_stacks(stack_a, &copy_of_stack_a, stack_b, &copy_of_stack_b);
+		cont = simulation_1(&copy_of_stack_a, &copy_of_stack_b, sim);
+		cont = simulation_end(&copy_of_stack_a, cont);
+		if (cont < last_cont)
+		{
+			last_cont = cont;
+			best_sim = sim;
+		}
+	}
+	free_stack(copy_of_stack_a, copy_of_stack_b);
+	return (best_sim);
+}

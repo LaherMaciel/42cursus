@@ -58,3 +58,31 @@ t_data	put_exit(t_main_struct *boss, int i, int j)
 	mlx_destroy_image(boss->win.mlx, boss->aux.current_image);
 	return (boss->img);
 }
+
+/**
+ * @brief Perform the collect action in the game.
+ *
+ * This function performs the collect action in the game. It updates the image
+ * data by putting the floor tile on the next block based on the player's
+ * direction. The put_floor function is used to replace the collectible tile
+ * with the image of the floor tile.
+ *
+ * @param boss The main game structure.
+ * @return t_data Returns the updated image data.
+*/
+t_data	pass_exit(t_main_struct *boss)
+{
+	if (boss->win.player_look == 0)
+		boss->img = put_exit(boss,
+				(boss->win.player_y), (boss->win.player_x));
+	if (boss->win.player_look == 1)
+		boss->img = put_exit(boss,
+				(boss->win.player_y), (boss->win.player_x));
+	if (boss->win.player_look == 2)
+		boss->img = put_exit(boss,
+				(boss->win.player_y), (boss->win.player_x));
+	if (boss->win.player_look == 3)
+		boss->img = put_exit(boss,
+				(boss->win.player_y), (boss->win.player_x));
+	return (boss->img);
+}

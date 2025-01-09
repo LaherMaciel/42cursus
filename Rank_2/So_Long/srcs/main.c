@@ -56,15 +56,20 @@ int	check_argc_size(int argc)
 			"\033[1;31m!!\033[0m\n");
 		return (1);
 	}
-	else if (argc > 10)
+	else if (argc > 2)
 	{
-		ft_printf("\033[1;31mERROR:\033[0m To many map file (max 10)"\
+		ft_printf("\033[1;31mERROR:\033[0m To many map file (max 1)"\
 			"\033[1;31m!!\033[0m\n");
 		return (1);
 	}
 	return (0);
 }
 
+/**
+ * @brief
+ * 
+ * @param
+*/
 int	main(int argc, char *argv[])
 {
 	t_main_struct	boss;
@@ -72,11 +77,18 @@ int	main(int argc, char *argv[])
 	if (check_argc_size(argc) == 1)
 		return (0);
 	boss.aux.argc_size = argc - 1;
-	boss = load_game(boss, argv);
-	mlx_hook(boss.win.mlx_win, 2, 1L << 0, keycode_decisions, &boss);
-	boss.img = upgrade_player(&boss, 0);
+	boss.win.total_collected = 0;
+	boss.aux.total_mov = 0;
+	boss.win.current_map = 0;
+	boss.win.new_map = 0;
+	boss.win.mapa = NULL;
+	boss.win = read_map(&boss, argv);
+	boss.win = window_init(&boss, boss.win);
+	boss.img = start_image2(&boss);
+	mlx_hook(boss.win.mlx_win, 2, 1L << 0, keycode_decisions2, &boss);
+	boss.img = upgrade_player2(&boss, 0);
 	mlx_hook(boss.win.mlx_win, 17, 1L, end_game, &boss);
-	boss.img = upgrade_player(&boss, 0);
+	boss.img = upgrade_player2(&boss, 0);
 	mlx_loop(boss.win.mlx);
 	window_destroy(&boss);
 	return (0);

@@ -131,6 +131,7 @@ void	*walk_right(t_win *win)
 
 	if (win->player_walk == 0)
 	{
+		ft_printf("walk 0\n");
 		img_player = mlx_xpm_file_to_image(win->mlx,
 				"images/utils/player/samurai/walk_right_0.xpm",
 				&win->image_length, &win->image_heigth);
@@ -138,6 +139,7 @@ void	*walk_right(t_win *win)
 	}
 	else
 	{
+		ft_printf("walk 1\n");
 		img_player = mlx_xpm_file_to_image(win->mlx,
 				"images/utils/player/samurai/walk_right_1.xpm",
 				&win->image_length, &win->image_heigth);
@@ -163,7 +165,10 @@ t_data	upgrade_player(t_main_struct *boss, int i)
 {
 	if (i == 0)
 	{
-		boss->aux.current_image = floor_image(&boss->win);
+		if (boss->win.mapa[boss->win.player_y][boss->win.player_x] == 'P')
+			boss->aux.current_image = exit_image(&boss->win);
+		else
+			boss->aux.current_image = floor_image(&boss->win);
 		if (!boss->aux.current_image)
 			error_call("Player Image Not Created", boss);
 		boss->img = upgrade_player(boss, 1);

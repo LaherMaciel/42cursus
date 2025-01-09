@@ -46,7 +46,10 @@ char	**creat_map(t_main_struct *boss, char *file_name)
 	map = malloc(10000 * sizeof(char *));
 	fds = open(file_name, O_RDONLY);
 	if (fds == -1)
+	{
+		ft_printf("%s ", file_name);
 		error_call("Failed to read the map file", boss);
+	}
 	i = 0;
 	while (a != NULL)
 	{
@@ -98,8 +101,8 @@ t_win	read_map(t_main_struct *boss, char *argv[])
 {
 	int	i;
 
-	boss->extras = extras_vals_init(boss->extras);
-	boss->img = img_vals_init(boss->img);
+	initialize_map_names(&boss->extras.map_names);
+	boss->img.main_image = NULL;
 	boss->win = win_vals_init(boss->win);
 	i = 0;
 	while (argv[++i])

@@ -126,7 +126,7 @@ t_data	start_image(t_main_struct *boss)
 	boss->img = create_main_image(boss);
 	mlx_put_image_to_window(boss->win.mlx, boss->win.mlx_win,
 		boss->img.main_image, 0, 0);
-	my_prints(boss);
+	my_prints(boss, 1);
 	return (boss->img);
 }
 

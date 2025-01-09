@@ -13,10 +13,12 @@
 NAME = so_long
 TEXTURE_C =
 ANIMATION_C = player_look.c player_walk.c collectibles_animations.c \
-	floor_animations.c wall_animations.c exit_animation.c
+	floor_animations.c wall_animations.c exit_animation.c \
+	player_look2.c player_walk2.c collectibles_animations2.c \
+	floor_animations2.c wall_animations2.c exit_animation2.c
 MAP_C = map_validation.c map_validation2.c read_map.c
-EVENTS_C = base_movs.c keycode.c prints.c
-INTERFACE_C = window.c main_image.c pixeis.c destroy_window.c destroy_window2.c\
+EVENTS_C = base_movs_left_right.c base_movs_up_down.c base_movs_left_right2.c base_movs_up_down2.c keycode.c prints.c
+INTERFACE_C = window.c main_image.c main_image2.c pixeis.c destroy_window.c destroy_window2.c\
 		vals_init.c secundary_images_adjusts.c secundary_images_adjusts_2.c
 
 LIBFT_DIRECTORY = libft/
@@ -69,9 +71,16 @@ YELLOW  = \033[0;33m
 RESET   = \033[0m
 
 $(NAME): $(LIBFT) $(MLX) $(OBJECTS_DIRECTORY) $(OBJECTS)
-	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJECTS) $(LIBS) -o $(NAME)
-	@make norm -s
-	@echo "[" "$(GREEN)OK$(RESET)" "] | so_long created!"
+	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJECTS) $(LIBS) -o $(NAME); \
+	if [ $$? = 0 ]; then \
+		echo "$(GRAY)[" "$(GREEN)OK$(GRAY)" "] | Objects ready!$(RESET)"; \
+		make norm -s; \
+		echo "$(GRAY)[" "$(GREEN)OK$(GRAY)" "] | $(NAME) created!$(RESET)"; \
+	else \
+		echo "$(GRAY)[" "$(RED)Error$(GRAY)" "] | $(RESET)An error occurred while creating push_swap."; \
+		make fclean; \
+		@echo "[" "$(GREEN)OK$(RESET)" "] | so_long created!"; \
+	fi
 
 $(OBJECTS_DIRECTORY):
 	@echo "[" "$(YELLOW)..$(RESET)" "] | Creating objects..."
@@ -91,7 +100,6 @@ $(LIBFT):
 	@make -sC $(LIBFT_DIRECTORY) > /dev/null 2>&1
 	@echo "[" "$(GREEN)OK$(RESET)" "] | Libft ready!"
 
-
 $(MLX):
 	@echo "[" "$(YELLOW)..$(RESET)" "] | Compiling minilibx..."
 	@cd $(MLX_DIRECTORY) && bash configure > /dev/null 2>&1
@@ -106,28 +114,30 @@ clean:
 fclean: clean
 	@echo "[" "$(YELLOW)..$(RESET)" "] | Removing binary files...$(RESET)"
 	@rm -rf $(NAME)
-	@make -sC $(LIBFT_DIRECTORY) fclean > /dev/null 2>&1
 	@rm -rf $(MLX)
 	@echo "[" "$(GREEN)OK$(RESET)" "] | Binary file removed."
 
 norm:
 	@echo "[" "$(YELLOW)..$(RESET)" "] | Norminetting...$(RESET)"
 	@if norminette srcs/ libft/ images/ | grep -q "Error!" ; then \
-	    echo "[" "$(RED)!!$(RESET)" "] | Norminette found errors.$(RESET)"; \
-	    norminette srcs/ libft/ images/ | awk '/Error!/ {print "[ " "$(RED)!!$(RESET)" " ] | " $$0}'; \
+		echo "[" "$(RED)!!$(RESET)" "] | Norminette found errors.$(RESET)"; \
+		norminette srcs/ libft/ images/ | awk '/Error!/ {print "[ " "$(RED)!!$(RESET)" " ] | " $$0}'; \
 	else \
-	    echo "[" "$(GREEN)OK$(RESET)" "] | Norminette passed!"; \
+		echo "[" "$(GREEN)OK$(RESET)" "] | Norminette passed!"; \
 	fi
 
 re: fclean
 	clear && make -s
 
-run: re
-	./so_long mapa3.ber
+run: $(NAME)
+	./so_long progressive3.ber
 
-multi_run: re
-	./so_long progressive.ber progressive2.ber progressive5.ber progressive4.ber \
-		progressive3.ber progressive6.ber 42_logo.ber
+42_run: $(NAME)
+	./so_long cluster1.ber cluster2.ber 42_logo.ber
+
+progressive_run: $(NAME)
+	./so_long progressive.ber progressive2.ber progressive5.ber progressive4.ber progressive3.ber \
+		progressive6.ber 42_logo.ber
 
 multi_full_valgrind: re
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./so_long \
@@ -136,19 +146,19 @@ multi_full_valgrind: re
 
 map3:./so_long mapa3.ber
 
-dbug: re
+dbug: $(NAME)
 	gdb -tui -args ./so_long mapa.ber mapa4.ber
 
-val:re
-	valgrind ./so_long mapa3.ber mapa4.ber
+val:$(NAME)
+	valgrind ./so_long progressive3.ber
 
-val2:re
+val2:$(NAME)
 	valgrind ./so_long mapa.ber mapa4.ber
 
-val_full:re
+val_full:$(NAME)
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./so_long mapa3.ber
 
-val_full2:re
+val_full2:$(NAME)
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./so_long mapa.ber
 
 
