@@ -39,17 +39,9 @@ typedef struct s_pipex
 	pid_t	pid;
 }			t_pipex;
 
-t_pipex	*openning(int argc, char **argv, t_pipex *piper);
-int		open_files(char **argv, int i, t_pipex *piper);
-void	printfile(int fd, char *filename);
-void	create_child(t_pipex *piper);
-void	exit_pipex(int error, char *message, t_pipex *piper);
+void	exit_pipex(int error, char *message);
 void	my_pipex(char **argv, char **envp);
-char	*resolve_command_path(char *cmd, char **envp);
-//void	execute_command(char *cmd, char **envp);
-void	execute_first_command(char *cmd, char **envp, int infile, int *pipe_fd);
-void	execute_second_command(char *cmd, char **envp,
-			int outfile, int *pipe_fd);
+char	*get_command_path(char *cmd, char **envp);
 void	execute_command(char *cmd, char **envp, int input_fd, int output_fd);
 
 #endif

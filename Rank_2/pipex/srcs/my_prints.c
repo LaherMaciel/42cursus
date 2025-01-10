@@ -6,21 +6,11 @@
 /*   By: lawences <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 21:11:03 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/01/09 15:07:31 by lawences         ###   ########.fr       */
+/*   Updated: 2025/01/10 20:37:20 by lawences         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	free_all(t_pipex *piper)
-{
-	if (piper->infile < 0)
-		close(piper->infile);
-	if (piper->outfile < 0)
-		close(piper->outfile);
-	if (piper)
-		free(piper);
-}
 
 /**
  * @brief function used to end the program if something happens
@@ -31,7 +21,7 @@ void	free_all(t_pipex *piper)
  * @param message message to print
  * @param piper struct with all the programs basic or main info
  */
-void	exit_pipex(int error, char *message, t_pipex *piper)
+void	exit_pipex(int error, char *message)
 {
 	int	out;
 
@@ -48,8 +38,6 @@ void	exit_pipex(int error, char *message, t_pipex *piper)
 		ft_printf("%s\n", message);
 	if (error == 0 || error == 1)
 		out = 0;
-	if (piper)
-		free_all(piper);
 	exit(out);
 }
 

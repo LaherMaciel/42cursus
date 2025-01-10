@@ -51,5 +51,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		a++;
 	}
 	d[a] = '\0';
+	if (ft_strncmp(d, "''", 0) == 0)
+	{
+		free(d);
+		return (ft_calloc(1, sizeof(char)));
+	}
 	return (d);
 }

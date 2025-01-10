@@ -20,7 +20,7 @@ HEADER_LIST = pipex.h
 HEADER_DIRECTORY = srcs/
 HEADERS = $(addprefix $(HEADER_DIRECTORY), $(HEADER_LIST))
 
-SRCS_LIST = main.c files_management.c my_prints.c utils.c
+SRCS_LIST = main.c my_prints.c utils.c
 SRCS_DIRECTORY = srcs/
 SRC = $(addprefix $(SRCS_DIRECTORY), $(SRCS_LIST))
 
@@ -29,7 +29,7 @@ OBJECTS_DIRECTORY = objects/
 OBJECTS = $(addprefix $(OBJECTS_DIRECTORY), $(OBJECT_LIST))
 
 CC = cc
-CFLAGS = -g -Wall -Werror -Wextra #-fsanitize=address
+CFLAGS = -g -Wall -Werror -Wextra -fsanitize=address
 
 LIBS = -L$(LIBFT_DIRECTORY) -lft
 INCLUDES = -I./srcs -I./libft/
@@ -88,25 +88,53 @@ norm:
 	        echo "[" "$(GREEN)OK$(RESET)" "] | Norminette passed!"; \
 	    fi; \
 	else \
-	    echo "[" "$(RED)Error$(RESET)" "] | Norminette command failed."; \
+	    echo "[" "$(RED)XX$(RESET)" "] | Norminette Error!"; \
+		norminette srcs/ libft/ images/ | awk '/Error!/ {print "[ " "$(RED)!!$(RESET)" " ] | " $$0}'; \
 	fi
 
 re: fclean
 	clear && make -s
 
+noinfile: $(NAME)
+	./$(NAME) infile "ls -l" "wc -l" /dev/stdout
+
+noinfile_grep: $(NAME)
+	./$(NAME) infile "grep a1" "wc -w" outfile
+
+noinfilecat: $(NAME)
+	./$(NAME) infile "cat" "grep hello" "wc -l" /dev/stdout
+
 run: $(NAME)
 	./$(NAME) infile.txt "ls -l" "wc -l" /dev/stdout
 
-run2: $(NAME)
-	./pipex infile.txt "cat" "grep hello" "wc -l" /dev/stdout
+run_grep: $(NAME)
+	./$(NAME) infile.txt "grep a1" "wc -w" /dev/stdout
 
-runcat: $(NAME)
-	./$(NAME) infile.txt "ls -l" "wc -l" /dev/stdout && cat /dev/stdout
+run_cat: $(NAME)
+	./$(NAME) infile.txt "cat" "grep hello" "wc -l" /dev/stdout
 
 val: $(NAME)
 	valgrind ./$(NAME) infile.txt "ls -l" "wc -l" /dev/stdout
 
+val2_noinfile: $(NAME)
+	valgrind --track-fds=yes --trace-children=yes --track-origins=yes -s ./$(NAME) infile.txt "ls -l" "wc -l" /dev/stdout
+
+val2_noinfile_grep: $(NAME)
+	valgrind --track-fds=yes --trace-children=yes --track-origins=yes -s ./$(NAME) infile.txt "grep a1" "wc -w" /dev/stdout
+
+val2_noinfilecat: $(NAME)
+	valgrind --track-fds=yes --trace-children=yes --track-origins=yes -s ./$(NAME) infile.txt "cat" "grep hello" "wc -w" /dev/stdout
+
+val2: $(NAME)
+	valgrind --track-fds=yes --trace-children=yes --track-origins=yes -s ./$(NAME) infile.txt "ls -l" "wc -l" /dev/stdout
+
+val2_grep: $(NAME)
+	valgrind --track-fds=yes --trace-children=yes --track-origins=yes -s ./$(NAME) infile.txt "grep a1" "wc -w" /dev/stdout
+
+val2_cat: $(NAME)
+	valgrind --track-fds=yes --trace-children=yes --track-origins=yes -s ./$(NAME) infile.txt "cat" "grep hello" "wc -l" /dev/stdout
+
 val_full: $(NAME)
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) infile.txt "ls -l" "wc -l" /dev/stdout
+	valgrind --track-fds=yes --trace-children=yes --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) infile.txt "ls -l" "wc -l" /dev/stdout
 
 .PHONY: all clean fclean re
