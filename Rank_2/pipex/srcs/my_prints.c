@@ -6,7 +6,7 @@
 /*   By: lawences <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 21:11:03 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/01/10 20:37:20 by lawences         ###   ########.fr       */
+/*   Updated: 2025/01/10 22:23:55 by lawences         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ void	exit_pipex(int error, char *message)
 	if (error == -3)
 		ft_fdprintf(STDERR_FILENO, "pipex: %s: %s\n",
 			strerror(errno), message);
+	if (error == -4)
+		ft_fdprintf(STDERR_FILENO,
+			"pipex: command not found: %s\n", message);
 	if (error == 1)
 		ft_printf("%s\n", message);
 	if (error == 0 || error == 1)

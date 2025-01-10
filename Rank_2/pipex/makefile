@@ -113,6 +113,15 @@ run_grep: $(NAME)
 run_cat: $(NAME)
 	./$(NAME) infile.txt "cat" "grep hello" "wc -l" /dev/stdout
 
+run_cmderror: $(NAME)
+	./$(NAME) infile.txt "l -l" "wc -l" /dev/stdout
+
+run_cmderror_grep: $(NAME)
+	./$(NAME) infile.txt "grep a1" "wh -w" /dev/stdout
+
+run_cmderror_cat: $(NAME)
+	./$(NAME) infile.txt "catt" "grep hello" "wc -w" /dev/stdout
+
 val: $(NAME)
 	valgrind ./$(NAME) infile.txt "ls -l" "wc -l" /dev/stdout
 
@@ -122,8 +131,17 @@ val2_noinfile: $(NAME)
 val2_noinfile_grep: $(NAME)
 	valgrind --track-fds=yes --trace-children=yes --track-origins=yes -s ./$(NAME) infile.txt "grep a1" "wc -w" /dev/stdout
 
-val2_noinfilecat: $(NAME)
+val2_noinfile_cat: $(NAME)
 	valgrind --track-fds=yes --trace-children=yes --track-origins=yes -s ./$(NAME) infile.txt "cat" "grep hello" "wc -w" /dev/stdout
+
+val2_cmderror: $(NAME)
+	valgrind --track-fds=yes --trace-children=yes --track-origins=yes -s ./$(NAME) infile.txt "l -l" "wc -l" /dev/stdout
+
+val2_cmderror_grep: $(NAME)
+	valgrind --track-fds=yes --trace-children=yes --track-origins=yes -s ./$(NAME) infile.txt "grep a1" "wh -w" /dev/stdout
+
+val2_cmderror_cat: $(NAME)
+	valgrind --track-fds=yes --trace-children=yes --track-origins=yes -s ./$(NAME) infile.txt "catt" "grep hello" "wc -w" /dev/stdout
 
 val2: $(NAME)
 	valgrind --track-fds=yes --trace-children=yes --track-origins=yes -s ./$(NAME) infile.txt "ls -l" "wc -l" /dev/stdout
@@ -135,6 +153,9 @@ val2_cat: $(NAME)
 	valgrind --track-fds=yes --trace-children=yes --track-origins=yes -s ./$(NAME) infile.txt "cat" "grep hello" "wc -l" /dev/stdout
 
 val_full: $(NAME)
-	valgrind --track-fds=yes --trace-children=yes --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) infile.txt "ls -l" "wc -l" /dev/stdout
+	valgrind --track-fds=yes --trace-children=yes --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) infile.txt "grep a1" "wc -l" /dev/stdout
+
+val_full_errocommand: $(NAME)
+	valgrind --track-fds=yes --trace-children=yes --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) infile.txt "grp a1" "wc -l" /dev/stdout
 
 .PHONY: all clean fclean re

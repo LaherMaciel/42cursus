@@ -46,3 +46,26 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	sjoin[i] = '\0';
 	return (sjoin);
 }
+
+char	*ft_strjoin2(char *s1, char const *s2)
+{
+	char	*sjoin;
+	size_t	i;
+	size_t	j;
+
+	sjoin = malloc((ft_strlen(s1) + ft_strlen(s2)) * sizeof(char) + 1);
+	if (!sjoin)
+		return (NULL);
+	i = -1;
+	while (s1[++i] != '\0')
+		sjoin[i] = s1[i];
+	free(s1);
+	j = -1;
+	while (s2[++j] != '\0')
+	{
+		sjoin[i] = s2[j];
+		i++;
+	}
+	sjoin[i] = '\0';
+	return (sjoin);
+}

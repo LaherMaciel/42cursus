@@ -6,11 +6,25 @@
 /*   By: lawences <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:27:39 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/01/10 21:10:17 by lawences         ###   ########.fr       */
+/*   Updated: 2025/01/10 22:27:42 by lawences         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	free_args(char **args, int fd1, int fd2)
+{
+	int	i;
+
+	i = -1;
+	while (args[++i])
+		free(args[i]);
+	free(args);
+	if (fd1)
+		close(fd1);
+	if (fd2)
+		close(fd2);
+}
 
 char	*find_the_command(char *cmd, char *path_env)
 {
@@ -27,7 +41,7 @@ char	*find_the_command(char *cmd, char *path_env)
 		full_path = ft_strjoin(paths[i], "/");
 		if (!full_path)
 			break ;
-		full_path = ft_strjoin(full_path, cmd);
+		full_path = ft_strjoin2(full_path, cmd);
 		if (!full_path)
 			break ;
 		if (access(full_path, X_OK) == 0)
@@ -35,12 +49,14 @@ char	*find_the_command(char *cmd, char *path_env)
 		free(full_path);
 		full_path = NULL;
 	}
+	free_args(paths, 0, 0);
 	return (NULL);
 }
 
 char	*get_command_path(char *cmd, char **envp)
 {
 	char	*path_env;
+	char	*full_path;
 	size_t	i;
 
 	path_env = NULL;
@@ -55,7 +71,10 @@ char	*get_command_path(char *cmd, char **envp)
 	}
 	if (!path_env)
 		return (NULL);
-	return (find_the_command(cmd, path_env));
+	full_path = find_the_command(cmd, path_env);
+	if (!full_path)
+		ft_fdprintf(2, "pipex: command not found: %s\n", cmd);
+	return (full_path);
 }
 
 void	execute_command(char *cmd, char **envp, int input_fd, int output_fd)
@@ -78,7 +97,7 @@ void	execute_command(char *cmd, char **envp, int input_fd, int output_fd)
 	cmd_path = get_command_path(args[0], envp);
 	if (!cmd_path)
 	{
-		ft_fdprintf(2, "pipex: command not found: %s\n", args[0]);
+		free_args(args, input_fd, output_fd);
 		exit_pipex(0, "");
 	}
 	close(input_fd);
