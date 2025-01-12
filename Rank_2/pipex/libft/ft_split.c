@@ -19,6 +19,8 @@ size_t	ft_pos_search(const char *str, int c)
 
 	a = -1;
 	len = ft_strlen(str);
+	if (ft_strncmp(str, "\' \'", 3) == 0)
+		return (3);
 	while (++a <= len)
 		if (str[a] == c)
 			return (a);
