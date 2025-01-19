@@ -12,12 +12,6 @@
 
 #include "libft.h"
 
-/* 
-line = "e então" naquele dia"jorge aconteceu"
-[0] = "e então"
-[1] = naquele
-[2] = dia"jorge aconteceu"
- */
 static size_t	ft_pos_search(const char *str, int c)
 {
 	size_t	a;
@@ -111,6 +105,24 @@ static char	**ft_terminator(const char *str, char c, char **splited)
  * @param s the main string
  * @param c the spliter
  * @return char** the array of strings
+ * 
+ * @example It can now read input like -> "e entao" naquele dia"o
+ * 		jorge aconteceu"
+ * 
+ * SPLIT 2
+ * line = "e então" naquele dia"jorge aconteceu"
+ * [0] = "e então"
+ * [1] = naquele
+ * [2] = dia"o
+ * [3] = jorge
+ * [4] = aconteceu"
+ * 
+ * and --> "e entao" naquele dia "o jorge aconteceu"
+ * SPLIT 2
+ * [0] = "e entao"
+ * [1] = naquele
+ * [2] = dia
+ * [3] = "o jorge aconteceu"
  */
 char	**ft_split2(char const *s, char c)
 {

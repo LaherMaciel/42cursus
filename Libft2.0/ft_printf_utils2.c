@@ -42,7 +42,7 @@ int	ft_printargs(char **s)
 	size_t	cont;
 
 	if (!s)
-		return (write (1, "(null)", 6));
+		return (ft_putstr("(null)"));
 	cont = -1;
 	i = 0;
 	while (s[++cont])
@@ -59,13 +59,13 @@ int	ft_printargsn(char **s)
 	size_t	cont;
 
 	if (!s)
-		return (write (1, "(null)", 6));
+		return (ft_putstr("(null)"));
 	cont = -1;
 	i = 0;
 	while (s[++cont])
 	{
 		i += ft_putstr(s[cont]);
-		i += write (1, "\n\n", 1);
+		i += ft_putstr("\n\n");
 	}
 	return (i);
 }
@@ -76,17 +76,15 @@ int	ft_printargsc(char **s)
 	size_t	cont;
 
 	if (!s)
-		return (write (1, "(null)", 6));
+		return (ft_putstr("(null)"));
 	cont = -1;
 	i = 0;
 	i += write (1, "[", 1);
 	while (s[++cont])
 	{
 		if (cont != 0)
-			i += write (1, ", ", 2);
-		i += write (1, "\"", 1);
+			i += ft_putstr(", ");
 		i += ft_putstr(s[cont]);
-		i += write (1, "\"", 1);
 	}
 	i += write (1, "]", 1);
 	return (i);
@@ -103,9 +101,11 @@ int	ft_printargscn(char **s)
 	i = 0;
 	while (s[++cont])
 	{
-		i += write (1, "[	\"", 3);
+		i += write (1, "[", 1);
+		i += ft_putnbr(cont);
+		i += ft_putstr("] = [");
 		i += ft_putstr(s[cont]);
-		i += write (1, "\"	]\n", 4);
+		i += ft_putstr("]\n");
 	}
 	return (i);
 }
