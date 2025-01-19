@@ -12,6 +12,31 @@
 
 #include "libft.h"
 
+char	*for_pipex(char *d)
+{
+	char	*e;
+
+	e = NULL;
+	if (ft_strncmp(d, "''", 0) == 0)
+	{
+		free(d);
+		return (ft_calloc(1, sizeof(char)));
+	}
+	if (ft_strncmp(d, "\' \'", 3) == 0)
+	{
+		free(d);
+		d = ft_calloc(1, sizeof(char));
+		d = " ";
+	}
+	else if (ft_strchr(d, '\"') != NULL && ft_strrchr(d, '\"') != NULL)
+	{
+		e = ft_substr(d, 0, (ft_strlen(d)));
+		free(d);
+		return (e);
+	}
+	return (d);
+}
+
 /**
  * @brief Creates a new substring from a given string starting from a specified
  * index and with a specified length.
@@ -31,7 +56,7 @@
  * @note removed this part of the code that was between a = 0 and the while loop
  * before the malloc. if (len == 0) len = ft_strlen(s);
  */
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr2(char const *s, unsigned int start, size_t len)
 {
 	size_t	a;
 	char	*d;
@@ -50,5 +75,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		d[a] = s[start + a];
 		a++;
 	}
-	return (d);
+	d[a] = '\0';
+	return (for_pipex(d));
 }

@@ -78,6 +78,8 @@ char	*ft_strjoin2(char *s1, char const *s2);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strtrim(const char *str, const char *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	**ft_split2(char const *str, char c);
+char	*ft_substr2(char const *s, unsigned int start, size_t len);
 
 //Bonus
 t_list	*ft_lstnew(void *content);
@@ -98,5 +100,6 @@ int		ft_fdprintf(int fd, const char *a, ...);
 char	*get_next_line(int fd);
 
 size_t	ft_strstrlen(char **a);
+void	ft_free_strstr(char **strstr);
 
 #endif

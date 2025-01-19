@@ -12,6 +12,12 @@
 
 #include "libft.h"
 
+/* 
+line = "e então" naquele dia"jorge aconteceu"
+[0] = "e então"
+[1] = naquele
+[2] = dia"jorge aconteceu"
+ */
 static size_t	ft_pos_search(const char *str, int c)
 {
 	size_t	a;
@@ -22,8 +28,16 @@ static size_t	ft_pos_search(const char *str, int c)
 	if (ft_strncmp(str, "\' \'", 3) == 0)
 		return (3);
 	while (++a <= len)
+	{
+		if (str[a] == '\"' && (a == 0 || str[a - 1] == ' '))
+		{
+			a++;
+			while (str[a] && str[a] != '\"')
+				a++;
+		}
 		if (str[a] == c)
 			return (a);
+	}
 	return (-1);
 }
 
@@ -82,9 +96,9 @@ static char	**ft_terminator(const char *str, char c, char **splited)
 			break ;
 		sep = ft_pos_search((str + start), c);
 		if (sep != (size_t) - 1)
-			splited[i] = ft_substr(str, start, sep);
+			splited[i] = ft_substr2(str, start, sep);
 		else if (sep == (size_t) - 1)
-			splited[i] = ft_substr(str, start, ft_strlen(str + start));
+			splited[i] = ft_substr2(str, start, ft_strlen(str + start));
 		i++;
 	}
 	splited[i] = NULL;
@@ -98,7 +112,7 @@ static char	**ft_terminator(const char *str, char c, char **splited)
  * @param c the spliter
  * @return char** the array of strings
  */
-char	**ft_split(char const *s, char c)
+char	**ft_split2(char const *s, char c)
 {
 	char	**splited;
 

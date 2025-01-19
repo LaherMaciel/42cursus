@@ -20,7 +20,7 @@ ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c ft_lstnew.c\
 ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c\
 ft_lstclear.c ft_lstiter.c ft_lstmap.c ft_printf.c ft_printf_utils.c ft_printf_utils2.c\
 ft_fdprintf.c ft_fdprintf_utils.c get_next_line_bonus.c get_next_line_utils_bonus.c\
-ft_strstrlen.c\
+ft_strstrlen.c ft_free_strstr.c ft_split2.c ft_substr2.c\
 
 AR = ar rc
 CC = cc
