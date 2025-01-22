@@ -10,14 +10,72 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../include/libft.h"
+
+static size_t	ft_strlen_sub(char *str, size_t i, size_t quotes, size_t open)
+{
+	while (str[i])
+	{
+		if (str[i] == '\'' && open == 0)
+		{
+			quotes++;
+			open = 1;
+		}
+		else if (str[i] == '\"' && open == 0)
+		{
+			quotes++;
+			open = 2;
+		}
+		else if ((str[i] == '\'' && open == 1)
+			|| (str[i] == '\"' && open == 2))
+		{
+			quotes++;
+			open = 0;
+		}
+		i++;
+	}
+	return (i - quotes);
+}
+
+static int	remove_quotes_ifloop(char *str, size_t i, size_t *open)
+{
+	if (str[i] == '\'' && *open == 0)
+		*open = 1;
+	else if (str[i] == '\"' && *open == 0)
+		*open = 2;
+	else if ((str[i] == '\'' && *open == 1)
+		|| (str[i] == '\"' && *open == 2))
+		*open = 0;
+	else
+		return (1);
+	return (0);
+}
+
+static char	*remove_quotes(char *str)
+{
+	char	*new_str;
+	size_t	i;
+	size_t	j;
+	size_t	open;
+
+	new_str = ft_calloc(ft_strlen_sub(str, 0, 0, 0), sizeof(char) + 2);
+	i = 0;
+	j = 0;
+	open = 0;
+	while (str[i] && j < ft_strlen_sub(str, 0, 0, 0))
+	{
+		if (remove_quotes_ifloop(str, i, &open) == 0)
+			i++;
+		else
+			new_str[j++] = str[i++];
+	}
+	free(str);
+	return (new_str);
+}
 
 char	*for_pipex(char *d)
 {
-	char	*e;
-
-	e = NULL;
-	if (ft_strncmp(d, "''", 0) == 0)
+	if (ft_strcmp(d, "''") == 0)
 	{
 		free(d);
 		return (ft_calloc(1, sizeof(char)));
@@ -28,13 +86,7 @@ char	*for_pipex(char *d)
 		d = ft_calloc(1, sizeof(char));
 		d = " ";
 	}
-	else if (ft_strchr(d, '\"') != NULL && ft_strrchr(d, '\"') != NULL)
-	{
-		e = ft_substr(d, 0, (ft_strlen(d)));
-		free(d);
-		return (e);
-	}
-	return (d);
+	return (remove_quotes(d));
 }
 
 /**
@@ -75,6 +127,5 @@ char	*ft_substr2(char const *s, unsigned int start, size_t len)
 		d[a] = s[start + a];
 		a++;
 	}
-	d[a] = '\0';
 	return (for_pipex(d));
 }

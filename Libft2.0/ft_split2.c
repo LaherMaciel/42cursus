@@ -10,12 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../include/libft.h"
 
+// && str[a] != '\"'
 static size_t	ft_pos_search(const char *str, int c)
 {
 	size_t	a;
 	size_t	len;
+	char	quote;
 
 	a = -1;
 	len = ft_strlen(str);
@@ -23,10 +25,11 @@ static size_t	ft_pos_search(const char *str, int c)
 		return (3);
 	while (++a <= len)
 	{
-		if (str[a] == '\"' && (a == 0 || str[a - 1] == ' '))
+		if (str[a] == '\"' || str[a] == '\'')
 		{
+			quote = str[a];
 			a++;
-			while (str[a] && str[a] != '\"')
+			while (str[a] && str[a] != quote)
 				a++;
 		}
 		if (str[a] == c)
@@ -110,19 +113,17 @@ static char	**ft_terminator(const char *str, char c, char **splited)
  * 		jorge aconteceu"
  * 
  * SPLIT 2
- * line = "e então" naquele dia"jorge aconteceu"
- * [0] = "e então"
+ * line = "e então" naquele dia"o jorge aconteceu"
+ * [0] = e então
  * [1] = naquele
- * [2] = dia"o
- * [3] = jorge
- * [4] = aconteceu"
+ * [2] = diao jorge aconteceu
  * 
  * and --> "e entao" naquele dia "o jorge aconteceu"
  * SPLIT 2
- * [0] = "e entao"
+ * [0] = e entao
  * [1] = naquele
  * [2] = dia
- * [3] = "o jorge aconteceu"
+ * [3] = o jorge aconteceu
  */
 char	**ft_split2(char const *s, char c)
 {
@@ -134,5 +135,6 @@ char	**ft_split2(char const *s, char c)
 		splited = (char **) ft_calloc((find_size(s, c) + 1), sizeof(char *));
 	if (!splited)
 		return (NULL);
-	return (ft_terminator(s, c, splited));
+	splited = ft_terminator(s, c, splited);
+	return (splited);
 }
