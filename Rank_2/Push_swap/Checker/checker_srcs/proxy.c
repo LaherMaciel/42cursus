@@ -12,12 +12,12 @@
 
 #include "checker.h"
 
-/* char	*proxy_cut2(void)
+char	*proxy_cut2(void)
 {
 	char	*commands;
 	ssize_t	ret;
 
-	commands = (char *)ft_calloc(1000000, sizeof(char));
+	commands = (char *)malloc(1000000 * sizeof(char));
 	if (commands == NULL)
 		return (NULL);
 	ret = read(0, commands, 1000000);
@@ -26,6 +26,7 @@
 		free(commands);
 		return (NULL);
 	}
+	commands[ret] = '\0';
 	if (ret == 0)
 	{
 		free(commands);
@@ -33,7 +34,7 @@
 	}
 	return (commands);
 }
- */
+
 char	**proxy_cut(char commands[])
 {
 	char	**vals;
@@ -50,32 +51,24 @@ void	proxy(t_stack **stack_a, t_stack **stack_b, int i)
 	char	*commands;
 	char	**vals;
 
-	vals = NULL;
-	commands = get_next_line(0);
+	commands = proxy_cut2();
 	if (commands == NULL)
 		return ;
-	while (commands != NULL && ft_strncmp(commands, "  ", 2))
+	if (commands != NULL && ft_strncmp(commands, "  ", 2))
 	{
 		vals = proxy_cut(commands);
-		if (!vals)
-			return ;
 		while (vals[++i] != NULL)
 		{
-			if (commands_check(vals[i]) == 1)
-				return (0);
+			vals[i] = commands_check_aux2(&vals[i], 0);
 			if (user_sort(stack_a, stack_b, vals[i]) == 0)
 			{
 				while (vals[i])
 					free(vals[i++]);
-				return ;
+				break ;
 			}
 			free(vals[i]);
 		}
-		while (vals[i])
-			free(vals[i++]);
 		free(vals);
-		free(commands);
-		commands = get_next_line(0);
 	}
 	end_code(stack_a, stack_b, commands);
 }

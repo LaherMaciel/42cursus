@@ -76,6 +76,7 @@ fclean: clean
 	@rm -rf $(NAME)
 	@make -sC $(LIBFT_DIRECTORY) fclean > /dev/null 2>&1
 	@rm -rf $(MLX)
+	@rm -rf .norminette.log
 	@echo "[" "$(GREEN)OK$(RESET)" "] | Binary file removed."
 
 norm:

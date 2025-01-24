@@ -52,7 +52,7 @@ int	sort_s_by4_rev_aux(t_stack **stack, char id, t_stack *last)
 		&& (*stack)->content != find_biggest(*stack)
 		&& last->content != find_smallest(*stack))
 		ft_reverse_rotate(stack, id);
-	else 
+	else
 		return (1);
 	return (0);
 }

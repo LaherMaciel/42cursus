@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lawences <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lahermaciel <lahermaciel@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:52:25 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/01/10 21:17:41 by lawences         ###   ########.fr       */
+/*   Updated: 2025/01/23 23:54:44 by lahermaciel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ int	main(int argc, char **argv, char **envp)
 	int		outfile;
 
 	if (argc < 5)
-		exit_pipex(-2, "Usage: ./pipex file1 cmd1 cmd2 ... cmdN file2");
+		exit_pipex(-2, "Error: incorrect input: Try ./pipex "
+			"file1 cmd1 cmd2 ... cmdN file2");
 	infile = open(argv[1], O_RDONLY);
 	if (infile < 0)
 		ft_fdprintf(STDERR_FILENO, "pipex: %s: %s\n",

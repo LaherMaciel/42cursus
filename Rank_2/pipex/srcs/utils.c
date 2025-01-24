@@ -6,7 +6,7 @@
 /*   By: lahermaciel <lahermaciel@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:27:39 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/01/23 18:04:25 by lahermaciel      ###   ########.fr       */
+/*   Updated: 2025/01/23 23:30:13 by lahermaciel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,17 @@ char	*get_command_path(char *cmd, char **envp)
 	char	*full_path;
 	size_t	i;
 
-	path_env =  getenv("PATH");
+	path_env = NULL;
+	full_path = NULL;
+	i = -1;
+	while (envp[++i])
+	{
+		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
+		{
+			path_env = envp[i] + 5;
+			break ;
+		}
+	}
 	if (!path_env)
 		return (NULL);
 	full_path = find_the_command(cmd, path_env);
