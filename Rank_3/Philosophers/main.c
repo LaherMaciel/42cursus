@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lahermaciel <lahermaciel@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lawences <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 15:30:27 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/04/22 14:53:08 by lahermaciel      ###   ########.fr       */
+/*   Updated: 2025/06/19 18:32:55 by lawences         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ static void	threads_handler(t_philo **philos, t_table *table,
 	int	i;
 
 	i = -1;
+	if (numb_of_philos <= 1)
+	{
+		philos[0] = init_philo_values(0, table);
+		philos[0]->is_dead = 1;
+		philos[0]->table->is_dead = 1;
+		printf(RED"%li Philosopher %d died...\n"DEFAULT_COLOR,
+				philos[0]->current_time,
+				philos[0]->id);
+	}
 	while (++i < numb_of_philos)
 	{
 		philos[i] = init_philo_values(i, table);
