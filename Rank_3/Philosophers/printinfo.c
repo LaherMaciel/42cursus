@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printinfo.c                                        :+:      :+:    :+:   */
+/*   printinfo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lahermaciel <lahermaciel@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 12:46:47 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/04/22 15:22:53 by lahermaciel      ###   ########.fr       */
+/*   Updated: 2025/07/23 13:28:29 by lahermaciel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,49 +68,17 @@ void	print_tableinfo(t_table *table)
 	printf("\n");
 }
 
-/**
- * @brief Writes a string to a file descriptor.
- *
- * This function writes the string 's' to the specified file descriptor 'fd'
- * using the `write` system call. It iterates through the characters in the
- * string and writes each character individually to the file descriptor.
- *
- * @param s The string to be written.
- * @param fd The file descriptor to which the string will be written.
- */
 void	ft_putstr_fd(char *s, int fd)
 {
 	size_t	i;
 
 	i = -1;
 	while (++i < ft_strlen(s))
-		write (fd, &s[i], 1);
+		write(fd, &s[i], 1);
 }
 
 t_philo	*printphilosactions(t_philo *philo, int flag)
 {
-	philo = monitoring(philo);
-	if (is_death(philo))
-		return (philo);
-	pthread_mutex_lock(&philo->table->print_mutex);
-	philo->current_time = time_in_ms();
-	if (is_death(philo))
-		return (philo);
-	if (flag == 1)
-	{
-		printf("%li Philosopher %d"CYAN" is sleeping...\n"DEFAULT_COLOR,
-			philo->current_time - philo->start_time, philo->id);
-	}
-	else if (flag == 2)
-	{
-		printf("%li Philosopher "MAGENTA"%d is eating...\n"DEFAULT_COLOR,
-			philo->current_time - philo->start_time, philo->id);
-	}
-	else if (flag == 3)
-	{
-		printf("%li Philosopher %d"YELLOW" is thinking...\n"DEFAULT_COLOR,
-			philo->current_time - philo->start_time, philo->id);
-	}
-	pthread_mutex_unlock(&philo->table->print_mutex);
+	(void)flag;
 	return (philo);
 }

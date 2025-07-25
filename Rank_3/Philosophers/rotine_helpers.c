@@ -6,7 +6,7 @@
 /*   By: lahermaciel <lahermaciel@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 13:22:50 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/04/22 15:27:03 by lahermaciel      ###   ########.fr       */
+/*   Updated: 2025/07/23 16:16:27 by lahermaciel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ long int	time_in_ms(void)
 
 int	is_death(t_philo *philo)
 {
+	if (!philo || !philo->table)
+		return (-1);
 	pthread_mutex_lock(&philo->table->death);
 	if (philo->table->is_dead)
 	{
@@ -36,35 +38,39 @@ int	is_death(t_philo *philo)
 	return (0);
 }
 
-static void	autopsy(t_philo *philo)
-{
-	printf(BOLD_RED"AUTOPSY:\nCurrent time: %li\nLast time that eaten: "
-		"%li\ntime without it: %li\ntime to die: %d\n"DEFAULT_COLOR,
-		philo->current_time - philo->start_time,
-		philo->time_that_eaten - philo->start_time,
-		philo->current_time - philo->time_that_eaten,
-		philo->table->time_to_die);
-}
-
 t_philo	*monitoring(t_philo *philo)
 {
 	philo->current_time = time_in_ms();
 	if (philo->time_that_eaten == 0)
 		return (philo);
-	if (philo->current_time - philo->time_that_eaten
+	if ((philo->current_time - philo->time_that_eaten)
 		>= philo->table->time_to_die)
 	{
 		pthread_mutex_lock(&philo->table->death);
 		if (!philo->table->is_dead)
 		{
-			printf(RED"%li Philosopher %d died...\n"DEFAULT_COLOR,
+			printf("%li %d died\n",
 				philo->current_time - philo->start_time, philo->id);
-			autopsy(philo);
-			philo->is_dead = 1;
-			philo->table->is_dead = 1;
 		}
 		pthread_mutex_unlock(&philo->table->death);
 		return (philo);
 	}
 	return (philo);
+}
+
+void	precise_sleep(long duration_ms, t_table *table)
+{
+	long	start;
+	int		dead;
+
+	start = time_in_ms();
+	while (1)
+	{
+		pthread_mutex_lock(&table->death);
+		dead = table->is_dead;
+		pthread_mutex_unlock(&table->death);
+		if (dead || (time_in_ms() - start >= duration_ms))
+			break ;
+		usleep(100);
+	}
 }

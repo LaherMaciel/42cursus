@@ -6,31 +6,32 @@
 /*   By: lahermaciel <lahermaciel@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:33:42 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/04/21 20:20:27 by lahermaciel      ###   ########.fr       */
+/*   Updated: 2025/07/23 14:24:37 by lahermaciel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <unistd.h>
 
 t_table	*free_table(t_table *table)
 {
-	int	i;
+	int		i;
 
-	if (table)
+	if (!table)
+		return (NULL);
+	if (table->forks)
 	{
-		if (table->forks)
-		{
-			i = -1;
-			while (++i < table->num_of_philos)
-				pthread_mutex_destroy(&table->forks[i]);
-			free(table->forks);
-			pthread_mutex_destroy(&table->death);
-			pthread_mutex_destroy(&table->print_mutex);
-		}
-		if (table->philosopher)
-			free(table->philosopher);
-		free(table);
+		i = -1;
+		while (++i < table->num_of_philos)
+			pthread_mutex_destroy(&table->forks[i]);
+		free(table->forks);
 	}
+	usleep(10000);
+	pthread_mutex_destroy(&table->death);
+	pthread_mutex_destroy(&table->print_mutex);
+	if (table->philosopher)
+		free(table->philosopher);
+	free(table);
 	return (NULL);
 }
 

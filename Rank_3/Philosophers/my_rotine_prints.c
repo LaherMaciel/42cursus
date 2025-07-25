@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_rotine.c                                       :+:      :+:    :+:   */
+/*   my_rotine_prints.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lahermaciel <lahermaciel@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 13:43:50 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/07/23 14:15:32 by lahermaciel      ###   ########.fr       */
+/*   Created: 2025/07/23 16:32:00 by lahermaciel       #+#    #+#             */
+/*   Updated: 2025/07/23 16:33:21 by lahermaciel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <pthread.h>
 
-void	*start_routine(void *args)
+void	eat_print_fork(t_philo *philo)
 {
-	t_philo	*philo;
+	printf("%li %d has taken a fork\n",
+		philo->current_time - philo->start_time, philo->id);
+}
 
-	philo = (t_philo *)args;
-	printf("[DEBUG] Philosopher %d thread started\n", philo->id);
-	routine_loop(philo);
-	printf("[DEBUG] Philosopher %d thread exiting\n", philo->id);
-	return (NULL);
+void	eat_print_died(t_philo *philo)
+{
+	printf("%li %d died\n",
+		philo->current_time - philo->start_time, philo->id);
+}
+
+void	eat_print_eating(t_philo *philo)
+{
+	printf("%li %d is eating\n",
+		philo->current_time - philo->start_time, philo->id);
 }
