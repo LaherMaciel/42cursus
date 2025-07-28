@@ -4,7 +4,7 @@ HEADER_LIST = philo.h
 HEADERS = $(HEADER_LIST)
 
 SRCS_LIST = main.c utils.c philo_struct_handler.c printinfo.c table_struct_handler.c \
-	rotine_helpers.c my_rotine.c rotine_utils.c main_utils.c main_utils2.c rotine_helpers2.c my_rotine_utils.c my_rotine_prints.c
+	rotine_helpers.c my_rotine.c rotine_utils.c main_utils.c main_utils2.c rotine_helpers2.c my_rotine_utils.c my_rotine_prints.c thread_handler.c monitoring.c
 SRC = $(SRCS_LIST)
 
 OBJECT_LIST = $(SRCS_LIST:.c=.o)

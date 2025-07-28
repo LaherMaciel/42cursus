@@ -6,13 +6,13 @@
 /*   By: lahermaciel <lahermaciel@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 16:24:05 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/07/24 16:24:25 by lahermaciel      ###   ########.fr       */
+/*   Updated: 2025/07/27 13:59:56 by lahermaciel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	threads_handler(t_philo **philos, t_table *table,
+void	threads_handler(t_philo **philos, t_table *table,
 	int numb_of_philos)
 {
 	pthread_t	monitor;

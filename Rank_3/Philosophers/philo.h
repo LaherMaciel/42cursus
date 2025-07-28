@@ -6,7 +6,7 @@
 /*   By: lahermaciel <lahermaciel@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 15:40:13 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/07/24 16:25:09 by lahermaciel      ###   ########.fr       */
+/*   Updated: 2025/07/27 14:50:08 by lahermaciel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void		print_philoinfo(t_philo *philo);
 void		ft_putstr_fd(char *s, int fd);
 size_t		ft_strlen(const char *a);
 void		*start_routine(void *base_struct);
+void		*monitor_routine(void *arg);
+void		threads_handler(t_philo **philos, t_table *table, int numb_of_philos);
 t_philo		**free_philos(t_philo **philos, int num_of_philos);
 t_philo		*init_philo_values(int i, t_table *table);
 long int	time_in_ms(void);
@@ -97,15 +99,12 @@ void		free_all(t_philo **philos, t_table *table);
 int			handle_one_philo(t_table *table);
 void		create_philo_threads(t_philo **philos, t_table *table,
 				int numb_of_philos);
-void		precise_sleep(long duration_ms, t_table *table);
 void		clean_up(t_philo *philo, int unlock_left, int unlock_right);
 int			should_exit(t_philo *philo);
 void		eat_print_fork(t_philo *philo);
 void		eat_print_died(t_philo *philo);
 void		eat_print_eating(t_philo *philo);
 t_philo		*think(t_philo *philo);
-int			lock_even_forks(t_philo *philo);
-int			lock_odd_forks(t_philo *philo);
 int			should_break(t_philo *philo, int eaten);
 void		routine_loop(t_philo *philo);
 

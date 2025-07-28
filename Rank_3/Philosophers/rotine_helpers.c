@@ -6,7 +6,7 @@
 /*   By: lahermaciel <lahermaciel@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 13:22:50 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/07/23 16:16:27 by lahermaciel      ###   ########.fr       */
+/*   Updated: 2025/07/27 14:50:08 by lahermaciel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,26 +51,10 @@ t_philo	*monitoring(t_philo *philo)
 		{
 			printf("%li %d died\n",
 				philo->current_time - philo->start_time, philo->id);
+				philo->table->is_dead = 1;
 		}
 		pthread_mutex_unlock(&philo->table->death);
 		return (philo);
 	}
 	return (philo);
-}
-
-void	precise_sleep(long duration_ms, t_table *table)
-{
-	long	start;
-	int		dead;
-
-	start = time_in_ms();
-	while (1)
-	{
-		pthread_mutex_lock(&table->death);
-		dead = table->is_dead;
-		pthread_mutex_unlock(&table->death);
-		if (dead || (time_in_ms() - start >= duration_ms))
-			break ;
-		usleep(100);
-	}
 }

@@ -17,8 +17,6 @@ void	*start_routine(void *args)
 	t_philo	*philo;
 
 	philo = (t_philo *)args;
-	printf("[DEBUG] Philosopher %d thread started\n", philo->id);
 	routine_loop(philo);
-	printf("[DEBUG] Philosopher %d thread exiting\n", philo->id);
 	return (NULL);
 }
